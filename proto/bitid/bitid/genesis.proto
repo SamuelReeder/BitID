@@ -1,0 +1,17 @@
+syntax = "proto3";
+package bitid.bitid;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "bitid/bitid/params.proto";
+
+option go_package = "github.com/SamuelReeder/BitID/x/bitid/types";
+
+// GenesisState defines the bitid module's genesis state.
+message GenesisState {
+  // params defines all the parameters of the module.
+  Params params = 1 [
+    (gogoproto.nullable) = false,
+    (amino.dont_omitempty) = true
+  ];
+}
