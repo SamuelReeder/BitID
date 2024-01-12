@@ -72,8 +72,11 @@ import (
 	"google.golang.org/protobuf/types/known/durationpb"
 
 	bitidmodulev1 "github.com/SamuelReeder/BitID/api/bitid/bitid/module"
+	idmodulev1 "github.com/SamuelReeder/BitID/api/bitid/id/module"
 	_ "github.com/SamuelReeder/BitID/x/bitid/module" // import for side-effects
 	bitidmoduletypes "github.com/SamuelReeder/BitID/x/bitid/types"
+	_ "github.com/SamuelReeder/BitID/x/id/module" // import for side-effects
+	idmoduletypes "github.com/SamuelReeder/BitID/x/id/types"
 	// this line is used by starport scaffolding # stargate/app/moduleImport
 )
 
@@ -112,6 +115,7 @@ var (
 		circuittypes.ModuleName,
 		// chain modules
 		bitidmoduletypes.ModuleName,
+		idmoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/initGenesis
 	}
 
@@ -137,6 +141,7 @@ var (
 		ibcfeetypes.ModuleName,
 		// chain modules
 		bitidmoduletypes.ModuleName,
+		idmoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/beginBlockers
 	}
 
@@ -156,6 +161,7 @@ var (
 		ibcfeetypes.ModuleName,
 		// chain modules
 		bitidmoduletypes.ModuleName,
+		idmoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/endBlockers
 	}
 
@@ -308,6 +314,10 @@ var (
 			{
 				Name:   bitidmoduletypes.ModuleName,
 				Config: appconfig.WrapAny(&bitidmodulev1.Module{}),
+			},
+			{
+				Name:   idmoduletypes.ModuleName,
+				Config: appconfig.WrapAny(&idmodulev1.Module{}),
 			},
 			// this line is used by starport scaffolding # stargate/app/moduleConfig
 		},

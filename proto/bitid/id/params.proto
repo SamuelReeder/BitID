@@ -1,0 +1,15 @@
+syntax = "proto3";
+package bitid.id;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+
+option go_package = "github.com/SamuelReeder/BitID/x/id/types";
+
+// Params defines the parameters for the module.
+message Params {
+  option (amino.name) = "bitid/x/id/Params";
+  option (gogoproto.equal) = true;
+
+  
+}
