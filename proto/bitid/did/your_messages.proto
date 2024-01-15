@@ -1,0 +1,24 @@
+syntax = "proto3";
+package bitid.did;
+
+// MsgDefineDIDDocument represents a request to create/update a DID document.
+message MsgDefineDIDDocument {
+  string creator = 1;
+  string id = 2;
+  string document = 3; // The DID document content
+}
+
+message MsgDefineDIDDocumentResponse{
+    // Define any fields you want to include in the response
+}
+    
+    // MsgRemoveDIDDocument represents a request to remove a DID document.
+message MsgRemoveDIDDocument {
+    string creator = 1;
+    string id = 2;
+}
+    
+message MsgRemoveDIDDocumentResponse {
+    // Define any fields you want to include in the response
+    string remover = 1;
+}

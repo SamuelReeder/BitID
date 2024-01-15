@@ -16,6 +16,15 @@ service Msg {
   // UpdateParams defines a (governance) operation for updating the module
   // parameters. The authority defaults to the x/gov module account.
   rpc UpdateParams(MsgUpdateParams) returns (MsgUpdateParamsResponse);
+
+  // DefineDIDDocument defines a method for creating or updating a DID document.
+  // rpc DefineDIDDocument(MsgDefineDIDDocument) returns (MsgDefineDIDDocumentResponse);
+
+  // RemoveDIDDocument defines a method for removing a DID document.
+  // rpc RemoveDIDDocument(MsgRemoveDIDDocument) returns (MsgRemoveDIDDocumentResponse);
+
+  // Additional methods for your DID module
+  // rpc AnotherMethod(MsgAnotherMethod) returns (MsgAnotherMethodResponse);
 }
 
 // MsgUpdateParams is the Msg/UpdateParams request type.
