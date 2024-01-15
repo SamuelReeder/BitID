@@ -19,3 +19,6 @@ CMT_TYPES            = proto/tendermint/types
 CMT_VERSION          = proto/tendermint/version
 CMT_LIBS             = proto/tendermint/libs/bits
 CMT_P2P              = proto/tendermint/p2p
+
+frontend:
+	npm install && npm run dev
