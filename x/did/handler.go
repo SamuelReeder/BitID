@@ -1,4 +1,4 @@
-// package yourmodule
+package yourmodule
 
 // import (
 // 	"fmt"
