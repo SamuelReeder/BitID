@@ -54,6 +54,7 @@ import (
 	ibckeeper "github.com/cosmos/ibc-go/v8/modules/core/keeper"
 
 	bitidmodulekeeper "github.com/SamuelReeder/BitID/x/bitid/keeper"
+	didmodulekeeper "github.com/SamuelReeder/BitID/x/did/keeper"
 	// this line is used by starport scaffolding # stargate/app/moduleImport
 
 	"github.com/SamuelReeder/BitID/docs"
@@ -117,6 +118,7 @@ type App struct {
 	ScopedICAHostKeeper       capabilitykeeper.ScopedKeeper
 
 	BitidKeeper bitidmodulekeeper.Keeper
+	DidKeeper   didmodulekeeper.Keeper
 	// this line is used by starport scaffolding # stargate/app/keeperDeclaration
 
 	// simulation manager
@@ -255,6 +257,7 @@ func New(
 		&app.ConsensusParamsKeeper,
 		&app.CircuitBreakerKeeper,
 		&app.BitidKeeper,
+		&app.DidKeeper,
 		// this line is used by starport scaffolding # stargate/app/keeperDefinition
 	); err != nil {
 		panic(err)

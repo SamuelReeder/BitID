@@ -1,0 +1,31 @@
+syntax = "proto3";
+package bitid.did;
+
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+
+option go_package = "github.com/SamuelReeder/BitID/x/did/types";
+
+
+message DIDDocument {
+  string context = 1;
+  string id = 2;
+  repeated VerificationMethod authentication = 3;
+  repeated Service service = 4;
+  string created = 5;
+  string updated = 6;
+}
+
+message VerificationMethod {
+  string id = 1;
+  string type = 2;
+  string controller = 3;
+  string publicKeyPem = 4; // Public key in PEM format
+}
+
+message Service {
+  string id = 1;
+  string type = 2;
+  string serviceEndpoint = 3;
+}
