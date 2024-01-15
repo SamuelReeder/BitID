@@ -1,60 +1,106 @@
 package types
 
-// import (
-// 	"fmt"
+import (
+	fmt "fmt"
 
-// 	"github.com/cosmos/cosmos-sdk/types"
-// )
+	"github.com/cosmos/cosmos-sdk/types"
+)
 
-// // MsgSetDIDDocument defines a message for setting a DID document.
-// type MsgSetDIDDocument struct {
-// 	Creator  string
-// 	ID       string
-// 	Document string // Assuming the document is passed as a string, adjust as needed
-// }
+// MsgSetDIDDocument defines a message for setting a DID document.
+type MsgSetDIDDocument struct {
+	Creator  string
+	ID       string
+	Document string // Assuming the document is passed as a string, adjust as needed
+}
 
-// // NewMsgSetDIDDocument creates a new MsgSetDIDDocument instance.
-// func NewMsgSetDIDDocument(creator, id, document string) MsgSetDIDDocument {
-// 	return MsgSetDIDDocument{
-// 		Creator:  creator,
-// 		ID:       id,
-// 		Document: document,
-// 	}
-// }
+// NewMsgSetDIDDocument creates a new MsgSetDIDDocument instance.
+func NewMsgSetDIDDocument(creator, id, document string) MsgSetDIDDocument {
+	return MsgSetDIDDocument{
+		Creator:  creator,
+		ID:       id,
+		Document: document,
+	}
+}
 
-// // Route implements the sdk.Msg interface.
-// func (msg MsgSetDIDDocument) Route() string {
-// 	return RouterKey
-// }
+type MsgGetDIDDocument struct {
+	Retriever string
+	ID        string
+}
 
-// // Type implements the sdk.Msg interface.
-// func (msg MsgSetDIDDocument) Type() string {
-// 	return "SetDIDDocument"
-// }
+func NewMsgGetDIDDocument(retriever, id string) MsgGetDIDDocument {
+	return MsgGetDIDDocument{Retriever: retriever, ID: id}
+}
 
-// // GetSigners implements the sdk.Msg interface.
-// func (msg MsgSetDIDDocument) GetSigners() []types.AccAddress {
-// 	creator, err := types.AccAddressFromBech32(msg.Creator)
-// 	if err != nil {
-// 		panic(err)
-// 	}
-// 	return []types.AccAddress{creator}
-// }
+// Route implements the sdk.Msg interface.
+func (msg MsgSetDIDDocument) Route() string {
+	return msg.Route()
+}
+
+// Type implements the sdk.Msg interface.
+func (msg MsgSetDIDDocument) Type() string {
+	return "SetDIDDocument"
+}
+
+// GetSigners implements the sdk.Msg interface.
+func (msg MsgSetDIDDocument) GetSigners() []types.AccAddress {
+	creator, err := types.AccAddressFromBech32(msg.Creator)
+	if err != nil {
+		panic(err)
+	}
+	return []types.AccAddress{creator}
+}
 
 // // GetSignBytes implements the sdk.Msg interface.
 // func (msg MsgSetDIDDocument) GetSignBytes() []byte {
-// 	b, err := types.ModuleCdc.MarshalJSON(&msg)
+// 	b, err := types.cdc.MarshalJSON(&msg)
 // 	if err != nil {
 // 		panic(err)
 // 	}
 // 	return b
 // }
 
-// // ValidateBasic implements the sdk.Msg interface.
-// func (msg MsgSetDIDDocument) ValidateBasic() error {
-// 	_, err := types.AccAddressFromBech32(msg.Creator)
+// ValidateBasic implements the sdk.Msg interface.
+func (msg MsgSetDIDDocument) ValidateBasic() error {
+	_, err := types.AccAddressFromBech32(msg.Creator)
+	if err != nil {
+		return fmt.Errorf("invalid creator address (%s): %v", msg.Creator, err)
+	}
+	return nil
+}
+
+// Route implements the sdk.Msg interface.
+func (msg MsgGetDIDDocument) Route() string {
+	return msg.Route()
+}
+
+// Type implements the sdk.Msg interface.
+func (msg MsgGetDIDDocument) Type() string {
+	return "GetDIDDocument"
+}
+
+// GetSigners implements the sdk.Msg interface.
+func (msg MsgGetDIDDocument) GetSigners() []types.AccAddress {
+	retriever, err := types.AccAddressFromBech32(msg.Retriever)
+	if err != nil {
+		panic(err)
+	}
+	return []types.AccAddress{retriever}
+}
+
+// // GetSignBytes implements the sdk.Msg interface.
+// func (msg MsgSetDIDDocument) GetSignBytes() []byte {
+// 	b, err := types.cdc.MarshalJSON(&msg)
 // 	if err != nil {
-// 		return fmt.Errorf("invalid creator address (%s): %v", msg.Creator, err)
+// 		panic(err)
 // 	}
-// 	return nil
+// 	return b
 // }
+
+// ValidateBasic implements the sdk.Msg interface.
+func (msg MsgGetDIDDocument) ValidateBasic() error {
+	_, err := types.AccAddressFromBech32(msg.Retriever)
+	if err != nil {
+		return fmt.Errorf("invalid creator address (%s): %v", msg.Retriever, err)
+	}
+	return nil
+}

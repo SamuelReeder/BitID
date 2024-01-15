@@ -1,6 +1,11 @@
 syntax = "proto3";
 package bitid.did;
 
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+
+option go_package = "github.com/SamuelReeder/BitID/x/did/types";
+
 // MsgDefineDIDDocument represents a request to create/update a DID document.
 message MsgDefineDIDDocument {
   string creator = 1;

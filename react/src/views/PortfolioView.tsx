@@ -15,6 +15,7 @@ export default function PortfolioView() {
           </div>
           <IgntTransfer className="px-2.5 w-4/6 mx-auto" />
         </div>
+        {/* TODO: for uploading decentralized identity documents */}
       </div>
     </div>
   );

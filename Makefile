@@ -21,4 +21,4 @@ CMT_LIBS             = proto/tendermint/libs/bits
 CMT_P2P              = proto/tendermint/p2p
 
 frontend:
-	npm install && npm run dev
+	cd react && npm install && npm run dev
