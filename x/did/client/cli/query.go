@@ -21,11 +21,12 @@ package cli
 // 			// Creating a new query client for the DID module
 // 			queryClient := types.NewQueryClient(cliCtx)
 
-// 			params := &types.QueryGetDIDDocumentRequest{
-// 				Id: id,
+// 			params := &types.MsgGetDIDDocument{
+// 				Retriever: "random",
+// 				ID:        id,
 // 			}
 
-// 			res, err := queryClient.DIDDocument(context.Background(), params)
+// 			res, err := queryClient.Params(context.Background(), params)
 // 			if err != nil {
 // 				return err
 // 			}

@@ -10,12 +10,27 @@ import (
 type MsgSetDIDDocument struct {
 	Creator  string
 	ID       string
-	Document string // Assuming the document is passed as a string, adjust as needed
+	Document DIDDocument // Assuming the document is passed as a string, adjust as needed
+}
+
+// ProtoMessage implements proto.Message.
+func (MsgSetDIDDocument) ProtoMessage() {
+	panic("unimplemented")
+}
+
+// Reset implements proto.Message.
+func (MsgSetDIDDocument) Reset() {
+	panic("unimplemented")
+}
+
+// String implements proto.Message.
+func (MsgSetDIDDocument) String() string {
+	panic("unimplemented")
 }
 
 // NewMsgSetDIDDocument creates a new MsgSetDIDDocument instance.
-func NewMsgSetDIDDocument(creator, id, document string) MsgSetDIDDocument {
-	return MsgSetDIDDocument{
+func NewMsgSetDIDDocument(creator, id string, document DIDDocument) *MsgSetDIDDocument {
+	return &MsgSetDIDDocument{
 		Creator:  creator,
 		ID:       id,
 		Document: document,

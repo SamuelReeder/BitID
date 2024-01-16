@@ -26,6 +26,7 @@ import (
 	"github.com/spf13/viper"
 
 	"github.com/SamuelReeder/BitID/app"
+	didcmd "github.com/SamuelReeder/BitID/x/did/client/cli"
 )
 
 func initRootCmd(
@@ -114,6 +115,10 @@ func txCommand() *cobra.Command {
 		authcmd.GetDecodeCommand(),
 		authcmd.GetSimulateCmd(),
 	)
+
+	cmd.AddCommand(didcmd.CmdSetDIDDocument())
+	cmd.AddCommand(didcmd.GetTxCmd())
+
 	cmd.PersistentFlags().String(flags.FlagChainID, "", "The network chain ID")
 
 	return cmd

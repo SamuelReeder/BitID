@@ -15,6 +15,7 @@ message MsgDefineDIDDocument {
 
 message MsgDefineDIDDocumentResponse{
     // Define any fields you want to include in the response
+    string success = 1;
 }
     
     // MsgRemoveDIDDocument represents a request to remove a DID document.
