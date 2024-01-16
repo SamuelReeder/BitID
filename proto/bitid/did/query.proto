@@ -6,6 +6,8 @@ import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "bitid/did/params.proto";
+import "bitid/did/did_document.proto";
+
 
 option go_package = "github.com/SamuelReeder/BitID/x/did/types";
 
@@ -15,6 +17,20 @@ service Query {
   rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
     option (google.api.http).get = "/SamuelReeder/BitID/did/params";
   }
+
+  rpc QueryDIDDocument(QueryDIDDocumentRequest) returns (QueryDIDDocumentResponse);
+  // TOOD: option (google.api.http).get = "/SamuelReeder/BitID/did/documents/{id}";
+
+}
+
+// QueryDIDDocumentRequest is the request type for the QueryDIDDocument RPC method
+message QueryDIDDocumentRequest {
+  string id = 1; // DID Document ID
+}
+
+// QueryDIDDocumentResponse is the response type for the QueryDIDDocument RPC method
+message QueryDIDDocumentResponse {
+  DIDDocument did_document = 1 [(gogoproto.nullable) = false];
 }
 
 // QueryParamsRequest is request type for the Query/Params RPC method.

@@ -1,6 +1,7 @@
 package keeper
 
 import (
+	context "context"
 	"fmt"
 
 	"cosmossdk.io/core/store"
@@ -8,6 +9,8 @@ import (
 	storetypes "cosmossdk.io/store/types"
 	"github.com/cosmos/cosmos-sdk/codec"
 	sdk "github.com/cosmos/cosmos-sdk/types"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 
 	"github.com/SamuelReeder/BitID/x/did/types"
 )
@@ -75,4 +78,21 @@ func (k Keeper) GetDIDDocument(ctx sdk.Context, id string) (types.DIDDocument, b
 		panic("could not unmarshal DIDDocument from bytes")
 	}
 	return document, true
+}
+
+func (k Keeper) QueryDIDDocument(ctx context.Context, req *types.QueryDIDDocumentRequest) (*types.QueryDIDDocumentResponse, error) {
+	if req == nil {
+		return nil, status.Error(codes.InvalidArgument, "invalid request")
+	}
+
+	sdkCtx := sdk.UnwrapSDKContext(ctx)
+
+	// Logic to get the DID document from the store
+	// This is just a placeholder. Replace it with your actual logic.
+	didDocument, found := k.GetDIDDocument(sdkCtx, req.Id)
+	if !found {
+		return nil, status.Error(codes.NotFound, "DID document not found")
+	}
+
+	return &types.QueryDIDDocumentResponse{DidDocument: didDocument}, nil
 }

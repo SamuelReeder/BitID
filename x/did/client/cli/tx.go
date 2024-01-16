@@ -9,6 +9,7 @@ import (
 	"github.com/SamuelReeder/BitID/x/did/types"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/tx"
+	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/spf13/cobra"
 )
 
@@ -54,18 +55,31 @@ func CmdSetDIDDocument() *cobra.Command {
 				Updated:        "2021-05-01T00:00:00Z",
 			}
 
+			// clientCtx.AccountRetriever.GetAccount()
 			// Creating a new MsgSetDIDDocument
-			msg := types.NewMsgSetDIDDocument(clientCtx.GetFromAddress().String(), id, didDocument)
+			// clientCtx.GetFromAddress().String()
+			msg := types.NewMsgSetDIDDocument("cosmos1kmqls6wvy50flhl3nc8473nyg8d62amdy5sxxe", id, didDocument)
 			err = txBuilder.SetMsgs(msg)
 			if err != nil {
 				return err
 			}
+
+			addressString := "cosmos1kmqls6wvy50flhl3nc8473nyg8d62amdy5sxxe"
+			accAddress, err := sdk.AccAddressFromBech32(addressString)
+			if err != nil {
+				// Handle error
+			}
+
+			clientCtx.FromAddress = accAddress
 
 			fmt.Println("The message has been created.")
 			fmt.Println(string(didDocument.Id))
 
 			// Broadcasting the transaction
 			return tx.GenerateOrBroadcastTxCLI(clientCtx, cmd.Flags(), msg)
+
+			// usage:
+			// /root/go/bin/BitIDd tx set-did-document rand example_DID.json
 		},
 	}
 

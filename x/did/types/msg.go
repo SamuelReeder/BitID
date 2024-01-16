@@ -42,8 +42,8 @@ type MsgGetDIDDocument struct {
 	ID        string
 }
 
-func NewMsgGetDIDDocument(retriever, id string) MsgGetDIDDocument {
-	return MsgGetDIDDocument{Retriever: retriever, ID: id}
+func NewMsgGetDIDDocument(retriever, id string) *MsgGetDIDDocument {
+	return &MsgGetDIDDocument{Retriever: retriever, ID: id}
 }
 
 // Route implements the sdk.Msg interface.
