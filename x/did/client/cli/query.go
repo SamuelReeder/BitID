@@ -1,6 +1,8 @@
 package cli
 
 import (
+	"context"
+
 	// Import necessary packages
 	"github.com/SamuelReeder/BitID/x/did/types"
 	"github.com/cosmos/cosmos-sdk/client"
@@ -38,6 +40,30 @@ func CmdGetDIDDocument() *cobra.Command {
 	return cmd
 }
 
+func CmdQueryParams() *cobra.Command {
+	cmd := &cobra.Command{
+		Use:   "params",
+		Short: "shows the parameters of the module",
+		Args:  cobra.NoArgs,
+		RunE: func(cmd *cobra.Command, args []string) error {
+			clientCtx := client.GetClientContextFromCmd(cmd)
+
+			queryClient := types.NewQueryClient(clientCtx)
+
+			res, err := queryClient.Params(context.Background(), &types.QueryParamsRequest{})
+			if err != nil {
+				return err
+			}
+
+			return clientCtx.PrintProto(res)
+		},
+	}
+
+	flags.AddQueryFlagsToCmd(cmd)
+
+	return cmd
+}
+
 func GetQueryCmd() *cobra.Command {
 	didQueryCmd := &cobra.Command{
 		Use:                        types.ModuleName,
@@ -49,6 +75,7 @@ func GetQueryCmd() *cobra.Command {
 
 	didQueryCmd.AddCommand(
 		CmdGetDIDDocument(),
+		CmdQueryParams(),
 		// Add other query commands here
 	)
 

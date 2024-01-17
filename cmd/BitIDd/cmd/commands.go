@@ -91,6 +91,7 @@ func queryCommand() *cobra.Command {
 	)
 	cmd.PersistentFlags().String(flags.FlagChainID, "", "The network chain ID")
 	cmd.AddCommand(didcmd.CmdGetDIDDocument())
+	cmd.AddCommand(didcmd.CmdQueryParams())
 	cmd.AddCommand(didcmd.GetQueryCmd())
 
 	return cmd
