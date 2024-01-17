@@ -19,8 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Query_Params_FullMethodName           = "/bitid.did.Query/Params"
-	Query_QueryDIDDocument_FullMethodName = "/bitid.did.Query/QueryDIDDocument"
+	Query_Params_FullMethodName = "/bitid.did.Query/Params"
+	Query_GetDID_FullMethodName = "/bitid.did.Query/GetDID"
 )
 
 // QueryClient is the client API for Query service.
@@ -29,7 +29,7 @@ const (
 type QueryClient interface {
 	// Parameters queries the parameters of the module.
 	Params(ctx context.Context, in *QueryParamsRequest, opts ...grpc.CallOption) (*QueryParamsResponse, error)
-	QueryDIDDocument(ctx context.Context, in *QueryDIDDocumentRequest, opts ...grpc.CallOption) (*QueryDIDDocumentResponse, error)
+	GetDID(ctx context.Context, in *QueryGetDIDRequest, opts ...grpc.CallOption) (*QueryGetDIDResponse, error)
 }
 
 type queryClient struct {
@@ -49,9 +49,9 @@ func (c *queryClient) Params(ctx context.Context, in *QueryParamsRequest, opts .
 	return out, nil
 }
 
-func (c *queryClient) QueryDIDDocument(ctx context.Context, in *QueryDIDDocumentRequest, opts ...grpc.CallOption) (*QueryDIDDocumentResponse, error) {
-	out := new(QueryDIDDocumentResponse)
-	err := c.cc.Invoke(ctx, Query_QueryDIDDocument_FullMethodName, in, out, opts...)
+func (c *queryClient) GetDID(ctx context.Context, in *QueryGetDIDRequest, opts ...grpc.CallOption) (*QueryGetDIDResponse, error) {
+	out := new(QueryGetDIDResponse)
+	err := c.cc.Invoke(ctx, Query_GetDID_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -64,7 +64,7 @@ func (c *queryClient) QueryDIDDocument(ctx context.Context, in *QueryDIDDocument
 type QueryServer interface {
 	// Parameters queries the parameters of the module.
 	Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error)
-	QueryDIDDocument(context.Context, *QueryDIDDocumentRequest) (*QueryDIDDocumentResponse, error)
+	GetDID(context.Context, *QueryGetDIDRequest) (*QueryGetDIDResponse, error)
 	mustEmbedUnimplementedQueryServer()
 }
 
@@ -75,8 +75,8 @@ type UnimplementedQueryServer struct {
 func (UnimplementedQueryServer) Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Params not implemented")
 }
-func (UnimplementedQueryServer) QueryDIDDocument(context.Context, *QueryDIDDocumentRequest) (*QueryDIDDocumentResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method QueryDIDDocument not implemented")
+func (UnimplementedQueryServer) GetDID(context.Context, *QueryGetDIDRequest) (*QueryGetDIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDID not implemented")
 }
 func (UnimplementedQueryServer) mustEmbedUnimplementedQueryServer() {}
 
@@ -109,20 +109,20 @@ func _Query_Params_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_QueryDIDDocument_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryDIDDocumentRequest)
+func _Query_GetDID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetDIDRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(QueryServer).QueryDIDDocument(ctx, in)
+		return srv.(QueryServer).GetDID(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Query_QueryDIDDocument_FullMethodName,
+		FullMethod: Query_GetDID_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).QueryDIDDocument(ctx, req.(*QueryDIDDocumentRequest))
+		return srv.(QueryServer).GetDID(ctx, req.(*QueryGetDIDRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -139,8 +139,8 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Query_Params_Handler,
 		},
 		{
-			MethodName: "QueryDIDDocument",
-			Handler:    _Query_QueryDIDDocument_Handler,
+			MethodName: "GetDID",
+			Handler:    _Query_GetDID_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

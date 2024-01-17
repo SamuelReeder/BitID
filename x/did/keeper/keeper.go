@@ -32,6 +32,11 @@ type (
 	}
 )
 
+// GetDID implements types.QueryServer.
+func (Keeper) GetDID(context.Context, *types.QueryGetDIDRequest) (*types.QueryGetDIDResponse, error) {
+	panic("unimplemented")
+}
+
 func NewKeeper(
 	cdc codec.BinaryCodec,
 	storeService store.KVStoreService,
@@ -100,7 +105,7 @@ func (k Keeper) GetDIDDocument(ctx sdk.Context, id string) (types.DIDDocument, b
 	return document, true
 }
 
-func (k Keeper) QueryDIDDocument(ctx context.Context, req *types.QueryDIDDocumentRequest) (*types.QueryDIDDocumentResponse, error) {
+func (k Keeper) QueryDIDDocument(ctx context.Context, req *types.QueryGetDIDRequest) (*types.QueryGetDIDResponse, error) {
 	if req == nil {
 		return nil, status.Error(codes.InvalidArgument, "invalid request")
 	}
@@ -109,10 +114,10 @@ func (k Keeper) QueryDIDDocument(ctx context.Context, req *types.QueryDIDDocumen
 
 	// Logic to get the DID document from the store
 	// This is just a placeholder. Replace it with your actual logic.
-	didDocument, found := k.GetDIDDocument(sdkCtx, req.Id)
+	didDocument, found := k.GetDIDDocument(sdkCtx, req.Index)
 	if !found {
 		return nil, status.Error(codes.NotFound, "DID document not found")
 	}
 
-	return &types.QueryDIDDocumentResponse{DidDocument: didDocument}, nil
+	return &types.QueryGetDIDResponse{DID: &didDocument}, nil
 }

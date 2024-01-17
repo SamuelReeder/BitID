@@ -17,6 +17,15 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Use:       "params",
 					Short:     "Shows the parameters of the module",
 				},
+				{
+					RpcMethod: "GetDID",
+					Use:       "get-did index",
+					Short:     "Get the value of the DID at index",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{
+						{ProtoField: "index"},
+					},
+				},
+
 				// this line is used by ignite scaffolding # autocli/query
 			},
 		},

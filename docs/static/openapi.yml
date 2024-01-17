@@ -96,19 +96,20 @@ paths:
                   additionalProperties: {}
       tags:
         - Query
-  /bitid.did.Query/QueryDIDDocument:
+  /bitid.did.Query/GetDID:
     post:
-      summary: >-
-        TOOD: option (google.api.http).get =
-        "/SamuelReeder/BitID/did/documents/{id}";
-      operationId: BitidDidQuery_QueryDIDDocument
+      summary: |-
+        option (cosmos.query.v1.module_query_safe) = true;
+         option (google.api.http).get =
+           "/SamuelReeder/bitid/did/{index}";
+      operationId: BitidDidQuery_GetDID
       responses:
         '200':
           description: A successful response.
           schema:
             type: object
             properties:
-              did_document:
+              DID:
                 type: object
                 properties:
                   context:
@@ -144,9 +145,6 @@ paths:
                     type: string
                   updated:
                     type: string
-            title: >-
-              QueryDIDDocumentResponse is the response type for the
-              QueryDIDDocument RPC method
         default:
           description: An unexpected error response.
           schema:
@@ -172,12 +170,8 @@ paths:
           schema:
             type: object
             properties:
-              id:
+              index:
                 type: string
-                title: DID Document ID
-            title: >-
-              QueryDIDDocumentRequest is the request type for the
-              QueryDIDDocument RPC method
       tags:
         - Query
   /bitid.did.Msg/DefineDIDDocument:
@@ -19578,19 +19572,15 @@ definitions:
   bitid.did.Params:
     type: object
     description: Params defines the parameters for the module.
-  bitid.did.QueryDIDDocumentRequest:
+  bitid.did.QueryGetDIDRequest:
     type: object
     properties:
-      id:
+      index:
         type: string
-        title: DID Document ID
-    title: >-
-      QueryDIDDocumentRequest is the request type for the QueryDIDDocument RPC
-      method
-  bitid.did.QueryDIDDocumentResponse:
+  bitid.did.QueryGetDIDResponse:
     type: object
     properties:
-      did_document:
+      DID:
         type: object
         properties:
           context:
@@ -19626,9 +19616,6 @@ definitions:
             type: string
           updated:
             type: string
-    title: >-
-      QueryDIDDocumentResponse is the response type for the QueryDIDDocument RPC
-      method
   bitid.did.QueryParamsResponse:
     type: object
     properties:

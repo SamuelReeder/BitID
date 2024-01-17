@@ -18,19 +18,20 @@ service Query {
     option (google.api.http).get = "/SamuelReeder/BitID/did/params";
   }
 
-  rpc QueryDIDDocument(QueryDIDDocumentRequest) returns (QueryDIDDocumentResponse);
-  // TOOD: option (google.api.http).get = "/SamuelReeder/BitID/did/documents/{id}";
+  rpc GetDID(QueryGetDIDRequest) returns (QueryGetDIDResponse) {
+    // option (cosmos.query.v1.module_query_safe) = true;
+    // option (google.api.http).get =
+    //   "/SamuelReeder/bitid/did/{index}";
+  }  // TOOD: option (google.api.http).get = "/SamuelReeder/BitID/did/documents/{id}";
 
 }
 
-// QueryDIDDocumentRequest is the request type for the QueryDIDDocument RPC method
-message QueryDIDDocumentRequest {
-  string id = 1; // DID Document ID
+message QueryGetDIDRequest {
+  string index = 1;
 }
 
-// QueryDIDDocumentResponse is the response type for the QueryDIDDocument RPC method
-message QueryDIDDocumentResponse {
-  DIDDocument did_document = 1 [(gogoproto.nullable) = false];
+message QueryGetDIDResponse {
+  DIDDocument DID = 1;
 }
 
 // QueryParamsRequest is request type for the Query/Params RPC method.
@@ -44,3 +45,4 @@ message QueryParamsResponse {
     (amino.dont_omitempty) = true
   ];
 }
+
