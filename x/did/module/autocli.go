@@ -17,6 +17,15 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Use:       "params",
 					Short:     "Shows the parameters of the module",
 				},
+				{
+					RpcMethod: "GetDID",
+					Use:       "get-did index",
+					Short:     "Get the value of the DID at index",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{
+						{ProtoField: "index"},
+					},
+				},
+
 				// this line is used by ignite scaffolding # autocli/query
 			},
 		},
@@ -27,6 +36,16 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 				{
 					RpcMethod: "UpdateParams",
 					Skip:      true, // skipped because authority gated
+				},
+				{
+					RpcMethod: "DefineDIDDocument",
+					Use:       "create creator index id",
+					Short:     "Creates a new DID with creator",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{
+						{ProtoField: "creator"},
+						{ProtoField: "index"},
+						{ProtoField: "id"},
+					},
 				},
 				// this line is used by ignite scaffolding # autocli/tx
 			},

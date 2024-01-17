@@ -19,7 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Msg_UpdateParams_FullMethodName = "/bitid.did.Msg/UpdateParams"
+	Msg_UpdateParams_FullMethodName      = "/bitid.did.Msg/UpdateParams"
+	Msg_DefineDIDDocument_FullMethodName = "/bitid.did.Msg/DefineDIDDocument"
 )
 
 // MsgClient is the client API for Msg service.
@@ -29,6 +30,8 @@ type MsgClient interface {
 	// UpdateParams defines a (governance) operation for updating the module
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(ctx context.Context, in *MsgUpdateParams, opts ...grpc.CallOption) (*MsgUpdateParamsResponse, error)
+	// DefineDIDDocument defines a method for creating or updating a DID document.
+	DefineDIDDocument(ctx context.Context, in *MsgDefineDIDDocument, opts ...grpc.CallOption) (*MsgDefineDIDDocumentResponse, error)
 }
 
 type msgClient struct {
@@ -48,6 +51,15 @@ func (c *msgClient) UpdateParams(ctx context.Context, in *MsgUpdateParams, opts 
 	return out, nil
 }
 
+func (c *msgClient) DefineDIDDocument(ctx context.Context, in *MsgDefineDIDDocument, opts ...grpc.CallOption) (*MsgDefineDIDDocumentResponse, error) {
+	out := new(MsgDefineDIDDocumentResponse)
+	err := c.cc.Invoke(ctx, Msg_DefineDIDDocument_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 // All implementations must embed UnimplementedMsgServer
 // for forward compatibility
@@ -55,6 +67,8 @@ type MsgServer interface {
 	// UpdateParams defines a (governance) operation for updating the module
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error)
+	// DefineDIDDocument defines a method for creating or updating a DID document.
+	DefineDIDDocument(context.Context, *MsgDefineDIDDocument) (*MsgDefineDIDDocumentResponse, error)
 	mustEmbedUnimplementedMsgServer()
 }
 
@@ -64,6 +78,9 @@ type UnimplementedMsgServer struct {
 
 func (UnimplementedMsgServer) UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateParams not implemented")
+}
+func (UnimplementedMsgServer) DefineDIDDocument(context.Context, *MsgDefineDIDDocument) (*MsgDefineDIDDocumentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DefineDIDDocument not implemented")
 }
 func (UnimplementedMsgServer) mustEmbedUnimplementedMsgServer() {}
 
@@ -96,6 +113,24 @@ func _Msg_UpdateParams_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_DefineDIDDocument_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgDefineDIDDocument)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).DefineDIDDocument(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_DefineDIDDocument_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).DefineDIDDocument(ctx, req.(*MsgDefineDIDDocument))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Msg_ServiceDesc is the grpc.ServiceDesc for Msg service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -106,6 +141,10 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateParams",
 			Handler:    _Msg_UpdateParams_Handler,
+		},
+		{
+			MethodName: "DefineDIDDocument",
+			Handler:    _Msg_DefineDIDDocument_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

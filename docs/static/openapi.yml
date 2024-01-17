@@ -96,6 +96,130 @@ paths:
                   additionalProperties: {}
       tags:
         - Query
+  /bitid.did.Query/GetDID:
+    post:
+      summary: |-
+        option (cosmos.query.v1.module_query_safe) = true;
+         option (google.api.http).get =
+           "/SamuelReeder/bitid/did/{index}";
+      operationId: BitidDidQuery_GetDID
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              DID:
+                type: object
+                properties:
+                  context:
+                    type: string
+                  id:
+                    type: string
+                  authentication:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        type:
+                          type: string
+                        controller:
+                          type: string
+                        publicKeyPem:
+                          type: string
+                          title: Public key in PEM format
+                  service:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        type:
+                          type: string
+                        serviceEndpoint:
+                          type: string
+                  created:
+                    type: string
+                  updated:
+                    type: string
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              index:
+                type: string
+      tags:
+        - Query
+  /bitid.did.Msg/DefineDIDDocument:
+    post:
+      summary: >-
+        DefineDIDDocument defines a method for creating or updating a DID
+        document.
+      operationId: BitidDidMsg_DefineDIDDocument
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            description: MsgCreateGameResponse defines the Msg/CreateGame response type.
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              creator:
+                type: string
+                description: creator is the message sender.
+              index:
+                type: string
+              id:
+                type: string
+      tags:
+        - Msg
   /bitid.did.Msg/UpdateParams:
     post:
       summary: |-
@@ -19409,9 +19533,89 @@ definitions:
                   "@type": "type.googleapis.com/google.protobuf.Duration",
                   "value": "1.212s"
                 }
+  bitid.did.DIDDocument:
+    type: object
+    properties:
+      context:
+        type: string
+      id:
+        type: string
+      authentication:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+            controller:
+              type: string
+            publicKeyPem:
+              type: string
+              title: Public key in PEM format
+      service:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+            serviceEndpoint:
+              type: string
+      created:
+        type: string
+      updated:
+        type: string
   bitid.did.Params:
     type: object
     description: Params defines the parameters for the module.
+  bitid.did.QueryGetDIDRequest:
+    type: object
+    properties:
+      index:
+        type: string
+  bitid.did.QueryGetDIDResponse:
+    type: object
+    properties:
+      DID:
+        type: object
+        properties:
+          context:
+            type: string
+          id:
+            type: string
+          authentication:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                type:
+                  type: string
+                controller:
+                  type: string
+                publicKeyPem:
+                  type: string
+                  title: Public key in PEM format
+          service:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                type:
+                  type: string
+                serviceEndpoint:
+                  type: string
+          created:
+            type: string
+          updated:
+            type: string
   bitid.did.QueryParamsResponse:
     type: object
     properties:
@@ -19419,6 +19623,40 @@ definitions:
         description: params holds all the parameters of this module.
         type: object
     description: QueryParamsResponse is response type for the Query/Params RPC method.
+  bitid.did.Service:
+    type: object
+    properties:
+      id:
+        type: string
+      type:
+        type: string
+      serviceEndpoint:
+        type: string
+  bitid.did.VerificationMethod:
+    type: object
+    properties:
+      id:
+        type: string
+      type:
+        type: string
+      controller:
+        type: string
+      publicKeyPem:
+        type: string
+        title: Public key in PEM format
+  bitid.did.MsgDefineDIDDocument:
+    type: object
+    properties:
+      creator:
+        type: string
+        description: creator is the message sender.
+      index:
+        type: string
+      id:
+        type: string
+  bitid.did.MsgDefineDIDDocumentResponse:
+    type: object
+    description: MsgCreateGameResponse defines the Msg/CreateGame response type.
   bitid.did.MsgUpdateParams:
     type: object
     properties:

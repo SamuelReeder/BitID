@@ -4,9 +4,10 @@ package bitid.did;
 
 import "amino/amino.proto";
 import "gogoproto/gogo.proto";
+import "bitid/did/params.proto";
+
 
 option go_package = "github.com/SamuelReeder/BitID/x/did/types";
-
 
 message DIDDocument {
   string context = 1;
@@ -29,3 +30,9 @@ message Service {
   string type = 2;
   string serviceEndpoint = 3;
 }
+
+message IndexedStoredDID {
+  string index = 1;
+  DIDDocument storedDID = 2 [(gogoproto.nullable) = false];
+}
+  
