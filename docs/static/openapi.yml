@@ -180,6 +180,52 @@ paths:
               QueryDIDDocument RPC method
       tags:
         - Query
+  /bitid.did.Msg/DefineDIDDocument:
+    post:
+      summary: >-
+        DefineDIDDocument defines a method for creating or updating a DID
+        document.
+      operationId: BitidDidMsg_DefineDIDDocument
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            description: MsgCreateGameResponse defines the Msg/CreateGame response type.
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              creator:
+                type: string
+                description: creator is the message sender.
+              index:
+                type: string
+              id:
+                type: string
+      tags:
+        - Msg
   /bitid.did.Msg/UpdateParams:
     post:
       summary: |-
@@ -19611,6 +19657,19 @@ definitions:
       publicKeyPem:
         type: string
         title: Public key in PEM format
+  bitid.did.MsgDefineDIDDocument:
+    type: object
+    properties:
+      creator:
+        type: string
+        description: creator is the message sender.
+      index:
+        type: string
+      id:
+        type: string
+  bitid.did.MsgDefineDIDDocumentResponse:
+    type: object
+    description: MsgCreateGameResponse defines the Msg/CreateGame response type.
   bitid.did.MsgUpdateParams:
     type: object
     properties:

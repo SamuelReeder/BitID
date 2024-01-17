@@ -28,6 +28,16 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					RpcMethod: "UpdateParams",
 					Skip:      true, // skipped because authority gated
 				},
+				{
+					RpcMethod: "DefineDIDDocument",
+					Use:       "create creator index id",
+					Short:     "Creates a new DID with creator",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{
+						{ProtoField: "creator"},
+						{ProtoField: "index"},
+						{ProtoField: "id"},
+					},
+				},
 				// this line is used by ignite scaffolding # autocli/tx
 			},
 		},
