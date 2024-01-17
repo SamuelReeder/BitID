@@ -6,6 +6,8 @@ import (
 	"github.com/cosmos/cosmos-sdk/types"
 )
 
+// REDACTED FOR NOW
+
 // MsgSetDIDDocument defines a message for setting a DID document.
 type MsgSetDIDDocument struct {
 	Creator  string
