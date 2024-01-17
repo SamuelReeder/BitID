@@ -1,4 +1,4 @@
-package yourmodule
+package did
 
 import (
 	"time"

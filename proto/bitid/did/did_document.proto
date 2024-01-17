@@ -9,13 +9,6 @@ import "bitid/did/params.proto";
 
 option go_package = "github.com/SamuelReeder/BitID/x/did/types";
 
-message GenesisState {
-  // params defines all the parameters of the module.
-  Params params = 1 [ (gogoproto.nullable) = false];
-
-  repeated IndexedStoredDID indexedStoredDID = 2 [(gogoproto.nullable) = false];
-}
-
 message DIDDocument {
   string context = 1;
   string id = 2;

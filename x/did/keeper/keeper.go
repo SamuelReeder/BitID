@@ -4,10 +4,11 @@ import (
 	context "context"
 	"fmt"
 
+	"cosmossdk.io/collections"
 	"cosmossdk.io/core/store"
 	"cosmossdk.io/log"
 	storetypes "cosmossdk.io/store/types"
-	"github.com/cosmos/cosmos-sdk/codec"
+	codec "github.com/cosmos/cosmos-sdk/codec"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -22,6 +23,9 @@ type (
 		storeService store.KVStoreService
 		logger       log.Logger
 
+		schema    collections.Schema
+		params    collections.Item[types.Params]
+		storedDID collections.Map[string, types.DIDDocument]
 		// the address capable of executing a MsgUpdateParams message. Typically, this
 		// should be the x/gov module account.
 		authority string
@@ -39,12 +43,28 @@ func NewKeeper(
 		panic(fmt.Sprintf("invalid authority address: %s", authority))
 	}
 
-	return Keeper{
-		cdc:          cdc,
+	sb := collections.NewSchemaBuilder(storeService)
+	// collections.GetValue[string, string](fileStorage, "key")
+	k := Keeper{
+		cdc: cdc,
+		// addressCodec: addressCodec,
 		storeService: storeService,
 		authority:    authority,
 		logger:       logger,
+		params:       collections.NewItem(sb, types.ParamsKey, "params", codec.CollValue[types.Params](cdc)),
+		storedDID: collections.NewMap(sb,
+			types.StoredDIDKey, "storedDID", collections.StringKey,
+			codec.CollValue[types.DIDDocument](cdc)),
 	}
+
+	schema, err := sb.Build()
+	if err != nil {
+		panic(err)
+	}
+
+	k.schema = schema
+
+	return k
 }
 
 // GetAuthority returns the module's authority.
