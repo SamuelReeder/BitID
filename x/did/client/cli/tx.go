@@ -13,6 +13,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// REDACTED FOR NOW, USE AUTOCLI
+
 func CmdSetDIDDocument() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "set-did-document [id] [path-to-json]",
