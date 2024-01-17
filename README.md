@@ -9,6 +9,12 @@ ignite chain serve
 
 `serve` command installs dependencies, builds, initializes, and starts the blockchain in development.
 
+To see possible commands and learn about usage, use:
+```
+/root/go/bin/BitIDd --help
+```
+
+
 ### Configure
 
 For development configuration, use `config.yml`. To learn more, see the [Ignite CLI docs](https://docs.ignite.com).
