@@ -1,0 +1,13 @@
+{
+    "pubkey": {"@type":"/cosmos.crypto.secp256k1.PubKey","key":"Aqlkhx0BJZ6t56Dpf2VrHRp6Y6rzXKEBiErQkCzc9u5j"},
+    "amount": "1000000stake",
+    "moniker": "sreeder",
+    "identity": "optional identity signature (ex. UPort or Keybase)",
+    "website": "samuelreeder.com",
+    "security": "validator's (optional) security contact email",
+    "details": "validator's (optional) details",
+    "commission-rate": "0.1",
+    "commission-max-rate": "0.2",
+    "commission-max-change-rate": "0.01",
+    "min-self-delegation": "1"
+}
