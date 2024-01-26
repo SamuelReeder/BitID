@@ -6,30 +6,66 @@ import { msgTypes } from './registry';
 import { IgniteClient } from "../client"
 import { MissingWalletError } from "../helpers"
 import { Api } from "./rest";
+import { Module } from "./types/cosmos/base/tendermint/v1beta1/query";
+import { ABCIQueryRequest } from "./types/cosmos/base/tendermint/v1beta1/query";
+import { GetBlockByHeightRequest } from "./types/cosmos/base/tendermint/v1beta1/query";
+import { VersionInfo } from "./types/cosmos/base/tendermint/v1beta1/query";
+import { ProofOps } from "./types/cosmos/base/tendermint/v1beta1/query";
+import { ABCIQueryResponse } from "./types/cosmos/base/tendermint/v1beta1/query";
 import { GetLatestValidatorSetRequest } from "./types/cosmos/base/tendermint/v1beta1/query";
 import { Validator } from "./types/cosmos/base/tendermint/v1beta1/query";
-import { VersionInfo } from "./types/cosmos/base/tendermint/v1beta1/query";
-import { ABCIQueryRequest } from "./types/cosmos/base/tendermint/v1beta1/query";
+import { GetLatestBlockResponse } from "./types/cosmos/base/tendermint/v1beta1/query";
+import { GetNodeInfoRequest } from "./types/cosmos/base/tendermint/v1beta1/query";
+import { GetBlockByHeightResponse } from "./types/cosmos/base/tendermint/v1beta1/query";
+import { Block } from "./types/cosmos/base/tendermint/v1beta1/types";
+import { GetValidatorSetByHeightRequest } from "./types/cosmos/base/tendermint/v1beta1/query";
+import { GetSyncingRequest } from "./types/cosmos/base/tendermint/v1beta1/query";
+import { GetLatestValidatorSetResponse } from "./types/cosmos/base/tendermint/v1beta1/query";
+import { GetNodeInfoResponse } from "./types/cosmos/base/tendermint/v1beta1/query";
 import { Header } from "./types/cosmos/base/tendermint/v1beta1/types";
 import { GetValidatorSetByHeightResponse } from "./types/cosmos/base/tendermint/v1beta1/query";
-import { GetSyncingRequest } from "./types/cosmos/base/tendermint/v1beta1/query";
-import { ABCIQueryResponse } from "./types/cosmos/base/tendermint/v1beta1/query";
-import { ProofOp } from "./types/cosmos/base/tendermint/v1beta1/query";
-import { GetLatestValidatorSetResponse } from "./types/cosmos/base/tendermint/v1beta1/query";
-import { GetBlockByHeightRequest } from "./types/cosmos/base/tendermint/v1beta1/query";
-import { Module } from "./types/cosmos/base/tendermint/v1beta1/query";
-import { GetValidatorSetByHeightRequest } from "./types/cosmos/base/tendermint/v1beta1/query";
-import { GetNodeInfoRequest } from "./types/cosmos/base/tendermint/v1beta1/query";
-import { GetSyncingResponse } from "./types/cosmos/base/tendermint/v1beta1/query";
-import { Block } from "./types/cosmos/base/tendermint/v1beta1/types";
-import { GetBlockByHeightResponse } from "./types/cosmos/base/tendermint/v1beta1/query";
 import { GetLatestBlockRequest } from "./types/cosmos/base/tendermint/v1beta1/query";
-import { GetNodeInfoResponse } from "./types/cosmos/base/tendermint/v1beta1/query";
-import { GetLatestBlockResponse } from "./types/cosmos/base/tendermint/v1beta1/query";
-import { ProofOps } from "./types/cosmos/base/tendermint/v1beta1/query";
+import { GetSyncingResponse } from "./types/cosmos/base/tendermint/v1beta1/query";
+import { ProofOp } from "./types/cosmos/base/tendermint/v1beta1/query";
 
 
-export { GetLatestValidatorSetRequest, Validator, VersionInfo, ABCIQueryRequest, Header, GetValidatorSetByHeightResponse, GetSyncingRequest, ABCIQueryResponse, ProofOp, GetLatestValidatorSetResponse, GetBlockByHeightRequest, Module, GetValidatorSetByHeightRequest, GetNodeInfoRequest, GetSyncingResponse, Block, GetBlockByHeightResponse, GetLatestBlockRequest, GetNodeInfoResponse, GetLatestBlockResponse, ProofOps };
+export { Module, ABCIQueryRequest, GetBlockByHeightRequest, VersionInfo, ProofOps, ABCIQueryResponse, GetLatestValidatorSetRequest, Validator, GetLatestBlockResponse, GetNodeInfoRequest, GetBlockByHeightResponse, Block, GetValidatorSetByHeightRequest, GetSyncingRequest, GetLatestValidatorSetResponse, GetNodeInfoResponse, Header, GetValidatorSetByHeightResponse, GetLatestBlockRequest, GetSyncingResponse, ProofOp };
+
+type sendModuleParams = {
+  value: Module,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendABCIQueryRequestParams = {
+  value: ABCIQueryRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendGetBlockByHeightRequestParams = {
+  value: GetBlockByHeightRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendVersionInfoParams = {
+  value: VersionInfo,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendProofOpsParams = {
+  value: ProofOps,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendABCIQueryResponseParams = {
+  value: ABCIQueryResponse,
+  fee?: StdFee,
+  memo?: string
+};
 
 type sendGetLatestValidatorSetRequestParams = {
   value: GetLatestValidatorSetRequest,
@@ -43,14 +79,50 @@ type sendValidatorParams = {
   memo?: string
 };
 
-type sendVersionInfoParams = {
-  value: VersionInfo,
+type sendGetLatestBlockResponseParams = {
+  value: GetLatestBlockResponse,
   fee?: StdFee,
   memo?: string
 };
 
-type sendABCIQueryRequestParams = {
-  value: ABCIQueryRequest,
+type sendGetNodeInfoRequestParams = {
+  value: GetNodeInfoRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendGetBlockByHeightResponseParams = {
+  value: GetBlockByHeightResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendBlockParams = {
+  value: Block,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendGetValidatorSetByHeightRequestParams = {
+  value: GetValidatorSetByHeightRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendGetSyncingRequestParams = {
+  value: GetSyncingRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendGetLatestValidatorSetResponseParams = {
+  value: GetLatestValidatorSetResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendGetNodeInfoResponseParams = {
+  value: GetNodeInfoResponse,
   fee?: StdFee,
   memo?: string
 };
@@ -67,50 +139,8 @@ type sendGetValidatorSetByHeightResponseParams = {
   memo?: string
 };
 
-type sendGetSyncingRequestParams = {
-  value: GetSyncingRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendABCIQueryResponseParams = {
-  value: ABCIQueryResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendProofOpParams = {
-  value: ProofOp,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendGetLatestValidatorSetResponseParams = {
-  value: GetLatestValidatorSetResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendGetBlockByHeightRequestParams = {
-  value: GetBlockByHeightRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendModuleParams = {
-  value: Module,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendGetValidatorSetByHeightRequestParams = {
-  value: GetValidatorSetByHeightRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendGetNodeInfoRequestParams = {
-  value: GetNodeInfoRequest,
+type sendGetLatestBlockRequestParams = {
+  value: GetLatestBlockRequest,
   fee?: StdFee,
   memo?: string
 };
@@ -121,42 +151,36 @@ type sendGetSyncingResponseParams = {
   memo?: string
 };
 
-type sendBlockParams = {
-  value: Block,
+type sendProofOpParams = {
+  value: ProofOp,
   fee?: StdFee,
   memo?: string
 };
 
-type sendGetBlockByHeightResponseParams = {
-  value: GetBlockByHeightResponse,
-  fee?: StdFee,
-  memo?: string
+
+type moduleParams = {
+  value: Module,
 };
 
-type sendGetLatestBlockRequestParams = {
-  value: GetLatestBlockRequest,
-  fee?: StdFee,
-  memo?: string
+type abciqueryRequestParams = {
+  value: ABCIQueryRequest,
 };
 
-type sendGetNodeInfoResponseParams = {
-  value: GetNodeInfoResponse,
-  fee?: StdFee,
-  memo?: string
+type getBlockByHeightRequestParams = {
+  value: GetBlockByHeightRequest,
 };
 
-type sendGetLatestBlockResponseParams = {
-  value: GetLatestBlockResponse,
-  fee?: StdFee,
-  memo?: string
+type versionInfoParams = {
+  value: VersionInfo,
 };
 
-type sendProofOpsParams = {
+type proofOpsParams = {
   value: ProofOps,
-  fee?: StdFee,
-  memo?: string
 };
 
+type abciqueryResponseParams = {
+  value: ABCIQueryResponse,
+};
 
 type getLatestValidatorSetRequestParams = {
   value: GetLatestValidatorSetRequest,
@@ -166,12 +190,36 @@ type validatorParams = {
   value: Validator,
 };
 
-type versionInfoParams = {
-  value: VersionInfo,
+type getLatestBlockResponseParams = {
+  value: GetLatestBlockResponse,
 };
 
-type abciqueryRequestParams = {
-  value: ABCIQueryRequest,
+type getNodeInfoRequestParams = {
+  value: GetNodeInfoRequest,
+};
+
+type getBlockByHeightResponseParams = {
+  value: GetBlockByHeightResponse,
+};
+
+type blockParams = {
+  value: Block,
+};
+
+type getValidatorSetByHeightRequestParams = {
+  value: GetValidatorSetByHeightRequest,
+};
+
+type getSyncingRequestParams = {
+  value: GetSyncingRequest,
+};
+
+type getLatestValidatorSetResponseParams = {
+  value: GetLatestValidatorSetResponse,
+};
+
+type getNodeInfoResponseParams = {
+  value: GetNodeInfoResponse,
 };
 
 type headerParams = {
@@ -182,64 +230,16 @@ type getValidatorSetByHeightResponseParams = {
   value: GetValidatorSetByHeightResponse,
 };
 
-type getSyncingRequestParams = {
-  value: GetSyncingRequest,
-};
-
-type abciqueryResponseParams = {
-  value: ABCIQueryResponse,
-};
-
-type proofOpParams = {
-  value: ProofOp,
-};
-
-type getLatestValidatorSetResponseParams = {
-  value: GetLatestValidatorSetResponse,
-};
-
-type getBlockByHeightRequestParams = {
-  value: GetBlockByHeightRequest,
-};
-
-type moduleParams = {
-  value: Module,
-};
-
-type getValidatorSetByHeightRequestParams = {
-  value: GetValidatorSetByHeightRequest,
-};
-
-type getNodeInfoRequestParams = {
-  value: GetNodeInfoRequest,
+type getLatestBlockRequestParams = {
+  value: GetLatestBlockRequest,
 };
 
 type getSyncingResponseParams = {
   value: GetSyncingResponse,
 };
 
-type blockParams = {
-  value: Block,
-};
-
-type getBlockByHeightResponseParams = {
-  value: GetBlockByHeightResponse,
-};
-
-type getLatestBlockRequestParams = {
-  value: GetLatestBlockRequest,
-};
-
-type getNodeInfoResponseParams = {
-  value: GetNodeInfoResponse,
-};
-
-type getLatestBlockResponseParams = {
-  value: GetLatestBlockResponse,
-};
-
-type proofOpsParams = {
-  value: ProofOps,
+type proofOpParams = {
+  value: ProofOp,
 };
 
 
@@ -272,6 +272,90 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 
   return {
 		
+		async sendModule({ value, fee, memo }: sendModuleParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendModule: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.module({ value: Module.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendModule: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendABCIQueryRequest({ value, fee, memo }: sendABCIQueryRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendABCIQueryRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.abciqueryRequest({ value: ABCIQueryRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendABCIQueryRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendGetBlockByHeightRequest({ value, fee, memo }: sendGetBlockByHeightRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendGetBlockByHeightRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.getBlockByHeightRequest({ value: GetBlockByHeightRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendGetBlockByHeightRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendVersionInfo({ value, fee, memo }: sendVersionInfoParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendVersionInfo: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.versionInfo({ value: VersionInfo.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendVersionInfo: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendProofOps({ value, fee, memo }: sendProofOpsParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendProofOps: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.proofOps({ value: ProofOps.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendProofOps: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendABCIQueryResponse({ value, fee, memo }: sendABCIQueryResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendABCIQueryResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.abciqueryResponse({ value: ABCIQueryResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendABCIQueryResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
 		async sendGetLatestValidatorSetRequest({ value, fee, memo }: sendGetLatestValidatorSetRequestParams): Promise<DeliverTxResponse> {
 			if (!signer) {
 					throw new Error('TxClient:sendGetLatestValidatorSetRequest: Unable to sign Tx. Signer is not present.')
@@ -300,31 +384,115 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendVersionInfo({ value, fee, memo }: sendVersionInfoParams): Promise<DeliverTxResponse> {
+		async sendGetLatestBlockResponse({ value, fee, memo }: sendGetLatestBlockResponseParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendVersionInfo: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendGetLatestBlockResponse: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.versionInfo({ value: VersionInfo.fromPartial(value) })
+				let msg = this.getLatestBlockResponse({ value: GetLatestBlockResponse.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendVersionInfo: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendGetLatestBlockResponse: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		async sendABCIQueryRequest({ value, fee, memo }: sendABCIQueryRequestParams): Promise<DeliverTxResponse> {
+		async sendGetNodeInfoRequest({ value, fee, memo }: sendGetNodeInfoRequestParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendABCIQueryRequest: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendGetNodeInfoRequest: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.abciqueryRequest({ value: ABCIQueryRequest.fromPartial(value) })
+				let msg = this.getNodeInfoRequest({ value: GetNodeInfoRequest.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendABCIQueryRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendGetNodeInfoRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendGetBlockByHeightResponse({ value, fee, memo }: sendGetBlockByHeightResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendGetBlockByHeightResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.getBlockByHeightResponse({ value: GetBlockByHeightResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendGetBlockByHeightResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendBlock({ value, fee, memo }: sendBlockParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendBlock: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.block({ value: Block.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendBlock: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendGetValidatorSetByHeightRequest({ value, fee, memo }: sendGetValidatorSetByHeightRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendGetValidatorSetByHeightRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.getValidatorSetByHeightRequest({ value: GetValidatorSetByHeightRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendGetValidatorSetByHeightRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendGetSyncingRequest({ value, fee, memo }: sendGetSyncingRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendGetSyncingRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.getSyncingRequest({ value: GetSyncingRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendGetSyncingRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendGetLatestValidatorSetResponse({ value, fee, memo }: sendGetLatestValidatorSetResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendGetLatestValidatorSetResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.getLatestValidatorSetResponse({ value: GetLatestValidatorSetResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendGetLatestValidatorSetResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendGetNodeInfoResponse({ value, fee, memo }: sendGetNodeInfoResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendGetNodeInfoResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.getNodeInfoResponse({ value: GetNodeInfoResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendGetNodeInfoResponse: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -356,115 +524,17 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendGetSyncingRequest({ value, fee, memo }: sendGetSyncingRequestParams): Promise<DeliverTxResponse> {
+		async sendGetLatestBlockRequest({ value, fee, memo }: sendGetLatestBlockRequestParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendGetSyncingRequest: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendGetLatestBlockRequest: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.getSyncingRequest({ value: GetSyncingRequest.fromPartial(value) })
+				let msg = this.getLatestBlockRequest({ value: GetLatestBlockRequest.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendGetSyncingRequest: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendABCIQueryResponse({ value, fee, memo }: sendABCIQueryResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendABCIQueryResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.abciqueryResponse({ value: ABCIQueryResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendABCIQueryResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendProofOp({ value, fee, memo }: sendProofOpParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendProofOp: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.proofOp({ value: ProofOp.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendProofOp: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendGetLatestValidatorSetResponse({ value, fee, memo }: sendGetLatestValidatorSetResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendGetLatestValidatorSetResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.getLatestValidatorSetResponse({ value: GetLatestValidatorSetResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendGetLatestValidatorSetResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendGetBlockByHeightRequest({ value, fee, memo }: sendGetBlockByHeightRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendGetBlockByHeightRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.getBlockByHeightRequest({ value: GetBlockByHeightRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendGetBlockByHeightRequest: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendModule({ value, fee, memo }: sendModuleParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendModule: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.module({ value: Module.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendModule: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendGetValidatorSetByHeightRequest({ value, fee, memo }: sendGetValidatorSetByHeightRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendGetValidatorSetByHeightRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.getValidatorSetByHeightRequest({ value: GetValidatorSetByHeightRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendGetValidatorSetByHeightRequest: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendGetNodeInfoRequest({ value, fee, memo }: sendGetNodeInfoRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendGetNodeInfoRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.getNodeInfoRequest({ value: GetNodeInfoRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendGetNodeInfoRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendGetLatestBlockRequest: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -482,90 +552,68 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendBlock({ value, fee, memo }: sendBlockParams): Promise<DeliverTxResponse> {
+		async sendProofOp({ value, fee, memo }: sendProofOpParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendBlock: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendProofOp: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.block({ value: Block.fromPartial(value) })
+				let msg = this.proofOp({ value: ProofOp.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendBlock: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendProofOp: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		async sendGetBlockByHeightResponse({ value, fee, memo }: sendGetBlockByHeightResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendGetBlockByHeightResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.getBlockByHeightResponse({ value: GetBlockByHeightResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		
+		module({ value }: moduleParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.base.tendermint.v1beta1.Module", value: Module.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendGetBlockByHeightResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:Module: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendGetLatestBlockRequest({ value, fee, memo }: sendGetLatestBlockRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendGetLatestBlockRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.getLatestBlockRequest({ value: GetLatestBlockRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		abciqueryRequest({ value }: abciqueryRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.base.tendermint.v1beta1.ABCIQueryRequest", value: ABCIQueryRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendGetLatestBlockRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:ABCIQueryRequest: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendGetNodeInfoResponse({ value, fee, memo }: sendGetNodeInfoResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendGetNodeInfoResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.getNodeInfoResponse({ value: GetNodeInfoResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		getBlockByHeightRequest({ value }: getBlockByHeightRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.base.tendermint.v1beta1.GetBlockByHeightRequest", value: GetBlockByHeightRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendGetNodeInfoResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:GetBlockByHeightRequest: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendGetLatestBlockResponse({ value, fee, memo }: sendGetLatestBlockResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendGetLatestBlockResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.getLatestBlockResponse({ value: GetLatestBlockResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		versionInfo({ value }: versionInfoParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.base.tendermint.v1beta1.VersionInfo", value: VersionInfo.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendGetLatestBlockResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:VersionInfo: Could not create message: ' + e.message)
 			}
 		},
 		
-		async sendProofOps({ value, fee, memo }: sendProofOpsParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendProofOps: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.proofOps({ value: ProofOps.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+		proofOps({ value }: proofOpsParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.base.tendermint.v1beta1.ProofOps", value: ProofOps.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:sendProofOps: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:ProofOps: Could not create message: ' + e.message)
 			}
 		},
 		
+		abciqueryResponse({ value }: abciqueryResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.base.tendermint.v1beta1.ABCIQueryResponse", value: ABCIQueryResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:ABCIQueryResponse: Could not create message: ' + e.message)
+			}
+		},
 		
 		getLatestValidatorSetRequest({ value }: getLatestValidatorSetRequestParams): EncodeObject {
 			try {
@@ -583,19 +631,67 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		versionInfo({ value }: versionInfoParams): EncodeObject {
+		getLatestBlockResponse({ value }: getLatestBlockResponseParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.base.tendermint.v1beta1.VersionInfo", value: VersionInfo.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.base.tendermint.v1beta1.GetLatestBlockResponse", value: GetLatestBlockResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:VersionInfo: Could not create message: ' + e.message)
+				throw new Error('TxClient:GetLatestBlockResponse: Could not create message: ' + e.message)
 			}
 		},
 		
-		abciqueryRequest({ value }: abciqueryRequestParams): EncodeObject {
+		getNodeInfoRequest({ value }: getNodeInfoRequestParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.base.tendermint.v1beta1.ABCIQueryRequest", value: ABCIQueryRequest.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.base.tendermint.v1beta1.GetNodeInfoRequest", value: GetNodeInfoRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:ABCIQueryRequest: Could not create message: ' + e.message)
+				throw new Error('TxClient:GetNodeInfoRequest: Could not create message: ' + e.message)
+			}
+		},
+		
+		getBlockByHeightResponse({ value }: getBlockByHeightResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.base.tendermint.v1beta1.GetBlockByHeightResponse", value: GetBlockByHeightResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:GetBlockByHeightResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		block({ value }: blockParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.base.tendermint.v1beta1.Block", value: Block.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:Block: Could not create message: ' + e.message)
+			}
+		},
+		
+		getValidatorSetByHeightRequest({ value }: getValidatorSetByHeightRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.base.tendermint.v1beta1.GetValidatorSetByHeightRequest", value: GetValidatorSetByHeightRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:GetValidatorSetByHeightRequest: Could not create message: ' + e.message)
+			}
+		},
+		
+		getSyncingRequest({ value }: getSyncingRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.base.tendermint.v1beta1.GetSyncingRequest", value: GetSyncingRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:GetSyncingRequest: Could not create message: ' + e.message)
+			}
+		},
+		
+		getLatestValidatorSetResponse({ value }: getLatestValidatorSetResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.base.tendermint.v1beta1.GetLatestValidatorSetResponse", value: GetLatestValidatorSetResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:GetLatestValidatorSetResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		getNodeInfoResponse({ value }: getNodeInfoResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.base.tendermint.v1beta1.GetNodeInfoResponse", value: GetNodeInfoResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:GetNodeInfoResponse: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -615,67 +711,11 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		getSyncingRequest({ value }: getSyncingRequestParams): EncodeObject {
+		getLatestBlockRequest({ value }: getLatestBlockRequestParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.base.tendermint.v1beta1.GetSyncingRequest", value: GetSyncingRequest.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.base.tendermint.v1beta1.GetLatestBlockRequest", value: GetLatestBlockRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:GetSyncingRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		abciqueryResponse({ value }: abciqueryResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.base.tendermint.v1beta1.ABCIQueryResponse", value: ABCIQueryResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:ABCIQueryResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		proofOp({ value }: proofOpParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.base.tendermint.v1beta1.ProofOp", value: ProofOp.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:ProofOp: Could not create message: ' + e.message)
-			}
-		},
-		
-		getLatestValidatorSetResponse({ value }: getLatestValidatorSetResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.base.tendermint.v1beta1.GetLatestValidatorSetResponse", value: GetLatestValidatorSetResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:GetLatestValidatorSetResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		getBlockByHeightRequest({ value }: getBlockByHeightRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.base.tendermint.v1beta1.GetBlockByHeightRequest", value: GetBlockByHeightRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:GetBlockByHeightRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		module({ value }: moduleParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.base.tendermint.v1beta1.Module", value: Module.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:Module: Could not create message: ' + e.message)
-			}
-		},
-		
-		getValidatorSetByHeightRequest({ value }: getValidatorSetByHeightRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.base.tendermint.v1beta1.GetValidatorSetByHeightRequest", value: GetValidatorSetByHeightRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:GetValidatorSetByHeightRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		getNodeInfoRequest({ value }: getNodeInfoRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.base.tendermint.v1beta1.GetNodeInfoRequest", value: GetNodeInfoRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:GetNodeInfoRequest: Could not create message: ' + e.message)
+				throw new Error('TxClient:GetLatestBlockRequest: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -687,51 +727,11 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		block({ value }: blockParams): EncodeObject {
+		proofOp({ value }: proofOpParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.base.tendermint.v1beta1.Block", value: Block.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.base.tendermint.v1beta1.ProofOp", value: ProofOp.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:Block: Could not create message: ' + e.message)
-			}
-		},
-		
-		getBlockByHeightResponse({ value }: getBlockByHeightResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.base.tendermint.v1beta1.GetBlockByHeightResponse", value: GetBlockByHeightResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:GetBlockByHeightResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		getLatestBlockRequest({ value }: getLatestBlockRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.base.tendermint.v1beta1.GetLatestBlockRequest", value: GetLatestBlockRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:GetLatestBlockRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		getNodeInfoResponse({ value }: getNodeInfoResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.base.tendermint.v1beta1.GetNodeInfoResponse", value: GetNodeInfoResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:GetNodeInfoResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		getLatestBlockResponse({ value }: getLatestBlockResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.base.tendermint.v1beta1.GetLatestBlockResponse", value: GetLatestBlockResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:GetLatestBlockResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		proofOps({ value }: proofOpsParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.base.tendermint.v1beta1.ProofOps", value: ProofOps.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:ProofOps: Could not create message: ' + e.message)
+				throw new Error('TxClient:ProofOp: Could not create message: ' + e.message)
 			}
 		},
 		

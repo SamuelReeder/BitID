@@ -3,6 +3,7 @@ package keeper
 import (
 	"context"
 	"errors"
+	"fmt"
 
 	"cosmossdk.io/collections"
 	"github.com/SamuelReeder/BitID/x/did/types"
@@ -33,6 +34,11 @@ func (queryServer) Params(context.Context, *types.QueryParamsRequest) (*types.Qu
 
 // QueryDIDDocument implements types.QueryServer.
 func (qs queryServer) GetDID(ctx context.Context, req *types.QueryGetDIDRequest) (*types.QueryGetDIDResponse, error) {
+	fmt.Println(qs.k.storedDID.ValueCodec())
+	// for v := collections.Range qs.k.storedDID.ValueCodec() {
+	// 	fmt.Println(v)
+	// }
+	fmt.Println(qs.k.storedDID.KeyCodec())
 	did, err := qs.k.storedDID.Get(ctx, req.Index)
 	if err == nil {
 		return &types.QueryGetDIDResponse{DID: &did}, nil
