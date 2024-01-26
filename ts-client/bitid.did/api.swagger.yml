@@ -58,12 +58,107 @@ definitions:
             '@type':
               type: string
           additionalProperties: {}
+  DIDDocument:
+    type: object
+    properties:
+      context:
+        type: string
+      id:
+        type: string
+      authentication:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+            controller:
+              type: string
+            publicKeyPem:
+              type: string
+      service:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+            serviceEndpoint:
+              type: string
+      created:
+        type: string
+      updated:
+        type: string
   Params:
     type: object
+  QueryGetDIDResponse:
+    type: object
+    properties:
+      DID:
+        type: object
+        properties:
+          context:
+            type: string
+          id:
+            type: string
+          authentication:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                type:
+                  type: string
+                controller:
+                  type: string
+                publicKeyPem:
+                  type: string
+          service:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                type:
+                  type: string
+                serviceEndpoint:
+                  type: string
+          created:
+            type: string
+          updated:
+            type: string
   QueryParamsResponse:
     type: object
     properties:
       params:
         type: object
+  Service:
+    type: object
+    properties:
+      id:
+        type: string
+      type:
+        type: string
+      serviceEndpoint:
+        type: string
+  VerificationMethod:
+    type: object
+    properties:
+      id:
+        type: string
+      type:
+        type: string
+      controller:
+        type: string
+      publicKeyPem:
+        type: string
+  MsgDefineDIDDocumentResponse:
+    type: object
   MsgUpdateParamsResponse:
     type: object

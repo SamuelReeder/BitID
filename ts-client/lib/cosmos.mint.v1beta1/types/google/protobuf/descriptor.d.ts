@@ -20833,63 +20833,10 @@ export declare const FileDescriptorSet: {
                                         lazy?: boolean;
                                         deprecated?: boolean;
                                         weak?: boolean;
-                                        uninterpretedOption?: {
-                                            name?: {
-                                                namePart?: string;
-                                                isExtension?: boolean;
-                                            }[];
-                                            identifierValue?: string;
-                                            positiveIntValue?: number;
-                                            negativeIntValue?: number;
-                                            doubleValue?: number;
-                                            stringValue?: Uint8Array;
-                                            aggregateValue?: string;
-                                        }[] & ({
-                                            name?: {
-                                                namePart?: string;
-                                                isExtension?: boolean;
-                                            }[];
-                                            identifierValue?: string;
-                                            positiveIntValue?: number;
-                                            negativeIntValue?: number;
-                                            doubleValue?: number;
-                                            stringValue?: Uint8Array;
-                                            aggregateValue?: string;
-                                        } & {
-                                            name?: {
-                                                namePart?: string;
-                                                isExtension?: boolean;
-                                            }[] & ({
-                                                namePart?: string;
-                                                isExtension?: boolean;
-                                            } & {
-                                                namePart?: string;
-                                                isExtension?: boolean;
-                                            } & { [K_529 in Exclude<keyof I_1["file"][number]["messageType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number]["field"][number]["options"]["uninterpretedOption"][number]["name"][number], keyof UninterpretedOption_NamePart>]: never; })[] & { [K_530 in Exclude<keyof I_1["file"][number]["messageType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number]["field"][number]["options"]["uninterpretedOption"][number]["name"], keyof {
-                                                namePart?: string;
-                                                isExtension?: boolean;
-                                            }[]>]: never; };
-                                            identifierValue?: string;
-                                            positiveIntValue?: number;
-                                            negativeIntValue?: number;
-                                            doubleValue?: number;
-                                            stringValue?: Uint8Array;
-                                            aggregateValue?: string;
-                                        } & { [K_531 in Exclude<keyof I_1["file"][number]["messageType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number]["field"][number]["options"]["uninterpretedOption"][number], keyof UninterpretedOption>]: never; })[] & { [K_532 in Exclude<keyof I_1["file"][number]["messageType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number]["field"][number]["options"]["uninterpretedOption"], keyof {
-                                            name?: {
-                                                namePart?: string;
-                                                isExtension?: boolean;
-                                            }[];
-                                            identifierValue?: string;
-                                            positiveIntValue?: number;
-                                            negativeIntValue?: number;
-                                            doubleValue?: number;
-                                            stringValue?: Uint8Array;
-                                            aggregateValue?: string;
-                                        }[]>]: never; };
-                                    } & { [K_533 in Exclude<keyof I_1["file"][number]["messageType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number]["field"][number]["options"], keyof FieldOptions>]: never; };
+                                        uninterpretedOption?: any;
+                                    } & { [K_529 in Exclude<keyof I_1["file"][number]["messageType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number]["field"][number]["options"], keyof FieldOptions>]: never; };
                                     proto3Optional?: boolean;
-                                } & { [K_534 in Exclude<keyof I_1["file"][number]["messageType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number]["field"][number], keyof FieldDescriptorProto>]: never; })[] & { [K_535 in Exclude<keyof I_1["file"][number]["messageType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number]["field"], keyof {
+                                } & { [K_530 in Exclude<keyof I_1["file"][number]["messageType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number]["field"][number], keyof FieldDescriptorProto>]: never; })[] & { [K_531 in Exclude<keyof I_1["file"][number]["messageType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number]["field"], keyof {
                                     name?: string;
                                     number?: number;
                                     label?: FieldDescriptorProto_Label;
@@ -20984,129 +20931,12 @@ export declare const FileDescriptorSet: {
                                     };
                                     proto3Optional?: boolean;
                                 } & {
-                                    name?: string;
-                                    number?: number;
-                                    label?: FieldDescriptorProto_Label;
-                                    type?: FieldDescriptorProto_Type;
-                                    typeName?: string;
-                                    extendee?: string;
-                                    defaultValue?: string;
-                                    oneofIndex?: number;
-                                    jsonName?: string;
-                                    options?: {
-                                        ctype?: FieldOptions_CType;
-                                        packed?: boolean;
-                                        jstype?: FieldOptions_JSType;
-                                        lazy?: boolean;
-                                        deprecated?: boolean;
-                                        weak?: boolean;
-                                        uninterpretedOption?: {
-                                            name?: {
-                                                namePart?: string;
-                                                isExtension?: boolean;
-                                            }[];
-                                            identifierValue?: string;
-                                            positiveIntValue?: number;
-                                            negativeIntValue?: number;
-                                            doubleValue?: number;
-                                            stringValue?: Uint8Array;
-                                            aggregateValue?: string;
-                                        }[];
-                                    } & {
-                                        ctype?: FieldOptions_CType;
-                                        packed?: boolean;
-                                        jstype?: FieldOptions_JSType;
-                                        lazy?: boolean;
-                                        deprecated?: boolean;
-                                        weak?: boolean;
-                                        uninterpretedOption?: {
-                                            name?: {
-                                                namePart?: string;
-                                                isExtension?: boolean;
-                                            }[];
-                                            identifierValue?: string;
-                                            positiveIntValue?: number;
-                                            negativeIntValue?: number;
-                                            doubleValue?: number;
-                                            stringValue?: Uint8Array;
-                                            aggregateValue?: string;
-                                        }[] & ({
-                                            name?: {
-                                                namePart?: string;
-                                                isExtension?: boolean;
-                                            }[];
-                                            identifierValue?: string;
-                                            positiveIntValue?: number;
-                                            negativeIntValue?: number;
-                                            doubleValue?: number;
-                                            stringValue?: Uint8Array;
-                                            aggregateValue?: string;
-                                        } & {
-                                            name?: {
-                                                namePart?: string;
-                                                isExtension?: boolean;
-                                            }[] & ({
-                                                namePart?: string;
-                                                isExtension?: boolean;
-                                            } & {
-                                                namePart?: string;
-                                                isExtension?: boolean;
-                                            } & { [K_536 in Exclude<keyof I_1["file"][number]["messageType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number]["extension"][number]["options"]["uninterpretedOption"][number]["name"][number], keyof UninterpretedOption_NamePart>]: never; })[] & { [K_537 in Exclude<keyof I_1["file"][number]["messageType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number]["extension"][number]["options"]["uninterpretedOption"][number]["name"], keyof {
-                                                namePart?: string;
-                                                isExtension?: boolean;
-                                            }[]>]: never; };
-                                            identifierValue?: string;
-                                            positiveIntValue?: number;
-                                            negativeIntValue?: number;
-                                            doubleValue?: number;
-                                            stringValue?: Uint8Array;
-                                            aggregateValue?: string;
-                                        } & { [K_538 in Exclude<keyof I_1["file"][number]["messageType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number]["extension"][number]["options"]["uninterpretedOption"][number], keyof UninterpretedOption>]: never; })[] & { [K_539 in Exclude<keyof I_1["file"][number]["messageType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number]["extension"][number]["options"]["uninterpretedOption"], keyof {
-                                            name?: {
-                                                namePart?: string;
-                                                isExtension?: boolean;
-                                            }[];
-                                            identifierValue?: string;
-                                            positiveIntValue?: number;
-                                            negativeIntValue?: number;
-                                            doubleValue?: number;
-                                            stringValue?: Uint8Array;
-                                            aggregateValue?: string;
-                                        }[]>]: never; };
-                                    } & { [K_540 in Exclude<keyof I_1["file"][number]["messageType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number]["extension"][number]["options"], keyof FieldOptions>]: never; };
-                                    proto3Optional?: boolean;
-                                } & { [K_541 in Exclude<keyof I_1["file"][number]["messageType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number]["extension"][number], keyof FieldDescriptorProto>]: never; })[] & { [K_542 in Exclude<keyof I_1["file"][number]["messageType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number]["extension"], keyof {
-                                    name?: string;
-                                    number?: number;
-                                    label?: FieldDescriptorProto_Label;
-                                    type?: FieldDescriptorProto_Type;
-                                    typeName?: string;
-                                    extendee?: string;
-                                    defaultValue?: string;
-                                    oneofIndex?: number;
-                                    jsonName?: string;
-                                    options?: {
-                                        ctype?: FieldOptions_CType;
-                                        packed?: boolean;
-                                        jstype?: FieldOptions_JSType;
-                                        lazy?: boolean;
-                                        deprecated?: boolean;
-                                        weak?: boolean;
-                                        uninterpretedOption?: {
-                                            name?: {
-                                                namePart?: string;
-                                                isExtension?: boolean;
-                                            }[];
-                                            identifierValue?: string;
-                                            positiveIntValue?: number;
-                                            negativeIntValue?: number;
-                                            doubleValue?: number;
-                                            stringValue?: Uint8Array;
-                                            aggregateValue?: string;
-                                        }[];
-                                    };
-                                    proto3Optional?: boolean;
-                                }[]>]: never; };
+                                    [x: string]: any;
+                                } & {
+                                    [x: string]: never;
+                                })[] & {
+                                    [x: string]: never;
+                                };
                                 nestedType?: {
                                     name?: string;
                                     field?: {
@@ -21444,185 +21274,12 @@ export declare const FileDescriptorSet: {
                                     }[];
                                     reservedName?: string[];
                                 } & {
-                                    name?: any;
-                                    field?: any;
-                                    extension?: any;
-                                    nestedType?: any;
-                                    enumType?: any;
-                                    extensionRange?: any;
-                                    oneofDecl?: any;
-                                    options?: any;
-                                    reservedRange?: any;
-                                    reservedName?: any;
-                                } & { [K_543 in Exclude<keyof I_1["file"][number]["messageType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number], keyof DescriptorProto>]: never; })[] & { [K_544 in Exclude<keyof I_1["file"][number]["messageType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number]["nestedType"], keyof {
-                                    name?: string;
-                                    field?: {
-                                        name?: string;
-                                        number?: number;
-                                        label?: FieldDescriptorProto_Label;
-                                        type?: FieldDescriptorProto_Type;
-                                        typeName?: string;
-                                        extendee?: string;
-                                        defaultValue?: string;
-                                        oneofIndex?: number;
-                                        jsonName?: string;
-                                        options?: {
-                                            ctype?: FieldOptions_CType;
-                                            packed?: boolean;
-                                            jstype?: FieldOptions_JSType;
-                                            lazy?: boolean;
-                                            deprecated?: boolean;
-                                            weak?: boolean;
-                                            uninterpretedOption?: {
-                                                name?: {
-                                                    namePart?: string;
-                                                    isExtension?: boolean;
-                                                }[];
-                                                identifierValue?: string;
-                                                positiveIntValue?: number;
-                                                negativeIntValue?: number;
-                                                doubleValue?: number;
-                                                stringValue?: Uint8Array;
-                                                aggregateValue?: string;
-                                            }[];
-                                        };
-                                        proto3Optional?: boolean;
-                                    }[];
-                                    extension?: {
-                                        name?: string;
-                                        number?: number;
-                                        label?: FieldDescriptorProto_Label;
-                                        type?: FieldDescriptorProto_Type;
-                                        typeName?: string;
-                                        extendee?: string;
-                                        defaultValue?: string;
-                                        oneofIndex?: number;
-                                        jsonName?: string;
-                                        options?: {
-                                            ctype?: FieldOptions_CType;
-                                            packed?: boolean;
-                                            jstype?: FieldOptions_JSType;
-                                            lazy?: boolean;
-                                            deprecated?: boolean;
-                                            weak?: boolean;
-                                            uninterpretedOption?: {
-                                                name?: {
-                                                    namePart?: string;
-                                                    isExtension?: boolean;
-                                                }[];
-                                                identifierValue?: string;
-                                                positiveIntValue?: number;
-                                                negativeIntValue?: number;
-                                                doubleValue?: number;
-                                                stringValue?: Uint8Array;
-                                                aggregateValue?: string;
-                                            }[];
-                                        };
-                                        proto3Optional?: boolean;
-                                    }[];
-                                    nestedType?: any[];
-                                    enumType?: {
-                                        name?: string;
-                                        value?: {
-                                            name?: string;
-                                            number?: number;
-                                            options?: {
-                                                deprecated?: boolean;
-                                                uninterpretedOption?: {
-                                                    name?: {
-                                                        namePart?: string;
-                                                        isExtension?: boolean;
-                                                    }[];
-                                                    identifierValue?: string;
-                                                    positiveIntValue?: number;
-                                                    negativeIntValue?: number;
-                                                    doubleValue?: number;
-                                                    stringValue?: Uint8Array;
-                                                    aggregateValue?: string;
-                                                }[];
-                                            };
-                                        }[];
-                                        options?: {
-                                            allowAlias?: boolean;
-                                            deprecated?: boolean;
-                                            uninterpretedOption?: {
-                                                name?: {
-                                                    namePart?: string;
-                                                    isExtension?: boolean;
-                                                }[];
-                                                identifierValue?: string;
-                                                positiveIntValue?: number;
-                                                negativeIntValue?: number;
-                                                doubleValue?: number;
-                                                stringValue?: Uint8Array;
-                                                aggregateValue?: string;
-                                            }[];
-                                        };
-                                        reservedRange?: {
-                                            start?: number;
-                                            end?: number;
-                                        }[];
-                                        reservedName?: string[];
-                                    }[];
-                                    extensionRange?: {
-                                        start?: number;
-                                        end?: number;
-                                        options?: {
-                                            uninterpretedOption?: {
-                                                name?: {
-                                                    namePart?: string;
-                                                    isExtension?: boolean;
-                                                }[];
-                                                identifierValue?: string;
-                                                positiveIntValue?: number;
-                                                negativeIntValue?: number;
-                                                doubleValue?: number;
-                                                stringValue?: Uint8Array;
-                                                aggregateValue?: string;
-                                            }[];
-                                        };
-                                    }[];
-                                    oneofDecl?: {
-                                        name?: string;
-                                        options?: {
-                                            uninterpretedOption?: {
-                                                name?: {
-                                                    namePart?: string;
-                                                    isExtension?: boolean;
-                                                }[];
-                                                identifierValue?: string;
-                                                positiveIntValue?: number;
-                                                negativeIntValue?: number;
-                                                doubleValue?: number;
-                                                stringValue?: Uint8Array;
-                                                aggregateValue?: string;
-                                            }[];
-                                        };
-                                    }[];
-                                    options?: {
-                                        messageSetWireFormat?: boolean;
-                                        noStandardDescriptorAccessor?: boolean;
-                                        deprecated?: boolean;
-                                        mapEntry?: boolean;
-                                        uninterpretedOption?: {
-                                            name?: {
-                                                namePart?: string;
-                                                isExtension?: boolean;
-                                            }[];
-                                            identifierValue?: string;
-                                            positiveIntValue?: number;
-                                            negativeIntValue?: number;
-                                            doubleValue?: number;
-                                            stringValue?: Uint8Array;
-                                            aggregateValue?: string;
-                                        }[];
-                                    };
-                                    reservedRange?: {
-                                        start?: number;
-                                        end?: number;
-                                    }[];
-                                    reservedName?: string[];
-                                }[]>]: never; };
+                                    [x: string]: any;
+                                } & {
+                                    [x: string]: never;
+                                })[] & {
+                                    [x: string]: never;
+                                };
                                 enumType?: {
                                     name?: string;
                                     value?: {
@@ -21832,7 +21489,7 @@ export declare const FileDescriptorSet: {
                                 reservedName?: string[] & string[] & {
                                     [x: string]: never;
                                 };
-                            } & { [K_545 in Exclude<keyof I_1["file"][number]["messageType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number], keyof DescriptorProto>]: never; })[] & { [K_546 in Exclude<keyof I_1["file"][number]["messageType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number]["nestedType"], keyof {
+                            } & { [K_532 in Exclude<keyof I_1["file"][number]["messageType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number], keyof DescriptorProto>]: never; })[] & { [K_533 in Exclude<keyof I_1["file"][number]["messageType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number]["nestedType"], keyof {
                                 name?: string;
                                 field?: {
                                     name?: string;
@@ -22210,7 +21867,7 @@ export declare const FileDescriptorSet: {
                             reservedName?: string[] & string[] & {
                                 [x: string]: never;
                             };
-                        } & { [K_547 in Exclude<keyof I_1["file"][number]["messageType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number], keyof DescriptorProto>]: never; })[] & { [K_548 in Exclude<keyof I_1["file"][number]["messageType"][number]["nestedType"][number]["nestedType"][number]["nestedType"], keyof {
+                        } & { [K_534 in Exclude<keyof I_1["file"][number]["messageType"][number]["nestedType"][number]["nestedType"][number]["nestedType"][number], keyof DescriptorProto>]: never; })[] & { [K_535 in Exclude<keyof I_1["file"][number]["messageType"][number]["nestedType"][number]["nestedType"][number]["nestedType"], keyof {
                             name?: string;
                             field?: {
                                 name?: string;
@@ -22588,7 +22245,7 @@ export declare const FileDescriptorSet: {
                         reservedName?: string[] & string[] & {
                             [x: string]: never;
                         };
-                    } & { [K_549 in Exclude<keyof I_1["file"][number]["messageType"][number]["nestedType"][number]["nestedType"][number], keyof DescriptorProto>]: never; })[] & { [K_550 in Exclude<keyof I_1["file"][number]["messageType"][number]["nestedType"][number]["nestedType"], keyof {
+                    } & { [K_536 in Exclude<keyof I_1["file"][number]["messageType"][number]["nestedType"][number]["nestedType"][number], keyof DescriptorProto>]: never; })[] & { [K_537 in Exclude<keyof I_1["file"][number]["messageType"][number]["nestedType"][number]["nestedType"], keyof {
                         name?: string;
                         field?: {
                             name?: string;
@@ -22966,7 +22623,7 @@ export declare const FileDescriptorSet: {
                     reservedName?: string[] & string[] & {
                         [x: string]: never;
                     };
-                } & { [K_551 in Exclude<keyof I_1["file"][number]["messageType"][number]["nestedType"][number], keyof DescriptorProto>]: never; })[] & { [K_552 in Exclude<keyof I_1["file"][number]["messageType"][number]["nestedType"], keyof {
+                } & { [K_538 in Exclude<keyof I_1["file"][number]["messageType"][number]["nestedType"][number], keyof DescriptorProto>]: never; })[] & { [K_539 in Exclude<keyof I_1["file"][number]["messageType"][number]["nestedType"], keyof {
                     name?: string;
                     field?: {
                         name?: string;
@@ -23344,7 +23001,7 @@ export declare const FileDescriptorSet: {
                 reservedName?: string[] & string[] & {
                     [x: string]: never;
                 };
-            } & { [K_553 in Exclude<keyof I_1["file"][number]["messageType"][number], keyof DescriptorProto>]: never; })[] & { [K_554 in Exclude<keyof I_1["file"][number]["messageType"], keyof {
+            } & { [K_540 in Exclude<keyof I_1["file"][number]["messageType"][number], keyof DescriptorProto>]: never; })[] & { [K_541 in Exclude<keyof I_1["file"][number]["messageType"], keyof {
                 name?: string;
                 field?: {
                     name?: string;
@@ -23812,7 +23469,7 @@ export declare const FileDescriptorSet: {
                 [x: string]: never;
             };
             syntax?: string;
-        } & { [K_555 in Exclude<keyof I_1["file"][number], keyof FileDescriptorProto>]: never; })[] & { [K_556 in Exclude<keyof I_1["file"], keyof {
+        } & { [K_542 in Exclude<keyof I_1["file"][number], keyof FileDescriptorProto>]: never; })[] & { [K_543 in Exclude<keyof I_1["file"], keyof {
             name?: string;
             package?: string;
             dependency?: string[];
@@ -24148,7 +23805,7 @@ export declare const FileDescriptorSet: {
             };
             syntax?: string;
         }[]>]: never; };
-    } & { [K_557 in Exclude<keyof I_1, "file">]: never; }>(object: I_1): FileDescriptorSet;
+    } & { [K_544 in Exclude<keyof I_1, "file">]: never; }>(object: I_1): FileDescriptorSet;
 };
 export declare const FileDescriptorProto: {
     encode(message: FileDescriptorProto, writer?: _m0.Writer): _m0.Writer;

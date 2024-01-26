@@ -2,40 +2,35 @@ import { DeliverTxResponse, StdFee } from "@cosmjs/stargate";
 import { EncodeObject, GeneratedType, OfflineSigner, Registry } from "@cosmjs/proto-signing";
 import { IgniteClient } from "../client";
 import { Api } from "./rest";
-import { MsgUpdateParamsResponse } from "./types/ibc/applications/transfer/v1/tx";
-import { QueryTotalEscrowForDenomResponse } from "./types/ibc/applications/transfer/v1/query";
-import { MsgTransfer } from "./types/ibc/applications/transfer/v1/tx";
+import { QueryParamsRequest } from "./types/ibc/applications/transfer/v1/query";
+import { QueryParamsResponse } from "./types/ibc/applications/transfer/v1/query";
 import { MsgUpdateParams } from "./types/ibc/applications/transfer/v1/tx";
-import { Allocation } from "./types/ibc/applications/transfer/v1/authz";
-import { QueryEscrowAddressRequest } from "./types/ibc/applications/transfer/v1/query";
-import { TransferAuthorization } from "./types/ibc/applications/transfer/v1/authz";
-import { QueryDenomHashResponse } from "./types/ibc/applications/transfer/v1/query";
+import { MsgTransfer } from "./types/ibc/applications/transfer/v1/tx";
+import { QueryDenomHashRequest } from "./types/ibc/applications/transfer/v1/query";
+import { QueryTotalEscrowForDenomResponse } from "./types/ibc/applications/transfer/v1/query";
+import { Params } from "./types/ibc/applications/transfer/v1/transfer";
+import { MsgUpdateParamsResponse } from "./types/ibc/applications/transfer/v1/tx";
 import { QueryDenomTracesRequest } from "./types/ibc/applications/transfer/v1/query";
+import { QueryEscrowAddressRequest } from "./types/ibc/applications/transfer/v1/query";
+import { QueryEscrowAddressResponse } from "./types/ibc/applications/transfer/v1/query";
+import { MsgTransferResponse } from "./types/ibc/applications/transfer/v1/tx";
+import { Allocation } from "./types/ibc/applications/transfer/v1/authz";
+import { QueryDenomTraceRequest } from "./types/ibc/applications/transfer/v1/query";
+import { DenomTrace } from "./types/ibc/applications/transfer/v1/transfer";
+import { GenesisState } from "./types/ibc/applications/transfer/v1/genesis";
+import { QueryDenomTraceResponse } from "./types/ibc/applications/transfer/v1/query";
 import { QueryDenomTracesResponse } from "./types/ibc/applications/transfer/v1/query";
 import { QueryTotalEscrowForDenomRequest } from "./types/ibc/applications/transfer/v1/query";
-import { GenesisState } from "./types/ibc/applications/transfer/v1/genesis";
-import { QueryDenomTraceRequest } from "./types/ibc/applications/transfer/v1/query";
-import { QueryDenomHashRequest } from "./types/ibc/applications/transfer/v1/query";
-import { QueryEscrowAddressResponse } from "./types/ibc/applications/transfer/v1/query";
-import { Params } from "./types/ibc/applications/transfer/v1/transfer";
-import { QueryDenomTraceResponse } from "./types/ibc/applications/transfer/v1/query";
-import { QueryParamsRequest } from "./types/ibc/applications/transfer/v1/query";
-import { MsgTransferResponse } from "./types/ibc/applications/transfer/v1/tx";
-import { DenomTrace } from "./types/ibc/applications/transfer/v1/transfer";
-import { QueryParamsResponse } from "./types/ibc/applications/transfer/v1/query";
-export { MsgUpdateParamsResponse, QueryTotalEscrowForDenomResponse, MsgTransfer, MsgUpdateParams, Allocation, QueryEscrowAddressRequest, TransferAuthorization, QueryDenomHashResponse, QueryDenomTracesRequest, QueryDenomTracesResponse, QueryTotalEscrowForDenomRequest, GenesisState, QueryDenomTraceRequest, QueryDenomHashRequest, QueryEscrowAddressResponse, Params, QueryDenomTraceResponse, QueryParamsRequest, MsgTransferResponse, DenomTrace, QueryParamsResponse };
-type sendMsgUpdateParamsResponseParams = {
-    value: MsgUpdateParamsResponse;
+import { QueryDenomHashResponse } from "./types/ibc/applications/transfer/v1/query";
+import { TransferAuthorization } from "./types/ibc/applications/transfer/v1/authz";
+export { QueryParamsRequest, QueryParamsResponse, MsgUpdateParams, MsgTransfer, QueryDenomHashRequest, QueryTotalEscrowForDenomResponse, Params, MsgUpdateParamsResponse, QueryDenomTracesRequest, QueryEscrowAddressRequest, QueryEscrowAddressResponse, MsgTransferResponse, Allocation, QueryDenomTraceRequest, DenomTrace, GenesisState, QueryDenomTraceResponse, QueryDenomTracesResponse, QueryTotalEscrowForDenomRequest, QueryDenomHashResponse, TransferAuthorization };
+type sendQueryParamsRequestParams = {
+    value: QueryParamsRequest;
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryTotalEscrowForDenomResponseParams = {
-    value: QueryTotalEscrowForDenomResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgTransferParams = {
-    value: MsgTransfer;
+type sendQueryParamsResponseParams = {
+    value: QueryParamsResponse;
     fee?: StdFee;
     memo?: string;
 };
@@ -44,8 +39,33 @@ type sendMsgUpdateParamsParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendAllocationParams = {
-    value: Allocation;
+type sendMsgTransferParams = {
+    value: MsgTransfer;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryDenomHashRequestParams = {
+    value: QueryDenomHashRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryTotalEscrowForDenomResponseParams = {
+    value: QueryTotalEscrowForDenomResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendParamsParams = {
+    value: Params;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgUpdateParamsResponseParams = {
+    value: MsgUpdateParamsResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryDenomTracesRequestParams = {
+    value: QueryDenomTracesRequest;
     fee?: StdFee;
     memo?: string;
 };
@@ -54,18 +74,38 @@ type sendQueryEscrowAddressRequestParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendTransferAuthorizationParams = {
-    value: TransferAuthorization;
+type sendQueryEscrowAddressResponseParams = {
+    value: QueryEscrowAddressResponse;
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryDenomHashResponseParams = {
-    value: QueryDenomHashResponse;
+type sendMsgTransferResponseParams = {
+    value: MsgTransferResponse;
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryDenomTracesRequestParams = {
-    value: QueryDenomTracesRequest;
+type sendAllocationParams = {
+    value: Allocation;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryDenomTraceRequestParams = {
+    value: QueryDenomTraceRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendDenomTraceParams = {
+    value: DenomTrace;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendGenesisStateParams = {
+    value: GenesisState;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryDenomTraceResponseParams = {
+    value: QueryDenomTraceResponse;
     fee?: StdFee;
     memo?: string;
 };
@@ -79,82 +119,66 @@ type sendQueryTotalEscrowForDenomRequestParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendGenesisStateParams = {
-    value: GenesisState;
+type sendQueryDenomHashResponseParams = {
+    value: QueryDenomHashResponse;
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryDenomTraceRequestParams = {
-    value: QueryDenomTraceRequest;
+type sendTransferAuthorizationParams = {
+    value: TransferAuthorization;
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryDenomHashRequestParams = {
-    value: QueryDenomHashRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryEscrowAddressResponseParams = {
-    value: QueryEscrowAddressResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendParamsParams = {
-    value: Params;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryDenomTraceResponseParams = {
-    value: QueryDenomTraceResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryParamsRequestParams = {
+type queryParamsRequestParams = {
     value: QueryParamsRequest;
-    fee?: StdFee;
-    memo?: string;
 };
-type sendMsgTransferResponseParams = {
-    value: MsgTransferResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendDenomTraceParams = {
-    value: DenomTrace;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryParamsResponseParams = {
+type queryParamsResponseParams = {
     value: QueryParamsResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type msgUpdateParamsResponseParams = {
-    value: MsgUpdateParamsResponse;
-};
-type queryTotalEscrowForDenomResponseParams = {
-    value: QueryTotalEscrowForDenomResponse;
-};
-type msgTransferParams = {
-    value: MsgTransfer;
 };
 type msgUpdateParamsParams = {
     value: MsgUpdateParams;
 };
-type allocationParams = {
-    value: Allocation;
+type msgTransferParams = {
+    value: MsgTransfer;
+};
+type queryDenomHashRequestParams = {
+    value: QueryDenomHashRequest;
+};
+type queryTotalEscrowForDenomResponseParams = {
+    value: QueryTotalEscrowForDenomResponse;
+};
+type paramsParams = {
+    value: Params;
+};
+type msgUpdateParamsResponseParams = {
+    value: MsgUpdateParamsResponse;
+};
+type queryDenomTracesRequestParams = {
+    value: QueryDenomTracesRequest;
 };
 type queryEscrowAddressRequestParams = {
     value: QueryEscrowAddressRequest;
 };
-type transferAuthorizationParams = {
-    value: TransferAuthorization;
+type queryEscrowAddressResponseParams = {
+    value: QueryEscrowAddressResponse;
 };
-type queryDenomHashResponseParams = {
-    value: QueryDenomHashResponse;
+type msgTransferResponseParams = {
+    value: MsgTransferResponse;
 };
-type queryDenomTracesRequestParams = {
-    value: QueryDenomTracesRequest;
+type allocationParams = {
+    value: Allocation;
+};
+type queryDenomTraceRequestParams = {
+    value: QueryDenomTraceRequest;
+};
+type denomTraceParams = {
+    value: DenomTrace;
+};
+type genesisStateParams = {
+    value: GenesisState;
+};
+type queryDenomTraceResponseParams = {
+    value: QueryDenomTraceResponse;
 };
 type queryDenomTracesResponseParams = {
     value: QueryDenomTracesResponse;
@@ -162,35 +186,11 @@ type queryDenomTracesResponseParams = {
 type queryTotalEscrowForDenomRequestParams = {
     value: QueryTotalEscrowForDenomRequest;
 };
-type genesisStateParams = {
-    value: GenesisState;
+type queryDenomHashResponseParams = {
+    value: QueryDenomHashResponse;
 };
-type queryDenomTraceRequestParams = {
-    value: QueryDenomTraceRequest;
-};
-type queryDenomHashRequestParams = {
-    value: QueryDenomHashRequest;
-};
-type queryEscrowAddressResponseParams = {
-    value: QueryEscrowAddressResponse;
-};
-type paramsParams = {
-    value: Params;
-};
-type queryDenomTraceResponseParams = {
-    value: QueryDenomTraceResponse;
-};
-type queryParamsRequestParams = {
-    value: QueryParamsRequest;
-};
-type msgTransferResponseParams = {
-    value: MsgTransferResponse;
-};
-type denomTraceParams = {
-    value: DenomTrace;
-};
-type queryParamsResponseParams = {
-    value: QueryParamsResponse;
+type transferAuthorizationParams = {
+    value: TransferAuthorization;
 };
 export declare const registry: Registry;
 interface TxClientOptions {
@@ -199,48 +199,48 @@ interface TxClientOptions {
     signer?: OfflineSigner;
 }
 export declare const txClient: ({ signer, prefix, addr }?: TxClientOptions) => {
-    sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse>;
-    sendQueryTotalEscrowForDenomResponse({ value, fee, memo }: sendQueryTotalEscrowForDenomResponseParams): Promise<DeliverTxResponse>;
-    sendMsgTransfer({ value, fee, memo }: sendMsgTransferParams): Promise<DeliverTxResponse>;
+    sendQueryParamsRequest({ value, fee, memo }: sendQueryParamsRequestParams): Promise<DeliverTxResponse>;
+    sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse>;
     sendMsgUpdateParams({ value, fee, memo }: sendMsgUpdateParamsParams): Promise<DeliverTxResponse>;
-    sendAllocation({ value, fee, memo }: sendAllocationParams): Promise<DeliverTxResponse>;
-    sendQueryEscrowAddressRequest({ value, fee, memo }: sendQueryEscrowAddressRequestParams): Promise<DeliverTxResponse>;
-    sendTransferAuthorization({ value, fee, memo }: sendTransferAuthorizationParams): Promise<DeliverTxResponse>;
-    sendQueryDenomHashResponse({ value, fee, memo }: sendQueryDenomHashResponseParams): Promise<DeliverTxResponse>;
+    sendMsgTransfer({ value, fee, memo }: sendMsgTransferParams): Promise<DeliverTxResponse>;
+    sendQueryDenomHashRequest({ value, fee, memo }: sendQueryDenomHashRequestParams): Promise<DeliverTxResponse>;
+    sendQueryTotalEscrowForDenomResponse({ value, fee, memo }: sendQueryTotalEscrowForDenomResponseParams): Promise<DeliverTxResponse>;
+    sendParams({ value, fee, memo }: sendParamsParams): Promise<DeliverTxResponse>;
+    sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse>;
     sendQueryDenomTracesRequest({ value, fee, memo }: sendQueryDenomTracesRequestParams): Promise<DeliverTxResponse>;
+    sendQueryEscrowAddressRequest({ value, fee, memo }: sendQueryEscrowAddressRequestParams): Promise<DeliverTxResponse>;
+    sendQueryEscrowAddressResponse({ value, fee, memo }: sendQueryEscrowAddressResponseParams): Promise<DeliverTxResponse>;
+    sendMsgTransferResponse({ value, fee, memo }: sendMsgTransferResponseParams): Promise<DeliverTxResponse>;
+    sendAllocation({ value, fee, memo }: sendAllocationParams): Promise<DeliverTxResponse>;
+    sendQueryDenomTraceRequest({ value, fee, memo }: sendQueryDenomTraceRequestParams): Promise<DeliverTxResponse>;
+    sendDenomTrace({ value, fee, memo }: sendDenomTraceParams): Promise<DeliverTxResponse>;
+    sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse>;
+    sendQueryDenomTraceResponse({ value, fee, memo }: sendQueryDenomTraceResponseParams): Promise<DeliverTxResponse>;
     sendQueryDenomTracesResponse({ value, fee, memo }: sendQueryDenomTracesResponseParams): Promise<DeliverTxResponse>;
     sendQueryTotalEscrowForDenomRequest({ value, fee, memo }: sendQueryTotalEscrowForDenomRequestParams): Promise<DeliverTxResponse>;
-    sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse>;
-    sendQueryDenomTraceRequest({ value, fee, memo }: sendQueryDenomTraceRequestParams): Promise<DeliverTxResponse>;
-    sendQueryDenomHashRequest({ value, fee, memo }: sendQueryDenomHashRequestParams): Promise<DeliverTxResponse>;
-    sendQueryEscrowAddressResponse({ value, fee, memo }: sendQueryEscrowAddressResponseParams): Promise<DeliverTxResponse>;
-    sendParams({ value, fee, memo }: sendParamsParams): Promise<DeliverTxResponse>;
-    sendQueryDenomTraceResponse({ value, fee, memo }: sendQueryDenomTraceResponseParams): Promise<DeliverTxResponse>;
-    sendQueryParamsRequest({ value, fee, memo }: sendQueryParamsRequestParams): Promise<DeliverTxResponse>;
-    sendMsgTransferResponse({ value, fee, memo }: sendMsgTransferResponseParams): Promise<DeliverTxResponse>;
-    sendDenomTrace({ value, fee, memo }: sendDenomTraceParams): Promise<DeliverTxResponse>;
-    sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse>;
-    msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject;
-    queryTotalEscrowForDenomResponse({ value }: queryTotalEscrowForDenomResponseParams): EncodeObject;
-    msgTransfer({ value }: msgTransferParams): EncodeObject;
+    sendQueryDenomHashResponse({ value, fee, memo }: sendQueryDenomHashResponseParams): Promise<DeliverTxResponse>;
+    sendTransferAuthorization({ value, fee, memo }: sendTransferAuthorizationParams): Promise<DeliverTxResponse>;
+    queryParamsRequest({ value }: queryParamsRequestParams): EncodeObject;
+    queryParamsResponse({ value }: queryParamsResponseParams): EncodeObject;
     msgUpdateParams({ value }: msgUpdateParamsParams): EncodeObject;
-    allocation({ value }: allocationParams): EncodeObject;
-    queryEscrowAddressRequest({ value }: queryEscrowAddressRequestParams): EncodeObject;
-    transferAuthorization({ value }: transferAuthorizationParams): EncodeObject;
-    queryDenomHashResponse({ value }: queryDenomHashResponseParams): EncodeObject;
+    msgTransfer({ value }: msgTransferParams): EncodeObject;
+    queryDenomHashRequest({ value }: queryDenomHashRequestParams): EncodeObject;
+    queryTotalEscrowForDenomResponse({ value }: queryTotalEscrowForDenomResponseParams): EncodeObject;
+    params({ value }: paramsParams): EncodeObject;
+    msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject;
     queryDenomTracesRequest({ value }: queryDenomTracesRequestParams): EncodeObject;
+    queryEscrowAddressRequest({ value }: queryEscrowAddressRequestParams): EncodeObject;
+    queryEscrowAddressResponse({ value }: queryEscrowAddressResponseParams): EncodeObject;
+    msgTransferResponse({ value }: msgTransferResponseParams): EncodeObject;
+    allocation({ value }: allocationParams): EncodeObject;
+    queryDenomTraceRequest({ value }: queryDenomTraceRequestParams): EncodeObject;
+    denomTrace({ value }: denomTraceParams): EncodeObject;
+    genesisState({ value }: genesisStateParams): EncodeObject;
+    queryDenomTraceResponse({ value }: queryDenomTraceResponseParams): EncodeObject;
     queryDenomTracesResponse({ value }: queryDenomTracesResponseParams): EncodeObject;
     queryTotalEscrowForDenomRequest({ value }: queryTotalEscrowForDenomRequestParams): EncodeObject;
-    genesisState({ value }: genesisStateParams): EncodeObject;
-    queryDenomTraceRequest({ value }: queryDenomTraceRequestParams): EncodeObject;
-    queryDenomHashRequest({ value }: queryDenomHashRequestParams): EncodeObject;
-    queryEscrowAddressResponse({ value }: queryEscrowAddressResponseParams): EncodeObject;
-    params({ value }: paramsParams): EncodeObject;
-    queryDenomTraceResponse({ value }: queryDenomTraceResponseParams): EncodeObject;
-    queryParamsRequest({ value }: queryParamsRequestParams): EncodeObject;
-    msgTransferResponse({ value }: msgTransferResponseParams): EncodeObject;
-    denomTrace({ value }: denomTraceParams): EncodeObject;
-    queryParamsResponse({ value }: queryParamsResponseParams): EncodeObject;
+    queryDenomHashResponse({ value }: queryDenomHashResponseParams): EncodeObject;
+    transferAuthorization({ value }: transferAuthorizationParams): EncodeObject;
 };
 interface QueryClientOptions {
     addr: string;

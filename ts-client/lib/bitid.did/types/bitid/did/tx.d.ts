@@ -18,6 +18,15 @@ export interface MsgUpdateParams {
  */
 export interface MsgUpdateParamsResponse {
 }
+export interface MsgDefineDIDDocument {
+    /** creator is the message sender. */
+    creator: string;
+    index: string;
+    id: string;
+}
+/** MsgCreateGameResponse defines the Msg/CreateGame response type. */
+export interface MsgDefineDIDDocumentResponse {
+}
 export declare const MsgUpdateParams: {
     encode(message: MsgUpdateParams, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateParams;
@@ -46,6 +55,38 @@ export declare const MsgUpdateParamsResponse: {
     create<I extends {} & {} & { [K in Exclude<keyof I, never>]: never; }>(base?: I): MsgUpdateParamsResponse;
     fromPartial<I_1 extends {} & {} & { [K_1 in Exclude<keyof I_1, never>]: never; }>(_: I_1): MsgUpdateParamsResponse;
 };
+export declare const MsgDefineDIDDocument: {
+    encode(message: MsgDefineDIDDocument, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): MsgDefineDIDDocument;
+    fromJSON(object: any): MsgDefineDIDDocument;
+    toJSON(message: MsgDefineDIDDocument): unknown;
+    create<I extends {
+        creator?: string;
+        index?: string;
+        id?: string;
+    } & {
+        creator?: string;
+        index?: string;
+        id?: string;
+    } & { [K in Exclude<keyof I, keyof MsgDefineDIDDocument>]: never; }>(base?: I): MsgDefineDIDDocument;
+    fromPartial<I_1 extends {
+        creator?: string;
+        index?: string;
+        id?: string;
+    } & {
+        creator?: string;
+        index?: string;
+        id?: string;
+    } & { [K_1 in Exclude<keyof I_1, keyof MsgDefineDIDDocument>]: never; }>(object: I_1): MsgDefineDIDDocument;
+};
+export declare const MsgDefineDIDDocumentResponse: {
+    encode(_: MsgDefineDIDDocumentResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): MsgDefineDIDDocumentResponse;
+    fromJSON(_: any): MsgDefineDIDDocumentResponse;
+    toJSON(_: MsgDefineDIDDocumentResponse): unknown;
+    create<I extends {} & {} & { [K in Exclude<keyof I, never>]: never; }>(base?: I): MsgDefineDIDDocumentResponse;
+    fromPartial<I_1 extends {} & {} & { [K_1 in Exclude<keyof I_1, never>]: never; }>(_: I_1): MsgDefineDIDDocumentResponse;
+};
 /** Msg defines the Msg service. */
 export interface Msg {
     /**
@@ -53,6 +94,8 @@ export interface Msg {
      * parameters. The authority defaults to the x/gov module account.
      */
     UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
+    /** DefineDIDDocument defines a method for creating or updating a DID document. */
+    DefineDIDDocument(request: MsgDefineDIDDocument): Promise<MsgDefineDIDDocumentResponse>;
 }
 export declare const MsgServiceName = "bitid.did.Msg";
 export declare class MsgClientImpl implements Msg {
@@ -62,6 +105,7 @@ export declare class MsgClientImpl implements Msg {
         service?: string;
     });
     UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
+    DefineDIDDocument(request: MsgDefineDIDDocument): Promise<MsgDefineDIDDocumentResponse>;
 }
 interface Rpc {
     request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;

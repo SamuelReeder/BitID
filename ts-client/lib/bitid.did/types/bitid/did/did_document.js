@@ -299,6 +299,74 @@ export const Service = {
         return message;
     },
 };
+function createBaseIndexedStoredDID() {
+    return { index: "", storedDID: undefined };
+}
+export const IndexedStoredDID = {
+    encode(message, writer = _m0.Writer.create()) {
+        if (message.index !== "") {
+            writer.uint32(10).string(message.index);
+        }
+        if (message.storedDID !== undefined) {
+            DIDDocument.encode(message.storedDID, writer.uint32(18).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseIndexedStoredDID();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.index = reader.string();
+                    continue;
+                case 2:
+                    if (tag !== 18) {
+                        break;
+                    }
+                    message.storedDID = DIDDocument.decode(reader, reader.uint32());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return {
+            index: isSet(object.index) ? String(object.index) : "",
+            storedDID: isSet(object.storedDID) ? DIDDocument.fromJSON(object.storedDID) : undefined,
+        };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.index !== "") {
+            obj.index = message.index;
+        }
+        if (message.storedDID !== undefined) {
+            obj.storedDID = DIDDocument.toJSON(message.storedDID);
+        }
+        return obj;
+    },
+    create(base) {
+        return IndexedStoredDID.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseIndexedStoredDID();
+        message.index = object.index ?? "";
+        message.storedDID = (object.storedDID !== undefined && object.storedDID !== null)
+            ? DIDDocument.fromPartial(object.storedDID)
+            : undefined;
+        return message;
+    },
+};
 function isSet(value) {
     return value !== null && value !== undefined;
 }

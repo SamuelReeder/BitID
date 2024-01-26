@@ -26,6 +26,11 @@ export interface Service {
   serviceEndpoint: string;
 }
 
+export interface IndexedStoredDID {
+  index: string;
+  storedDID: DIDDocument | undefined;
+}
+
 function createBaseDIDDocument(): DIDDocument {
   return { context: "", id: "", authentication: [], service: [], created: "", updated: "" };
 }
@@ -351,6 +356,82 @@ export const Service = {
     message.id = object.id ?? "";
     message.type = object.type ?? "";
     message.serviceEndpoint = object.serviceEndpoint ?? "";
+    return message;
+  },
+};
+
+function createBaseIndexedStoredDID(): IndexedStoredDID {
+  return { index: "", storedDID: undefined };
+}
+
+export const IndexedStoredDID = {
+  encode(message: IndexedStoredDID, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.index !== "") {
+      writer.uint32(10).string(message.index);
+    }
+    if (message.storedDID !== undefined) {
+      DIDDocument.encode(message.storedDID, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): IndexedStoredDID {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseIndexedStoredDID();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.index = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.storedDID = DIDDocument.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): IndexedStoredDID {
+    return {
+      index: isSet(object.index) ? String(object.index) : "",
+      storedDID: isSet(object.storedDID) ? DIDDocument.fromJSON(object.storedDID) : undefined,
+    };
+  },
+
+  toJSON(message: IndexedStoredDID): unknown {
+    const obj: any = {};
+    if (message.index !== "") {
+      obj.index = message.index;
+    }
+    if (message.storedDID !== undefined) {
+      obj.storedDID = DIDDocument.toJSON(message.storedDID);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<IndexedStoredDID>, I>>(base?: I): IndexedStoredDID {
+    return IndexedStoredDID.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<IndexedStoredDID>, I>>(object: I): IndexedStoredDID {
+    const message = createBaseIndexedStoredDID();
+    message.index = object.index ?? "";
+    message.storedDID = (object.storedDID !== undefined && object.storedDID !== null)
+      ? DIDDocument.fromPartial(object.storedDID)
+      : undefined;
     return message;
   },
 };

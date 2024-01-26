@@ -3,20 +3,21 @@ import { SigningStargateClient } from "@cosmjs/stargate";
 import { Registry } from "@cosmjs/proto-signing";
 import { msgTypes } from './registry';
 import { Api } from "./rest";
-import { Params } from "./types/bitid/did/params";
 import { DIDDocument } from "./types/bitid/did/did_document";
+import { VerificationMethod } from "./types/bitid/did/did_document";
+import { MsgDefineDIDDocument } from "./types/bitid/did/tx";
+import { QueryGetDIDRequest } from "./types/bitid/did/query";
+import { QueryParamsResponse } from "./types/bitid/did/query";
+import { Service } from "./types/bitid/did/did_document";
+import { MsgDefineDIDDocumentResponse } from "./types/bitid/did/tx";
+import { Params } from "./types/bitid/did/params";
 import { QueryParamsRequest } from "./types/bitid/did/query";
 import { MsgUpdateParamsResponse } from "./types/bitid/did/tx";
-import { QueryParamsResponse } from "./types/bitid/did/query";
-import { VerificationMethod } from "./types/bitid/did/did_document";
-import { Service } from "./types/bitid/did/did_document";
-import { MsgUpdateParams } from "./types/bitid/did/tx";
+import { IndexedStoredDID } from "./types/bitid/did/did_document";
+import { QueryGetDIDResponse } from "./types/bitid/did/query";
 import { GenesisState } from "./types/bitid/did/genesis";
-import { MsgDefineDIDDocument as typeMsgDefineDIDDocument } from "./types";
-import { MsgDefineDIDDocumentResponse as typeMsgDefineDIDDocumentResponse } from "./types";
-import { MsgRemoveDIDDocument as typeMsgRemoveDIDDocument } from "./types";
-import { MsgRemoveDIDDocumentResponse as typeMsgRemoveDIDDocumentResponse } from "./types";
-export { Params, DIDDocument, QueryParamsRequest, MsgUpdateParamsResponse, QueryParamsResponse, VerificationMethod, Service, MsgUpdateParams, GenesisState };
+import { MsgUpdateParams } from "./types/bitid/did/tx";
+export { DIDDocument, VerificationMethod, MsgDefineDIDDocument, QueryGetDIDRequest, QueryParamsResponse, Service, MsgDefineDIDDocumentResponse, Params, QueryParamsRequest, MsgUpdateParamsResponse, IndexedStoredDID, QueryGetDIDResponse, GenesisState, MsgUpdateParams };
 export const registry = new Registry(msgTypes);
 function getStructure(template) {
     const structure = { fields: [] };
@@ -32,20 +33,6 @@ const defaultFee = {
 };
 export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26657", prefix: "cosmos" }) => {
     return {
-        async sendParams({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendParams: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.params({ value: Params.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendParams: Could not broadcast Tx: ' + e.message);
-            }
-        },
         async sendDIDDocument({ value, fee, memo }) {
             if (!signer) {
                 throw new Error('TxClient:sendDIDDocument: Unable to sign Tx. Signer is not present.');
@@ -58,6 +45,104 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
             }
             catch (e) {
                 throw new Error('TxClient:sendDIDDocument: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendVerificationMethod({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendVerificationMethod: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.verificationMethod({ value: VerificationMethod.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendVerificationMethod: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendMsgDefineDIDDocument({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendMsgDefineDIDDocument: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.msgDefineDiddocument({ value: MsgDefineDIDDocument.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendMsgDefineDIDDocument: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendQueryGetDIDRequest({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendQueryGetDIDRequest: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.queryGetDidrequest({ value: QueryGetDIDRequest.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendQueryGetDIDRequest: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendQueryParamsResponse({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendQueryParamsResponse: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.queryParamsResponse({ value: QueryParamsResponse.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendQueryParamsResponse: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendService({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendService: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.service({ value: Service.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendService: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendMsgDefineDIDDocumentResponse({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendMsgDefineDIDDocumentResponse: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.msgDefineDiddocumentResponse({ value: MsgDefineDIDDocumentResponse.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendMsgDefineDIDDocumentResponse: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendParams({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendParams: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.params({ value: Params.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendParams: Could not broadcast Tx: ' + e.message);
             }
         },
         async sendQueryParamsRequest({ value, fee, memo }) {
@@ -88,60 +173,32 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
                 throw new Error('TxClient:sendMsgUpdateParamsResponse: Could not broadcast Tx: ' + e.message);
             }
         },
-        async sendQueryParamsResponse({ value, fee, memo }) {
+        async sendIndexedStoredDID({ value, fee, memo }) {
             if (!signer) {
-                throw new Error('TxClient:sendQueryParamsResponse: Unable to sign Tx. Signer is not present.');
+                throw new Error('TxClient:sendIndexedStoredDID: Unable to sign Tx. Signer is not present.');
             }
             try {
                 const { address } = (await signer.getAccounts())[0];
                 const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.queryParamsResponse({ value: QueryParamsResponse.fromPartial(value) });
+                let msg = this.indexedStoredDid({ value: IndexedStoredDID.fromPartial(value) });
                 return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
             }
             catch (e) {
-                throw new Error('TxClient:sendQueryParamsResponse: Could not broadcast Tx: ' + e.message);
+                throw new Error('TxClient:sendIndexedStoredDID: Could not broadcast Tx: ' + e.message);
             }
         },
-        async sendVerificationMethod({ value, fee, memo }) {
+        async sendQueryGetDIDResponse({ value, fee, memo }) {
             if (!signer) {
-                throw new Error('TxClient:sendVerificationMethod: Unable to sign Tx. Signer is not present.');
+                throw new Error('TxClient:sendQueryGetDIDResponse: Unable to sign Tx. Signer is not present.');
             }
             try {
                 const { address } = (await signer.getAccounts())[0];
                 const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.verificationMethod({ value: VerificationMethod.fromPartial(value) });
+                let msg = this.queryGetDidresponse({ value: QueryGetDIDResponse.fromPartial(value) });
                 return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
             }
             catch (e) {
-                throw new Error('TxClient:sendVerificationMethod: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendService({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendService: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.service({ value: Service.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendService: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendMsgUpdateParams({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendMsgUpdateParams: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.msgUpdateParams({ value: MsgUpdateParams.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendMsgUpdateParams: Could not broadcast Tx: ' + e.message);
+                throw new Error('TxClient:sendQueryGetDIDResponse: Could not broadcast Tx: ' + e.message);
             }
         },
         async sendGenesisState({ value, fee, memo }) {
@@ -158,12 +215,18 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
                 throw new Error('TxClient:sendGenesisState: Could not broadcast Tx: ' + e.message);
             }
         },
-        params({ value }) {
+        async sendMsgUpdateParams({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendMsgUpdateParams: Unable to sign Tx. Signer is not present.');
+            }
             try {
-                return { typeUrl: "/bitid.did.Params", value: Params.fromPartial(value) };
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.msgUpdateParams({ value: MsgUpdateParams.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
             }
             catch (e) {
-                throw new Error('TxClient:Params: Could not create message: ' + e.message);
+                throw new Error('TxClient:sendMsgUpdateParams: Could not broadcast Tx: ' + e.message);
             }
         },
         diddocument({ value }) {
@@ -172,6 +235,62 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
             }
             catch (e) {
                 throw new Error('TxClient:DIDDocument: Could not create message: ' + e.message);
+            }
+        },
+        verificationMethod({ value }) {
+            try {
+                return { typeUrl: "/bitid.did.VerificationMethod", value: VerificationMethod.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:VerificationMethod: Could not create message: ' + e.message);
+            }
+        },
+        msgDefineDiddocument({ value }) {
+            try {
+                return { typeUrl: "/bitid.did.MsgDefineDIDDocument", value: MsgDefineDIDDocument.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:MsgDefineDIDDocument: Could not create message: ' + e.message);
+            }
+        },
+        queryGetDidrequest({ value }) {
+            try {
+                return { typeUrl: "/bitid.did.QueryGetDIDRequest", value: QueryGetDIDRequest.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:QueryGetDIDRequest: Could not create message: ' + e.message);
+            }
+        },
+        queryParamsResponse({ value }) {
+            try {
+                return { typeUrl: "/bitid.did.QueryParamsResponse", value: QueryParamsResponse.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:QueryParamsResponse: Could not create message: ' + e.message);
+            }
+        },
+        service({ value }) {
+            try {
+                return { typeUrl: "/bitid.did.Service", value: Service.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:Service: Could not create message: ' + e.message);
+            }
+        },
+        msgDefineDiddocumentResponse({ value }) {
+            try {
+                return { typeUrl: "/bitid.did.MsgDefineDIDDocumentResponse", value: MsgDefineDIDDocumentResponse.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:MsgDefineDIDDocumentResponse: Could not create message: ' + e.message);
+            }
+        },
+        params({ value }) {
+            try {
+                return { typeUrl: "/bitid.did.Params", value: Params.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:Params: Could not create message: ' + e.message);
             }
         },
         queryParamsRequest({ value }) {
@@ -190,36 +309,20 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
                 throw new Error('TxClient:MsgUpdateParamsResponse: Could not create message: ' + e.message);
             }
         },
-        queryParamsResponse({ value }) {
+        indexedStoredDid({ value }) {
             try {
-                return { typeUrl: "/bitid.did.QueryParamsResponse", value: QueryParamsResponse.fromPartial(value) };
+                return { typeUrl: "/bitid.did.IndexedStoredDID", value: IndexedStoredDID.fromPartial(value) };
             }
             catch (e) {
-                throw new Error('TxClient:QueryParamsResponse: Could not create message: ' + e.message);
+                throw new Error('TxClient:IndexedStoredDID: Could not create message: ' + e.message);
             }
         },
-        verificationMethod({ value }) {
+        queryGetDidresponse({ value }) {
             try {
-                return { typeUrl: "/bitid.did.VerificationMethod", value: VerificationMethod.fromPartial(value) };
+                return { typeUrl: "/bitid.did.QueryGetDIDResponse", value: QueryGetDIDResponse.fromPartial(value) };
             }
             catch (e) {
-                throw new Error('TxClient:VerificationMethod: Could not create message: ' + e.message);
-            }
-        },
-        service({ value }) {
-            try {
-                return { typeUrl: "/bitid.did.Service", value: Service.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:Service: Could not create message: ' + e.message);
-            }
-        },
-        msgUpdateParams({ value }) {
-            try {
-                return { typeUrl: "/bitid.did.MsgUpdateParams", value: MsgUpdateParams.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:MsgUpdateParams: Could not create message: ' + e.message);
+                throw new Error('TxClient:QueryGetDIDResponse: Could not create message: ' + e.message);
             }
         },
         genesisState({ value }) {
@@ -228,6 +331,14 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
             }
             catch (e) {
                 throw new Error('TxClient:GenesisState: Could not create message: ' + e.message);
+            }
+        },
+        msgUpdateParams({ value }) {
+            try {
+                return { typeUrl: "/bitid.did.MsgUpdateParams", value: MsgUpdateParams.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:MsgUpdateParams: Could not create message: ' + e.message);
             }
         },
     };
@@ -240,12 +351,7 @@ class SDKModule {
         this.registry = [];
         this.query = queryClient({ addr: client.env.apiURL });
         this.updateTX(client);
-        this.structure = {
-            MsgDefineDIDDocument: getStructure(typeMsgDefineDIDDocument.fromPartial({})),
-            MsgDefineDIDDocumentResponse: getStructure(typeMsgDefineDIDDocumentResponse.fromPartial({})),
-            MsgRemoveDIDDocument: getStructure(typeMsgRemoveDIDDocument.fromPartial({})),
-            MsgRemoveDIDDocumentResponse: getStructure(typeMsgRemoveDIDDocumentResponse.fromPartial({})),
-        };
+        this.structure = {};
         client.on('signer-changed', (signer) => {
             this.updateTX(client);
         });

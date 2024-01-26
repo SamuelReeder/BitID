@@ -20,11 +20,46 @@ export interface Status {
   details?: { "@type"?: string }[];
 }
 
+export interface DIDDocument {
+  context?: string;
+  id?: string;
+  authentication?: { id?: string; type?: string; controller?: string; publicKeyPem?: string }[];
+  service?: { id?: string; type?: string; serviceEndpoint?: string }[];
+  created?: string;
+  updated?: string;
+}
+
 export type Params = object;
+
+export interface QueryGetDIDResponse {
+  DID?: {
+    context?: string;
+    id?: string;
+    authentication?: { id?: string; type?: string; controller?: string; publicKeyPem?: string }[];
+    service?: { id?: string; type?: string; serviceEndpoint?: string }[];
+    created?: string;
+    updated?: string;
+  };
+}
 
 export interface QueryParamsResponse {
   params?: object;
 }
+
+export interface Service {
+  id?: string;
+  type?: string;
+  serviceEndpoint?: string;
+}
+
+export interface VerificationMethod {
+  id?: string;
+  type?: string;
+  controller?: string;
+  publicKeyPem?: string;
+}
+
+export type MsgDefineDIDDocumentResponse = object;
 
 export type MsgUpdateParamsResponse = object;
 
