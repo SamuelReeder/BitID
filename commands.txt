@@ -1,6 +1,0 @@
-/root/go/bin/BitIDd tx did create sam 1 cosmos1kmqls6wvy50flhl3nc8473nyg8d62amdy5sxxe --from cosmos1kmqls6wvy50flhl3nc8473nyg8d62amdy5sxxe --chain-id BitID
-/root/go/bin/BitIDd tx did create cosmos1kmqls6wvy50flhl3nc8473nyg8d62amdy5sxxe 1 cosmos1kmqls6wvy50flhl3nc8473nyg8d62amdy5sxxe --from cosmos1kmqls6w
-vy50flhl3nc8473nyg8d62amdy5sxxe --chain-id BitID
-
-/root/go/bin/BitIDd query did get-did 1 --chain-id BitID
-/root/go/bin/BitIDd query did get-did 1 --from cosmos1kmqls6wvy50flhl3nc8473nyg8d62amdy5sxxe --chain-id BitID
