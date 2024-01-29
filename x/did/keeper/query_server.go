@@ -22,6 +22,11 @@ type queryServer struct {
 	k Keeper
 }
 
+// ListDID implements types.QueryServer.
+func (queryServer) ListDID(context.Context, *types.QueryListDIDRequest) (*types.QueryListDIDResponse, error) {
+	panic("unimplemented")
+}
+
 // GetDID implements types.QueryServer.
 // func (queryServer) QueryDIDDocument(context.Context, *types.QueryGetDIDRequest) (*types.QueryGetDIDResponse, error) {
 // 	panic("unimplemented")

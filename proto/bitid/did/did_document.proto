@@ -10,7 +10,7 @@ import "bitid/did/params.proto";
 option go_package = "github.com/SamuelReeder/BitID/x/did/types";
 
 message DIDDocument {
-  string context = 1;
+  string context = 1 [json_name = "@context"];
   string id = 2;
   repeated VerificationMethod authentication = 3;
   repeated Service service = 4;
@@ -22,13 +22,13 @@ message VerificationMethod {
   string id = 1;
   string type = 2;
   string controller = 3;
-  string publicKeyPem = 4; // Public key in PEM format
+  string publicKeyPem = 4 [json_name = "publicKeyPem"]; // Public key in PEM format
 }
 
 message Service {
   string id = 1;
   string type = 2;
-  string serviceEndpoint = 3;
+  string serviceEndpoint = 3 [json_name = "serviceEndpoint"];
 }
 
 message IndexedStoredDID {

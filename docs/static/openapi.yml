@@ -60,22 +60,81 @@ paths:
             description: MsgUpdateParams is the Msg/UpdateParams request type.
       tags:
         - Msg
-  /SamuelReeder/BitID/did/params:
+  /SamuelReeder/BitID/did/documents:
     get:
-      summary: Parameters queries the parameters of the module.
-      operationId: BitidDidQuery_Params
+      operationId: BitidDidQuery_ListDID
       responses:
         '200':
           description: A successful response.
           schema:
             type: object
             properties:
-              params:
-                description: params holds all the parameters of this module.
+              DID:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    context:
+                      type: string
+                    id:
+                      type: string
+                    authentication:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                          type:
+                            type: string
+                          controller:
+                            type: string
+                          publicKeyPem:
+                            type: string
+                            title: Public key in PEM format
+                    service:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                          type:
+                            type: string
+                          serviceEndpoint:
+                            type: string
+                    created:
+                      type: string
+                    updated:
+                      type: string
+              page_response:
                 type: object
-            description: >-
-              QueryParamsResponse is response type for the Query/Params RPC
-              method.
+                properties:
+                  next_key:
+                    type: string
+                    format: byte
+                    description: |-
+                      next_key is the key to be passed to PageRequest.key to
+                      query the next page most efficiently. It will be empty if
+                      there are no more results.
+                  total:
+                    type: string
+                    format: uint64
+                    title: >-
+                      total is total number of results available if
+                      PageRequest.count_total
+
+                      was set, its value is undefined otherwise
+                description: >-
+                  PageResponse is to be embedded in gRPC response messages where
+                  the
+
+                  corresponding request message has used PageRequest.
+
+                   message SomeResponse {
+                           repeated Bar results = 1;
+                           PageResponse page = 2;
+                   }
         default:
           description: An unexpected error response.
           schema:
@@ -94,14 +153,25 @@ paths:
                     '@type':
                       type: string
                   additionalProperties: {}
+      parameters:
+        - name: creator
+          in: query
+          required: false
+          type: string
+        - name: page
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: limit
+          in: query
+          required: false
+          type: string
+          format: uint64
       tags:
         - Query
-  /bitid.did.Query/GetDID:
-    post:
-      summary: |-
-        option (cosmos.query.v1.module_query_safe) = true;
-         option (google.api.http).get =
-           "/SamuelReeder/bitid/did/{index}";
+  /SamuelReeder/BitID/did/documents/{creator}:
+    get:
       operationId: BitidDidQuery_GetDID
       responses:
         '200':
@@ -164,14 +234,46 @@ paths:
                       type: string
                   additionalProperties: {}
       parameters:
-        - name: body
-          in: body
+        - name: creator
+          in: path
           required: true
+          type: string
+      tags:
+        - Query
+  /SamuelReeder/BitID/did/params:
+    get:
+      summary: Parameters queries the parameters of the module.
+      operationId: BitidDidQuery_Params
+      responses:
+        '200':
+          description: A successful response.
           schema:
             type: object
             properties:
-              index:
+              params:
+                description: params holds all the parameters of this module.
+                type: object
+            description: >-
+              QueryParamsResponse is response type for the Query/Params RPC
+              method.
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
                 type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
       tags:
         - Query
   /bitid.did.Msg/DefineDIDDocument:
@@ -185,6 +287,12 @@ paths:
           description: A successful response.
           schema:
             type: object
+            properties:
+              success:
+                type: string
+                title: Define any fields you want to include in the response
+              creator:
+                type: string
             description: MsgCreateGameResponse defines the Msg/CreateGame response type.
         default:
           description: An unexpected error response.
@@ -214,9 +322,7 @@ paths:
               creator:
                 type: string
                 description: creator is the message sender.
-              index:
-                type: string
-              id:
+              JSONString:
                 type: string
       tags:
         - Msg
@@ -19572,11 +19678,6 @@ definitions:
   bitid.did.Params:
     type: object
     description: Params defines the parameters for the module.
-  bitid.did.QueryGetDIDRequest:
-    type: object
-    properties:
-      index:
-        type: string
   bitid.did.QueryGetDIDResponse:
     type: object
     properties:
@@ -19616,6 +19717,73 @@ definitions:
             type: string
           updated:
             type: string
+  bitid.did.QueryListDIDResponse:
+    type: object
+    properties:
+      DID:
+        type: array
+        items:
+          type: object
+          properties:
+            context:
+              type: string
+            id:
+              type: string
+            authentication:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  type:
+                    type: string
+                  controller:
+                    type: string
+                  publicKeyPem:
+                    type: string
+                    title: Public key in PEM format
+            service:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  type:
+                    type: string
+                  serviceEndpoint:
+                    type: string
+            created:
+              type: string
+            updated:
+              type: string
+      page_response:
+        type: object
+        properties:
+          next_key:
+            type: string
+            format: byte
+            description: |-
+              next_key is the key to be passed to PageRequest.key to
+              query the next page most efficiently. It will be empty if
+              there are no more results.
+          total:
+            type: string
+            format: uint64
+            title: >-
+              total is total number of results available if
+              PageRequest.count_total
+
+              was set, its value is undefined otherwise
+        description: |-
+          PageResponse is to be embedded in gRPC response messages where the
+          corresponding request message has used PageRequest.
+
+           message SomeResponse {
+                   repeated Bar results = 1;
+                   PageResponse page = 2;
+           }
   bitid.did.QueryParamsResponse:
     type: object
     properties:
@@ -19644,18 +19812,46 @@ definitions:
       publicKeyPem:
         type: string
         title: Public key in PEM format
+  cosmos.base.query.v1beta1.PageResponse:
+    type: object
+    properties:
+      next_key:
+        type: string
+        format: byte
+        description: |-
+          next_key is the key to be passed to PageRequest.key to
+          query the next page most efficiently. It will be empty if
+          there are no more results.
+      total:
+        type: string
+        format: uint64
+        title: |-
+          total is total number of results available if PageRequest.count_total
+          was set, its value is undefined otherwise
+    description: |-
+      PageResponse is to be embedded in gRPC response messages where the
+      corresponding request message has used PageRequest.
+
+       message SomeResponse {
+               repeated Bar results = 1;
+               PageResponse page = 2;
+       }
   bitid.did.MsgDefineDIDDocument:
     type: object
     properties:
       creator:
         type: string
         description: creator is the message sender.
-      index:
-        type: string
-      id:
+      JSONString:
         type: string
   bitid.did.MsgDefineDIDDocumentResponse:
     type: object
+    properties:
+      success:
+        type: string
+        title: Define any fields you want to include in the response
+      creator:
+        type: string
     description: MsgCreateGameResponse defines the Msg/CreateGame response type.
   bitid.did.MsgUpdateParams:
     type: object

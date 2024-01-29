@@ -19,10 +19,10 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 				},
 				{
 					RpcMethod: "GetDID",
-					Use:       "get-did index",
-					Short:     "Get the value of the DID at index",
+					Use:       "get-did creator",
+					Short:     "Get the value of the DID for creator",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{
-						{ProtoField: "index"},
+						{ProtoField: "creator"},
 					},
 				},
 
@@ -39,12 +39,11 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 				},
 				{
 					RpcMethod: "DefineDIDDocument",
-					Use:       "create creator index id",
+					Use:       "create creator JSONString",
 					Short:     "Creates a new DID with creator",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{
 						{ProtoField: "creator"},
-						{ProtoField: "index"},
-						{ProtoField: "id"},
+						{ProtoField: "JSONString"},
 					},
 				},
 				// this line is used by ignite scaffolding # autocli/tx

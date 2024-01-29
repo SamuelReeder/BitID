@@ -26,16 +26,16 @@ func (gs GenesisState) Validate() error {
 
 	unique := make(map[string]bool)
 	for _, indexedStoredDID := range gs.IndexedStoredDID {
-		if length := len([]byte(indexedStoredDID.Index)); 8000000000 < length || length < 1 {
+		if length := len([]byte(indexedStoredDID.Creator)); 8000000000 < length || length < 1 {
 			return ErrInvalidDid
 		}
-		if _, ok := unique[indexedStoredDID.Index]; ok {
+		if _, ok := unique[indexedStoredDID.Creator]; ok {
 			return ErrDuplicateAddress
 		}
 		if err := indexedStoredDID.StoredDID.Validate(); err != nil {
 			return ErrInvalidDid
 		}
-		unique[indexedStoredDID.Index] = true
+		unique[indexedStoredDID.Creator] = true
 	}
 
 	return nil

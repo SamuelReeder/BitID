@@ -13,7 +13,7 @@ func (k *Keeper) InitGenesis(ctx context.Context, data *types.GenesisState) erro
 	}
 
 	for _, indexedStoredDID := range data.IndexedStoredDID {
-		if err := k.storedDID.Set(ctx, indexedStoredDID.Index, indexedStoredDID.StoredDID); err != nil {
+		if err := k.storedDID.Set(ctx, indexedStoredDID.Creator, indexedStoredDID.StoredDID); err != nil {
 			return err
 		}
 	}
@@ -29,9 +29,9 @@ func (k *Keeper) ExportGenesis(ctx context.Context) (*types.GenesisState, error)
 	}
 
 	var indexedStoredDID []types.IndexedStoredDID
-	if err := k.storedDID.Walk(ctx, nil, func(index string, storedDID types.DIDDocument) (bool, error) {
+	if err := k.storedDID.Walk(ctx, nil, func(creator string, storedDID types.DIDDocument) (bool, error) {
 		indexedStoredDID = append(indexedStoredDID, types.IndexedStoredDID{
-			Index:     index,
+			Creator:   creator,
 			StoredDID: storedDID,
 		})
 		return false, nil

@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"os"
 	"time"
 
 	"cosmossdk.io/collections"
@@ -22,56 +23,43 @@ func (msgServer) UpdateParams(context.Context, *types.MsgUpdateParams) (*types.M
 
 var _ types.MsgServer = msgServer{}
 
-// NewMsgServerImpl returns an implementation of the MsgServer interface
-// for the provided Keeper.
 func NewMsgServerImpl(keeper Keeper) types.MsgServer {
 	return &msgServer{k: keeper}
 }
-
-// // UpdateParams implements types.MsgServer.
-// func (*msgServer) UpdateParams(context.Context, *types.MsgUpdateParams) (*types.MsgUpdateParamsResponse, error) {
-// 	panic("unimplemented")
-// }
-
-// DefineDIDDocument implements types.MsgServer.
-// func (msgServer) DefineDIDDocument(context.Context, *types.MsgDefineDIDDocument) (*types.MsgDefineDIDDocumentResponse, error) {
-// 	if length := len([]byte(msg.Index)); 8000000000 < length || length < 1 {
-//         return nil, types.ErrInvalidDid
-//     }
-//     if _, err := ms.k.StoredGames.Get(ctx, msg.Index); err == nil || errors.Is(err, collections.ErrEncoding) {
-//         return nil, fmt.Errorf("game already exists at index: %s", msg.Index)
-//     }
-
-//     newBoard := rules.New()
-//     storedGame := checkers.StoredGame{
-//         Board: newBoard.String(),
-//         Turn:  rules.PieceStrings[newBoard.Turn],
-//         Black: msg.Black,
-//         Red:   msg.Red,
-//     }
-//     if err := storedGame.Validate(); err != nil {
-//         return nil, err
-//     }
-//     if err := ms.k.StoredGames.Set(ctx, msg.Index, storedGame); err != nil {
-//         return nil, err
-//     }
-
-//     return &checkers.MsgCreateGameResponse{}, nil
-// }
 
 func (ms msgServer) DefineDIDDocument(ctx context.Context, msg *types.MsgDefineDIDDocument) (*types.MsgDefineDIDDocumentResponse, error) {
 	// if length := len([]byte(msg.Index)); 8000000000 < length || length < 1 {
 	// 	return nil, types.ErrInvalidDid
 	// }
+
+	fmt.Println(msg.JSONString)
+	// ctx.Value("logger").(log.Logger).Info("hi")
+	// (log.Logger).Info("hi")
+	os.Stdout.WriteString("hello\n")
+	fmt.Println("hi")
+	// Assuming msg.JSONString is a path to a JSON file
+	jsonFile, err0 := os.ReadFile(msg.JSONString)
+	if err0 != nil {
+		return nil, fmt.Errorf("error reading JSON file: %v", err0)
+	}
+
 	var didDocument types.DIDDocument
-	err := json.Unmarshal([]byte(msg.JSONString), &didDocument)
+	err := json.Unmarshal([]byte(jsonFile), &didDocument)
 	if err != nil {
-		return nil, fmt.Errorf("error parsing JSON: %v", err)
+		return nil, fmt.Errorf("error parsing JSON:%v", err)
 	}
 
 	if _, err := ms.k.storedDID.Get(ctx, msg.Creator); err == nil || errors.Is(err, collections.ErrEncoding) {
 		return nil, fmt.Errorf("DID already exists for creator: %s", msg.Creator)
 	}
+
+	fmt.Println(didDocument.String())
+	// fmt.Println(didDocument.Id)
+	// fmt.Println(didDocument.Created)
+	// fmt.Println(didDocument.Updated)
+	// fmt.Println(didDocument.Context)
+	// fmt.Println(didDocument.Authentication)
+	// fmt.Println(didDocument.Service)
 
 	// upon submitting DID, some party need to verify the DID
 

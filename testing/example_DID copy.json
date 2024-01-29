@@ -1,6 +1,6 @@
 {
     "@context": "https://www.w3.org/ns/did/v1",
-    "id": "cosmos1kmqls6wvy50flhl3nc8473nyg8d62amdy5sxxe",
+    "id": "did:example:cosmos1kmqls6wvy50flhl3nc8473nyg8d62amdy5sxxe",
     "authentication": [{
       "id": "did:example:123456789abcdefghi#keys-1",
       "type": "RsaVerificationKey2018",
