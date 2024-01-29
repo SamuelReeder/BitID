@@ -25,6 +25,14 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 						{ProtoField: "creator"},
 					},
 				},
+				{
+					RpcMethod: "ListDID",
+					Use:       "list_did",
+					Short:     "List all DIDs",
+					// PositionalArgs: []*autocliv1.PositionalArgDescriptor{
+					// 	{ProtoField: "creator"},
+					// },
+				},
 
 				// this line is used by ignite scaffolding # autocli/query
 			},

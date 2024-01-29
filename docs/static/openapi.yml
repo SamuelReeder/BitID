@@ -69,6 +69,10 @@ paths:
           schema:
             type: object
             properties:
+              creators:
+                type: array
+                items:
+                  type: string
               DID:
                 type: array
                 items:
@@ -107,34 +111,7 @@ paths:
                       type: string
                     updated:
                       type: string
-              page_response:
-                type: object
-                properties:
-                  next_key:
-                    type: string
-                    format: byte
-                    description: |-
-                      next_key is the key to be passed to PageRequest.key to
-                      query the next page most efficiently. It will be empty if
-                      there are no more results.
-                  total:
-                    type: string
-                    format: uint64
-                    title: >-
-                      total is total number of results available if
-                      PageRequest.count_total
-
-                      was set, its value is undefined otherwise
-                description: >-
-                  PageResponse is to be embedded in gRPC response messages where
-                  the
-
-                  corresponding request message has used PageRequest.
-
-                   message SomeResponse {
-                           repeated Bar results = 1;
-                           PageResponse page = 2;
-                   }
+                title: cosmos.base.query.v1beta1.PageResponse page_response = 3;
         default:
           description: An unexpected error response.
           schema:
@@ -153,21 +130,6 @@ paths:
                     '@type':
                       type: string
                   additionalProperties: {}
-      parameters:
-        - name: creator
-          in: query
-          required: false
-          type: string
-        - name: page
-          in: query
-          required: false
-          type: string
-          format: uint64
-        - name: limit
-          in: query
-          required: false
-          type: string
-          format: uint64
       tags:
         - Query
   /SamuelReeder/BitID/did/documents/{creator}:
@@ -19720,6 +19682,10 @@ definitions:
   bitid.did.QueryListDIDResponse:
     type: object
     properties:
+      creators:
+        type: array
+        items:
+          type: string
       DID:
         type: array
         items:
@@ -19758,32 +19724,7 @@ definitions:
               type: string
             updated:
               type: string
-      page_response:
-        type: object
-        properties:
-          next_key:
-            type: string
-            format: byte
-            description: |-
-              next_key is the key to be passed to PageRequest.key to
-              query the next page most efficiently. It will be empty if
-              there are no more results.
-          total:
-            type: string
-            format: uint64
-            title: >-
-              total is total number of results available if
-              PageRequest.count_total
-
-              was set, its value is undefined otherwise
-        description: |-
-          PageResponse is to be embedded in gRPC response messages where the
-          corresponding request message has used PageRequest.
-
-           message SomeResponse {
-                   repeated Bar results = 1;
-                   PageResponse page = 2;
-           }
+        title: cosmos.base.query.v1beta1.PageResponse page_response = 3;
   bitid.did.QueryParamsResponse:
     type: object
     properties:
@@ -19812,30 +19753,6 @@ definitions:
       publicKeyPem:
         type: string
         title: Public key in PEM format
-  cosmos.base.query.v1beta1.PageResponse:
-    type: object
-    properties:
-      next_key:
-        type: string
-        format: byte
-        description: |-
-          next_key is the key to be passed to PageRequest.key to
-          query the next page most efficiently. It will be empty if
-          there are no more results.
-      total:
-        type: string
-        format: uint64
-        title: |-
-          total is total number of results available if PageRequest.count_total
-          was set, its value is undefined otherwise
-    description: |-
-      PageResponse is to be embedded in gRPC response messages where the
-      corresponding request message has used PageRequest.
-
-       message SomeResponse {
-               repeated Bar results = 1;
-               PageResponse page = 2;
-       }
   bitid.did.MsgDefineDIDDocument:
     type: object
     properties:

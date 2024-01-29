@@ -38,14 +38,15 @@ message QueryGetDIDResponse {
 }
 
 message QueryListDIDRequest {
-  string creator = 1;
-  uint64 page = 2;
-  uint64 limit = 3;
+  // string creator = 1;
+  // uint64 page = 2;
+  // uint64 limit = 3;
 }
 
 message QueryListDIDResponse {
-  repeated DIDDocument DID = 1;
-  cosmos.base.query.v1beta1.PageResponse page_response = 2;
+  repeated string creators = 1;
+  repeated DIDDocument DID = 2;
+  // cosmos.base.query.v1beta1.PageResponse page_response = 3;
 }
 
 // QueryParamsRequest is request type for the Query/Params RPC method.

@@ -6,6 +6,7 @@ vy50flhl3nc8473nyg8d62amdy5sxxe --chain-id BitID
 
 GET DID 
 /root/go/bin/BitIDd query did get-did cosmos1kmqls6wvy50flhl3nc8473nyg8d62amdy5sxxe --chain-id BitID
+curl http://localhost:8080/SamuelReeder/BitID/did/documents/cosmos1kmqls6wvy50flhl3nc8473nyg8d62amdy5sxxe
 
 CREATE VALIDATOR 
 /root/go/bin/BitIDd tendermint --help

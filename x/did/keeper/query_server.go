@@ -23,8 +23,66 @@ type queryServer struct {
 }
 
 // ListDID implements types.QueryServer.
-func (queryServer) ListDID(context.Context, *types.QueryListDIDRequest) (*types.QueryListDIDResponse, error) {
-	panic("unimplemented")
+func (qs queryServer) ListDID(ctx context.Context, req *types.QueryListDIDRequest) (*types.QueryListDIDResponse, error) {
+	// didList, err := qs.k.storedDID.()
+	// if err != nil {
+	// 	return nil, status.Error(codes.Internal, err.Error())
+	// }
+
+	// store := ctx.KVStore(qs.storeKey)
+	// iterator := sdk.KVStorePrefixIterator(store, types.DIDDocument)
+
+	// key, value := qs.k.storedDID.IterateRaw(ctx, nil, nil, collections.OrderAscending)
+
+	// var dids []types.DIDDocument
+	// for ; key.Valid() && value != nil; key, value = qs.k.storedDID.IterateRaw(ctx, key, value, collections.OrderAscending){
+	// 	var did types.DIDDocument
+	// 	codec.Cdc.MustUnmarshalBinaryBare(iterator.Value(), &did)
+	// 	dids = append(dids, did)
+	// }
+
+	// iterator.Close()
+	// return &types.QueryListDIDResponse{DIDs: dids}, nil
+	iterator, err := qs.k.storedDID.IterateRaw(ctx, nil, nil, collections.OrderAscending)
+	if err != nil {
+		// Handle error
+		return nil, err
+	}
+	defer iterator.Close()
+
+	var dids []*types.DIDDocument
+	var creators []string
+	for ; iterator.Valid(); iterator.Next() {
+		// var did types.DIDDocument
+		key, err := iterator.Key()
+		if err != nil {
+			return nil, err
+		}
+		value, err := iterator.Value()
+		if err != nil {
+			return nil, err
+		}
+		// err := value.Unmarshal([]byte(jsonFile), &didDocument)
+		// if err != nil {
+		// 	return nil, fmt.Errorf("error parsing JSON:%v", err)
+		// }
+		// Optionally, you can use the key for something
+
+		// err0 := qs.k.cdc.Unmarshal(value, &did)
+		// if err != nil {
+		//     // Handle error
+		//     return nil, err
+		// }
+		creators = append(creators, string(key))
+		dids = append(dids, &value)
+	}
+
+	// var didPointers []*types.DIDDocument
+	// for _, did := range dids {
+	// 	didPointers = append(didPointers, &did)
+	// }
+	return &types.QueryListDIDResponse{Creators: creators, DID: dids}, nil
+
 }
 
 // GetDID implements types.QueryServer.

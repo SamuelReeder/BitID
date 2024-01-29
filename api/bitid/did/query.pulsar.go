@@ -3,7 +3,7 @@ package did
 
 import (
 	_ "cosmossdk.io/api/amino"
-	v1beta1 "cosmossdk.io/api/cosmos/base/query/v1beta1"
+	_ "cosmossdk.io/api/cosmos/base/query/v1beta1"
 	fmt "fmt"
 	runtime "github.com/cosmos/cosmos-proto/runtime"
 	_ "github.com/cosmos/gogoproto/gogoproto"
@@ -872,18 +872,12 @@ func (x *fastReflection_QueryGetDIDResponse) ProtoMethods() *protoiface.Methods 
 }
 
 var (
-	md_QueryListDIDRequest         protoreflect.MessageDescriptor
-	fd_QueryListDIDRequest_creator protoreflect.FieldDescriptor
-	fd_QueryListDIDRequest_page    protoreflect.FieldDescriptor
-	fd_QueryListDIDRequest_limit   protoreflect.FieldDescriptor
+	md_QueryListDIDRequest protoreflect.MessageDescriptor
 )
 
 func init() {
 	file_bitid_did_query_proto_init()
 	md_QueryListDIDRequest = File_bitid_did_query_proto.Messages().ByName("QueryListDIDRequest")
-	fd_QueryListDIDRequest_creator = md_QueryListDIDRequest.Fields().ByName("creator")
-	fd_QueryListDIDRequest_page = md_QueryListDIDRequest.Fields().ByName("page")
-	fd_QueryListDIDRequest_limit = md_QueryListDIDRequest.Fields().ByName("limit")
 }
 
 var _ protoreflect.Message = (*fastReflection_QueryListDIDRequest)(nil)
@@ -951,24 +945,6 @@ func (x *fastReflection_QueryListDIDRequest) Interface() protoreflect.ProtoMessa
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
 func (x *fastReflection_QueryListDIDRequest) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
-	if x.Creator != "" {
-		value := protoreflect.ValueOfString(x.Creator)
-		if !f(fd_QueryListDIDRequest_creator, value) {
-			return
-		}
-	}
-	if x.Page != uint64(0) {
-		value := protoreflect.ValueOfUint64(x.Page)
-		if !f(fd_QueryListDIDRequest_page, value) {
-			return
-		}
-	}
-	if x.Limit != uint64(0) {
-		value := protoreflect.ValueOfUint64(x.Limit)
-		if !f(fd_QueryListDIDRequest_limit, value) {
-			return
-		}
-	}
 }
 
 // Has reports whether a field is populated.
@@ -984,12 +960,6 @@ func (x *fastReflection_QueryListDIDRequest) Range(f func(protoreflect.FieldDesc
 // a repeated field is populated if it is non-empty.
 func (x *fastReflection_QueryListDIDRequest) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "bitid.did.QueryListDIDRequest.creator":
-		return x.Creator != ""
-	case "bitid.did.QueryListDIDRequest.page":
-		return x.Page != uint64(0)
-	case "bitid.did.QueryListDIDRequest.limit":
-		return x.Limit != uint64(0)
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: bitid.did.QueryListDIDRequest"))
@@ -1006,12 +976,6 @@ func (x *fastReflection_QueryListDIDRequest) Has(fd protoreflect.FieldDescriptor
 // Clear is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_QueryListDIDRequest) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "bitid.did.QueryListDIDRequest.creator":
-		x.Creator = ""
-	case "bitid.did.QueryListDIDRequest.page":
-		x.Page = uint64(0)
-	case "bitid.did.QueryListDIDRequest.limit":
-		x.Limit = uint64(0)
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: bitid.did.QueryListDIDRequest"))
@@ -1028,15 +992,6 @@ func (x *fastReflection_QueryListDIDRequest) Clear(fd protoreflect.FieldDescript
 // of the value; to obtain a mutable reference, use Mutable.
 func (x *fastReflection_QueryListDIDRequest) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "bitid.did.QueryListDIDRequest.creator":
-		value := x.Creator
-		return protoreflect.ValueOfString(value)
-	case "bitid.did.QueryListDIDRequest.page":
-		value := x.Page
-		return protoreflect.ValueOfUint64(value)
-	case "bitid.did.QueryListDIDRequest.limit":
-		value := x.Limit
-		return protoreflect.ValueOfUint64(value)
 	default:
 		if descriptor.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: bitid.did.QueryListDIDRequest"))
@@ -1057,12 +1012,6 @@ func (x *fastReflection_QueryListDIDRequest) Get(descriptor protoreflect.FieldDe
 // Set is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_QueryListDIDRequest) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "bitid.did.QueryListDIDRequest.creator":
-		x.Creator = value.Interface().(string)
-	case "bitid.did.QueryListDIDRequest.page":
-		x.Page = value.Uint()
-	case "bitid.did.QueryListDIDRequest.limit":
-		x.Limit = value.Uint()
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: bitid.did.QueryListDIDRequest"))
@@ -1083,12 +1032,6 @@ func (x *fastReflection_QueryListDIDRequest) Set(fd protoreflect.FieldDescriptor
 // Mutable is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_QueryListDIDRequest) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "bitid.did.QueryListDIDRequest.creator":
-		panic(fmt.Errorf("field creator of message bitid.did.QueryListDIDRequest is not mutable"))
-	case "bitid.did.QueryListDIDRequest.page":
-		panic(fmt.Errorf("field page of message bitid.did.QueryListDIDRequest is not mutable"))
-	case "bitid.did.QueryListDIDRequest.limit":
-		panic(fmt.Errorf("field limit of message bitid.did.QueryListDIDRequest is not mutable"))
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: bitid.did.QueryListDIDRequest"))
@@ -1102,12 +1045,6 @@ func (x *fastReflection_QueryListDIDRequest) Mutable(fd protoreflect.FieldDescri
 // For lists, maps, and messages, this returns a new, empty, mutable value.
 func (x *fastReflection_QueryListDIDRequest) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "bitid.did.QueryListDIDRequest.creator":
-		return protoreflect.ValueOfString("")
-	case "bitid.did.QueryListDIDRequest.page":
-		return protoreflect.ValueOfUint64(uint64(0))
-	case "bitid.did.QueryListDIDRequest.limit":
-		return protoreflect.ValueOfUint64(uint64(0))
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: bitid.did.QueryListDIDRequest"))
@@ -1177,16 +1114,6 @@ func (x *fastReflection_QueryListDIDRequest) ProtoMethods() *protoiface.Methods 
 		var n int
 		var l int
 		_ = l
-		l = len(x.Creator)
-		if l > 0 {
-			n += 1 + l + runtime.Sov(uint64(l))
-		}
-		if x.Page != 0 {
-			n += 1 + runtime.Sov(uint64(x.Page))
-		}
-		if x.Limit != 0 {
-			n += 1 + runtime.Sov(uint64(x.Limit))
-		}
 		if x.unknownFields != nil {
 			n += len(x.unknownFields)
 		}
@@ -1215,23 +1142,6 @@ func (x *fastReflection_QueryListDIDRequest) ProtoMethods() *protoiface.Methods 
 		if x.unknownFields != nil {
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
-		}
-		if x.Limit != 0 {
-			i = runtime.EncodeVarint(dAtA, i, uint64(x.Limit))
-			i--
-			dAtA[i] = 0x18
-		}
-		if x.Page != 0 {
-			i = runtime.EncodeVarint(dAtA, i, uint64(x.Page))
-			i--
-			dAtA[i] = 0x10
-		}
-		if len(x.Creator) > 0 {
-			i -= len(x.Creator)
-			copy(dAtA[i:], x.Creator)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Creator)))
-			i--
-			dAtA[i] = 0xa
 		}
 		if input.Buf != nil {
 			input.Buf = append(input.Buf, dAtA...)
@@ -1282,76 +1192,6 @@ func (x *fastReflection_QueryListDIDRequest) ProtoMethods() *protoiface.Methods 
 				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryListDIDRequest: illegal tag %d (wire type %d)", fieldNum, wire)
 			}
 			switch fieldNum {
-			case 1:
-				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
-				}
-				var stringLen uint64
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					stringLen |= uint64(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-				intStringLen := int(stringLen)
-				if intStringLen < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				postIndex := iNdEx + intStringLen
-				if postIndex < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if postIndex > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				x.Creator = string(dAtA[iNdEx:postIndex])
-				iNdEx = postIndex
-			case 2:
-				if wireType != 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Page", wireType)
-				}
-				x.Page = 0
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					x.Page |= uint64(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-			case 3:
-				if wireType != 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Limit", wireType)
-				}
-				x.Limit = 0
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					x.Limit |= uint64(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
 			default:
 				iNdEx = preIndex
 				skippy, err := runtime.Skip(dAtA[iNdEx:])
@@ -1390,7 +1230,7 @@ func (x *fastReflection_QueryListDIDRequest) ProtoMethods() *protoiface.Methods 
 var _ protoreflect.List = (*_QueryListDIDResponse_1_list)(nil)
 
 type _QueryListDIDResponse_1_list struct {
-	list *[]*DIDDocument
+	list *[]string
 }
 
 func (x *_QueryListDIDResponse_1_list) Len() int {
@@ -1401,54 +1241,100 @@ func (x *_QueryListDIDResponse_1_list) Len() int {
 }
 
 func (x *_QueryListDIDResponse_1_list) Get(i int) protoreflect.Value {
-	return protoreflect.ValueOfMessage((*x.list)[i].ProtoReflect())
+	return protoreflect.ValueOfString((*x.list)[i])
 }
 
 func (x *_QueryListDIDResponse_1_list) Set(i int, value protoreflect.Value) {
-	valueUnwrapped := value.Message()
-	concreteValue := valueUnwrapped.Interface().(*DIDDocument)
+	valueUnwrapped := value.String()
+	concreteValue := valueUnwrapped
 	(*x.list)[i] = concreteValue
 }
 
 func (x *_QueryListDIDResponse_1_list) Append(value protoreflect.Value) {
-	valueUnwrapped := value.Message()
-	concreteValue := valueUnwrapped.Interface().(*DIDDocument)
+	valueUnwrapped := value.String()
+	concreteValue := valueUnwrapped
 	*x.list = append(*x.list, concreteValue)
 }
 
 func (x *_QueryListDIDResponse_1_list) AppendMutable() protoreflect.Value {
-	v := new(DIDDocument)
-	*x.list = append(*x.list, v)
-	return protoreflect.ValueOfMessage(v.ProtoReflect())
+	panic(fmt.Errorf("AppendMutable can not be called on message QueryListDIDResponse at list field Creators as it is not of Message kind"))
 }
 
 func (x *_QueryListDIDResponse_1_list) Truncate(n int) {
-	for i := n; i < len(*x.list); i++ {
-		(*x.list)[i] = nil
-	}
 	*x.list = (*x.list)[:n]
 }
 
 func (x *_QueryListDIDResponse_1_list) NewElement() protoreflect.Value {
-	v := new(DIDDocument)
-	return protoreflect.ValueOfMessage(v.ProtoReflect())
+	v := ""
+	return protoreflect.ValueOfString(v)
 }
 
 func (x *_QueryListDIDResponse_1_list) IsValid() bool {
 	return x.list != nil
 }
 
+var _ protoreflect.List = (*_QueryListDIDResponse_2_list)(nil)
+
+type _QueryListDIDResponse_2_list struct {
+	list *[]*DIDDocument
+}
+
+func (x *_QueryListDIDResponse_2_list) Len() int {
+	if x.list == nil {
+		return 0
+	}
+	return len(*x.list)
+}
+
+func (x *_QueryListDIDResponse_2_list) Get(i int) protoreflect.Value {
+	return protoreflect.ValueOfMessage((*x.list)[i].ProtoReflect())
+}
+
+func (x *_QueryListDIDResponse_2_list) Set(i int, value protoreflect.Value) {
+	valueUnwrapped := value.Message()
+	concreteValue := valueUnwrapped.Interface().(*DIDDocument)
+	(*x.list)[i] = concreteValue
+}
+
+func (x *_QueryListDIDResponse_2_list) Append(value protoreflect.Value) {
+	valueUnwrapped := value.Message()
+	concreteValue := valueUnwrapped.Interface().(*DIDDocument)
+	*x.list = append(*x.list, concreteValue)
+}
+
+func (x *_QueryListDIDResponse_2_list) AppendMutable() protoreflect.Value {
+	v := new(DIDDocument)
+	*x.list = append(*x.list, v)
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_QueryListDIDResponse_2_list) Truncate(n int) {
+	for i := n; i < len(*x.list); i++ {
+		(*x.list)[i] = nil
+	}
+	*x.list = (*x.list)[:n]
+}
+
+func (x *_QueryListDIDResponse_2_list) NewElement() protoreflect.Value {
+	v := new(DIDDocument)
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_QueryListDIDResponse_2_list) IsValid() bool {
+	return x.list != nil
+}
+
 var (
-	md_QueryListDIDResponse               protoreflect.MessageDescriptor
-	fd_QueryListDIDResponse_DID           protoreflect.FieldDescriptor
-	fd_QueryListDIDResponse_page_response protoreflect.FieldDescriptor
+	md_QueryListDIDResponse          protoreflect.MessageDescriptor
+	fd_QueryListDIDResponse_creators protoreflect.FieldDescriptor
+	fd_QueryListDIDResponse_DID      protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_bitid_did_query_proto_init()
 	md_QueryListDIDResponse = File_bitid_did_query_proto.Messages().ByName("QueryListDIDResponse")
+	fd_QueryListDIDResponse_creators = md_QueryListDIDResponse.Fields().ByName("creators")
 	fd_QueryListDIDResponse_DID = md_QueryListDIDResponse.Fields().ByName("DID")
-	fd_QueryListDIDResponse_page_response = md_QueryListDIDResponse.Fields().ByName("page_response")
 }
 
 var _ protoreflect.Message = (*fastReflection_QueryListDIDResponse)(nil)
@@ -1516,15 +1402,15 @@ func (x *fastReflection_QueryListDIDResponse) Interface() protoreflect.ProtoMess
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
 func (x *fastReflection_QueryListDIDResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
-	if len(x.DID) != 0 {
-		value := protoreflect.ValueOfList(&_QueryListDIDResponse_1_list{list: &x.DID})
-		if !f(fd_QueryListDIDResponse_DID, value) {
+	if len(x.Creators) != 0 {
+		value := protoreflect.ValueOfList(&_QueryListDIDResponse_1_list{list: &x.Creators})
+		if !f(fd_QueryListDIDResponse_creators, value) {
 			return
 		}
 	}
-	if x.PageResponse != nil {
-		value := protoreflect.ValueOfMessage(x.PageResponse.ProtoReflect())
-		if !f(fd_QueryListDIDResponse_page_response, value) {
+	if len(x.DID) != 0 {
+		value := protoreflect.ValueOfList(&_QueryListDIDResponse_2_list{list: &x.DID})
+		if !f(fd_QueryListDIDResponse_DID, value) {
 			return
 		}
 	}
@@ -1543,10 +1429,10 @@ func (x *fastReflection_QueryListDIDResponse) Range(f func(protoreflect.FieldDes
 // a repeated field is populated if it is non-empty.
 func (x *fastReflection_QueryListDIDResponse) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
+	case "bitid.did.QueryListDIDResponse.creators":
+		return len(x.Creators) != 0
 	case "bitid.did.QueryListDIDResponse.DID":
 		return len(x.DID) != 0
-	case "bitid.did.QueryListDIDResponse.page_response":
-		return x.PageResponse != nil
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: bitid.did.QueryListDIDResponse"))
@@ -1563,10 +1449,10 @@ func (x *fastReflection_QueryListDIDResponse) Has(fd protoreflect.FieldDescripto
 // Clear is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_QueryListDIDResponse) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
+	case "bitid.did.QueryListDIDResponse.creators":
+		x.Creators = nil
 	case "bitid.did.QueryListDIDResponse.DID":
 		x.DID = nil
-	case "bitid.did.QueryListDIDResponse.page_response":
-		x.PageResponse = nil
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: bitid.did.QueryListDIDResponse"))
@@ -1583,15 +1469,18 @@ func (x *fastReflection_QueryListDIDResponse) Clear(fd protoreflect.FieldDescrip
 // of the value; to obtain a mutable reference, use Mutable.
 func (x *fastReflection_QueryListDIDResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "bitid.did.QueryListDIDResponse.DID":
-		if len(x.DID) == 0 {
+	case "bitid.did.QueryListDIDResponse.creators":
+		if len(x.Creators) == 0 {
 			return protoreflect.ValueOfList(&_QueryListDIDResponse_1_list{})
 		}
-		listValue := &_QueryListDIDResponse_1_list{list: &x.DID}
+		listValue := &_QueryListDIDResponse_1_list{list: &x.Creators}
 		return protoreflect.ValueOfList(listValue)
-	case "bitid.did.QueryListDIDResponse.page_response":
-		value := x.PageResponse
-		return protoreflect.ValueOfMessage(value.ProtoReflect())
+	case "bitid.did.QueryListDIDResponse.DID":
+		if len(x.DID) == 0 {
+			return protoreflect.ValueOfList(&_QueryListDIDResponse_2_list{})
+		}
+		listValue := &_QueryListDIDResponse_2_list{list: &x.DID}
+		return protoreflect.ValueOfList(listValue)
 	default:
 		if descriptor.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: bitid.did.QueryListDIDResponse"))
@@ -1612,12 +1501,14 @@ func (x *fastReflection_QueryListDIDResponse) Get(descriptor protoreflect.FieldD
 // Set is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_QueryListDIDResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "bitid.did.QueryListDIDResponse.DID":
+	case "bitid.did.QueryListDIDResponse.creators":
 		lv := value.List()
 		clv := lv.(*_QueryListDIDResponse_1_list)
+		x.Creators = *clv.list
+	case "bitid.did.QueryListDIDResponse.DID":
+		lv := value.List()
+		clv := lv.(*_QueryListDIDResponse_2_list)
 		x.DID = *clv.list
-	case "bitid.did.QueryListDIDResponse.page_response":
-		x.PageResponse = value.Message().Interface().(*v1beta1.PageResponse)
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: bitid.did.QueryListDIDResponse"))
@@ -1638,17 +1529,18 @@ func (x *fastReflection_QueryListDIDResponse) Set(fd protoreflect.FieldDescripto
 // Mutable is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_QueryListDIDResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
+	case "bitid.did.QueryListDIDResponse.creators":
+		if x.Creators == nil {
+			x.Creators = []string{}
+		}
+		value := &_QueryListDIDResponse_1_list{list: &x.Creators}
+		return protoreflect.ValueOfList(value)
 	case "bitid.did.QueryListDIDResponse.DID":
 		if x.DID == nil {
 			x.DID = []*DIDDocument{}
 		}
-		value := &_QueryListDIDResponse_1_list{list: &x.DID}
+		value := &_QueryListDIDResponse_2_list{list: &x.DID}
 		return protoreflect.ValueOfList(value)
-	case "bitid.did.QueryListDIDResponse.page_response":
-		if x.PageResponse == nil {
-			x.PageResponse = new(v1beta1.PageResponse)
-		}
-		return protoreflect.ValueOfMessage(x.PageResponse.ProtoReflect())
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: bitid.did.QueryListDIDResponse"))
@@ -1662,12 +1554,12 @@ func (x *fastReflection_QueryListDIDResponse) Mutable(fd protoreflect.FieldDescr
 // For lists, maps, and messages, this returns a new, empty, mutable value.
 func (x *fastReflection_QueryListDIDResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
+	case "bitid.did.QueryListDIDResponse.creators":
+		list := []string{}
+		return protoreflect.ValueOfList(&_QueryListDIDResponse_1_list{list: &list})
 	case "bitid.did.QueryListDIDResponse.DID":
 		list := []*DIDDocument{}
-		return protoreflect.ValueOfList(&_QueryListDIDResponse_1_list{list: &list})
-	case "bitid.did.QueryListDIDResponse.page_response":
-		m := new(v1beta1.PageResponse)
-		return protoreflect.ValueOfMessage(m.ProtoReflect())
+		return protoreflect.ValueOfList(&_QueryListDIDResponse_2_list{list: &list})
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: bitid.did.QueryListDIDResponse"))
@@ -1737,15 +1629,17 @@ func (x *fastReflection_QueryListDIDResponse) ProtoMethods() *protoiface.Methods
 		var n int
 		var l int
 		_ = l
+		if len(x.Creators) > 0 {
+			for _, s := range x.Creators {
+				l = len(s)
+				n += 1 + l + runtime.Sov(uint64(l))
+			}
+		}
 		if len(x.DID) > 0 {
 			for _, e := range x.DID {
 				l = options.Size(e)
 				n += 1 + l + runtime.Sov(uint64(l))
 			}
-		}
-		if x.PageResponse != nil {
-			l = options.Size(x.PageResponse)
-			n += 1 + l + runtime.Sov(uint64(l))
 		}
 		if x.unknownFields != nil {
 			n += len(x.unknownFields)
@@ -1776,20 +1670,6 @@ func (x *fastReflection_QueryListDIDResponse) ProtoMethods() *protoiface.Methods
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
 		}
-		if x.PageResponse != nil {
-			encoded, err := options.Marshal(x.PageResponse)
-			if err != nil {
-				return protoiface.MarshalOutput{
-					NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-					Buf:               input.Buf,
-				}, err
-			}
-			i -= len(encoded)
-			copy(dAtA[i:], encoded)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
-			i--
-			dAtA[i] = 0x12
-		}
 		if len(x.DID) > 0 {
 			for iNdEx := len(x.DID) - 1; iNdEx >= 0; iNdEx-- {
 				encoded, err := options.Marshal(x.DID[iNdEx])
@@ -1802,6 +1682,15 @@ func (x *fastReflection_QueryListDIDResponse) ProtoMethods() *protoiface.Methods
 				i -= len(encoded)
 				copy(dAtA[i:], encoded)
 				i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+				i--
+				dAtA[i] = 0x12
+			}
+		}
+		if len(x.Creators) > 0 {
+			for iNdEx := len(x.Creators) - 1; iNdEx >= 0; iNdEx-- {
+				i -= len(x.Creators[iNdEx])
+				copy(dAtA[i:], x.Creators[iNdEx])
+				i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Creators[iNdEx])))
 				i--
 				dAtA[i] = 0xa
 			}
@@ -1857,6 +1746,38 @@ func (x *fastReflection_QueryListDIDResponse) ProtoMethods() *protoiface.Methods
 			switch fieldNum {
 			case 1:
 				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Creators", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Creators = append(x.Creators, string(dAtA[iNdEx:postIndex]))
+				iNdEx = postIndex
+			case 2:
+				if wireType != 2 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field DID", wireType)
 				}
 				var msglen int
@@ -1886,42 +1807,6 @@ func (x *fastReflection_QueryListDIDResponse) ProtoMethods() *protoiface.Methods
 				}
 				x.DID = append(x.DID, &DIDDocument{})
 				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.DID[len(x.DID)-1]); err != nil {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
-				}
-				iNdEx = postIndex
-			case 2:
-				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field PageResponse", wireType)
-				}
-				var msglen int
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					msglen |= int(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-				if msglen < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				postIndex := iNdEx + msglen
-				if postIndex < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if postIndex > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				if x.PageResponse == nil {
-					x.PageResponse = &v1beta1.PageResponse{}
-				}
-				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.PageResponse); err != nil {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
 				}
 				iNdEx = postIndex
@@ -2838,10 +2723,6 @@ type QueryListDIDRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
-
-	Creator string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
-	Page    uint64 `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
-	Limit   uint64 `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`
 }
 
 func (x *QueryListDIDRequest) Reset() {
@@ -2864,34 +2745,13 @@ func (*QueryListDIDRequest) Descriptor() ([]byte, []int) {
 	return file_bitid_did_query_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *QueryListDIDRequest) GetCreator() string {
-	if x != nil {
-		return x.Creator
-	}
-	return ""
-}
-
-func (x *QueryListDIDRequest) GetPage() uint64 {
-	if x != nil {
-		return x.Page
-	}
-	return 0
-}
-
-func (x *QueryListDIDRequest) GetLimit() uint64 {
-	if x != nil {
-		return x.Limit
-	}
-	return 0
-}
-
 type QueryListDIDResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	DID          []*DIDDocument        `protobuf:"bytes,1,rep,name=DID,proto3" json:"DID,omitempty"`
-	PageResponse *v1beta1.PageResponse `protobuf:"bytes,2,opt,name=page_response,json=pageResponse,proto3" json:"page_response,omitempty"`
+	Creators []string       `protobuf:"bytes,1,rep,name=creators,proto3" json:"creators,omitempty"`
+	DID      []*DIDDocument `protobuf:"bytes,2,rep,name=DID,proto3" json:"DID,omitempty"` // cosmos.base.query.v1beta1.PageResponse page_response = 3;
 }
 
 func (x *QueryListDIDResponse) Reset() {
@@ -2914,16 +2774,16 @@ func (*QueryListDIDResponse) Descriptor() ([]byte, []int) {
 	return file_bitid_did_query_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *QueryListDIDResponse) GetDID() []*DIDDocument {
+func (x *QueryListDIDResponse) GetCreators() []string {
 	if x != nil {
-		return x.DID
+		return x.Creators
 	}
 	return nil
 }
 
-func (x *QueryListDIDResponse) GetPageResponse() *v1beta1.PageResponse {
+func (x *QueryListDIDResponse) GetDID() []*DIDDocument {
 	if x != nil {
-		return x.PageResponse
+		return x.DID
 	}
 	return nil
 }
@@ -3014,60 +2874,52 @@ var file_bitid_did_query_proto_rawDesc = []byte{
 	0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x44, 0x49, 0x44, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
 	0x73, 0x65, 0x12, 0x28, 0x0a, 0x03, 0x44, 0x49, 0x44, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32,
 	0x16, 0x2e, 0x62, 0x69, 0x74, 0x69, 0x64, 0x2e, 0x64, 0x69, 0x64, 0x2e, 0x44, 0x49, 0x44, 0x44,
-	0x6f, 0x63, 0x75, 0x6d, 0x65, 0x6e, 0x74, 0x52, 0x03, 0x44, 0x49, 0x44, 0x22, 0x59, 0x0a, 0x13,
+	0x6f, 0x63, 0x75, 0x6d, 0x65, 0x6e, 0x74, 0x52, 0x03, 0x44, 0x49, 0x44, 0x22, 0x15, 0x0a, 0x13,
 	0x51, 0x75, 0x65, 0x72, 0x79, 0x4c, 0x69, 0x73, 0x74, 0x44, 0x49, 0x44, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x12, 0x12, 0x0a,
-	0x04, 0x70, 0x61, 0x67, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52, 0x04, 0x70, 0x61, 0x67,
-	0x65, 0x12, 0x14, 0x0a, 0x05, 0x6c, 0x69, 0x6d, 0x69, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x04,
-	0x52, 0x05, 0x6c, 0x69, 0x6d, 0x69, 0x74, 0x22, 0x8e, 0x01, 0x0a, 0x14, 0x51, 0x75, 0x65, 0x72,
-	0x79, 0x4c, 0x69, 0x73, 0x74, 0x44, 0x49, 0x44, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x12, 0x28, 0x0a, 0x03, 0x44, 0x49, 0x44, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x16, 0x2e,
-	0x62, 0x69, 0x74, 0x69, 0x64, 0x2e, 0x64, 0x69, 0x64, 0x2e, 0x44, 0x49, 0x44, 0x44, 0x6f, 0x63,
-	0x75, 0x6d, 0x65, 0x6e, 0x74, 0x52, 0x03, 0x44, 0x49, 0x44, 0x12, 0x4c, 0x0a, 0x0d, 0x70, 0x61,
-	0x67, 0x65, 0x5f, 0x72, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28,
-	0x0b, 0x32, 0x27, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e,
-	0x71, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x50, 0x61,
-	0x67, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x52, 0x0c, 0x70, 0x61, 0x67, 0x65,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x14, 0x0a, 0x12, 0x51, 0x75, 0x65, 0x72,
-	0x79, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x4b,
-	0x0a, 0x13, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x34, 0x0a, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x11, 0x2e, 0x62, 0x69, 0x74, 0x69, 0x64, 0x2e, 0x64, 0x69,
-	0x64, 0x2e, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x42, 0x09, 0xc8, 0xde, 0x1f, 0x00, 0xa8, 0xe7,
-	0xb0, 0x2a, 0x01, 0x52, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x32, 0xed, 0x02, 0x0a, 0x05,
-	0x51, 0x75, 0x65, 0x72, 0x79, 0x12, 0x6f, 0x0a, 0x06, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12,
-	0x1d, 0x2e, 0x62, 0x69, 0x74, 0x69, 0x64, 0x2e, 0x64, 0x69, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72,
-	0x79, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1e,
-	0x2e, 0x62, 0x69, 0x74, 0x69, 0x64, 0x2e, 0x64, 0x69, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79,
-	0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x26,
-	0x82, 0xd3, 0xe4, 0x93, 0x02, 0x20, 0x12, 0x1e, 0x2f, 0x53, 0x61, 0x6d, 0x75, 0x65, 0x6c, 0x52,
-	0x65, 0x65, 0x64, 0x65, 0x72, 0x2f, 0x42, 0x69, 0x74, 0x49, 0x44, 0x2f, 0x64, 0x69, 0x64, 0x2f,
-	0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x7c, 0x0a, 0x06, 0x47, 0x65, 0x74, 0x44, 0x49, 0x44,
-	0x12, 0x1d, 0x2e, 0x62, 0x69, 0x74, 0x69, 0x64, 0x2e, 0x64, 0x69, 0x64, 0x2e, 0x51, 0x75, 0x65,
-	0x72, 0x79, 0x47, 0x65, 0x74, 0x44, 0x49, 0x44, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
-	0x1e, 0x2e, 0x62, 0x69, 0x74, 0x69, 0x64, 0x2e, 0x64, 0x69, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72,
-	0x79, 0x47, 0x65, 0x74, 0x44, 0x49, 0x44, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22,
-	0x33, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x2d, 0x12, 0x2b, 0x2f, 0x53, 0x61, 0x6d, 0x75, 0x65, 0x6c,
-	0x52, 0x65, 0x65, 0x64, 0x65, 0x72, 0x2f, 0x42, 0x69, 0x74, 0x49, 0x44, 0x2f, 0x64, 0x69, 0x64,
-	0x2f, 0x64, 0x6f, 0x63, 0x75, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x2f, 0x7b, 0x63, 0x72, 0x65, 0x61,
-	0x74, 0x6f, 0x72, 0x7d, 0x12, 0x75, 0x0a, 0x07, 0x4c, 0x69, 0x73, 0x74, 0x44, 0x49, 0x44, 0x12,
-	0x1e, 0x2e, 0x62, 0x69, 0x74, 0x69, 0x64, 0x2e, 0x64, 0x69, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72,
-	0x79, 0x4c, 0x69, 0x73, 0x74, 0x44, 0x49, 0x44, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
-	0x1f, 0x2e, 0x62, 0x69, 0x74, 0x69, 0x64, 0x2e, 0x64, 0x69, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72,
-	0x79, 0x4c, 0x69, 0x73, 0x74, 0x44, 0x49, 0x44, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x22, 0x29, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x23, 0x12, 0x21, 0x2f, 0x53, 0x61, 0x6d, 0x75, 0x65,
-	0x6c, 0x52, 0x65, 0x65, 0x64, 0x65, 0x72, 0x2f, 0x42, 0x69, 0x74, 0x49, 0x44, 0x2f, 0x64, 0x69,
-	0x64, 0x2f, 0x64, 0x6f, 0x63, 0x75, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x42, 0x7c, 0x0a, 0x0d, 0x63,
-	0x6f, 0x6d, 0x2e, 0x62, 0x69, 0x74, 0x69, 0x64, 0x2e, 0x64, 0x69, 0x64, 0x42, 0x0a, 0x51, 0x75,
-	0x65, 0x72, 0x79, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x1a, 0x63, 0x6f, 0x73, 0x6d,
-	0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x62, 0x69, 0x74,
-	0x69, 0x64, 0x2f, 0x64, 0x69, 0x64, 0xa2, 0x02, 0x03, 0x42, 0x44, 0x58, 0xaa, 0x02, 0x09, 0x42,
-	0x69, 0x74, 0x69, 0x64, 0x2e, 0x44, 0x69, 0x64, 0xca, 0x02, 0x09, 0x42, 0x69, 0x74, 0x69, 0x64,
-	0x5c, 0x44, 0x69, 0x64, 0xe2, 0x02, 0x15, 0x42, 0x69, 0x74, 0x69, 0x64, 0x5c, 0x44, 0x69, 0x64,
-	0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x0a, 0x42,
-	0x69, 0x74, 0x69, 0x64, 0x3a, 0x3a, 0x44, 0x69, 0x64, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x33,
+	0x65, 0x73, 0x74, 0x22, 0x5c, 0x0a, 0x14, 0x51, 0x75, 0x65, 0x72, 0x79, 0x4c, 0x69, 0x73, 0x74,
+	0x44, 0x49, 0x44, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x63,
+	0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x09, 0x52, 0x08, 0x63,
+	0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x73, 0x12, 0x28, 0x0a, 0x03, 0x44, 0x49, 0x44, 0x18, 0x02,
+	0x20, 0x03, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x62, 0x69, 0x74, 0x69, 0x64, 0x2e, 0x64, 0x69, 0x64,
+	0x2e, 0x44, 0x49, 0x44, 0x44, 0x6f, 0x63, 0x75, 0x6d, 0x65, 0x6e, 0x74, 0x52, 0x03, 0x44, 0x49,
+	0x44, 0x22, 0x14, 0x0a, 0x12, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x4b, 0x0a, 0x13, 0x51, 0x75, 0x65, 0x72, 0x79,
+	0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x34,
+	0x0a, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x11,
+	0x2e, 0x62, 0x69, 0x74, 0x69, 0x64, 0x2e, 0x64, 0x69, 0x64, 0x2e, 0x50, 0x61, 0x72, 0x61, 0x6d,
+	0x73, 0x42, 0x09, 0xc8, 0xde, 0x1f, 0x00, 0xa8, 0xe7, 0xb0, 0x2a, 0x01, 0x52, 0x06, 0x70, 0x61,
+	0x72, 0x61, 0x6d, 0x73, 0x32, 0xed, 0x02, 0x0a, 0x05, 0x51, 0x75, 0x65, 0x72, 0x79, 0x12, 0x6f,
+	0x0a, 0x06, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x1d, 0x2e, 0x62, 0x69, 0x74, 0x69, 0x64,
+	0x2e, 0x64, 0x69, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1e, 0x2e, 0x62, 0x69, 0x74, 0x69, 0x64, 0x2e,
+	0x64, 0x69, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x26, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x20, 0x12,
+	0x1e, 0x2f, 0x53, 0x61, 0x6d, 0x75, 0x65, 0x6c, 0x52, 0x65, 0x65, 0x64, 0x65, 0x72, 0x2f, 0x42,
+	0x69, 0x74, 0x49, 0x44, 0x2f, 0x64, 0x69, 0x64, 0x2f, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12,
+	0x7c, 0x0a, 0x06, 0x47, 0x65, 0x74, 0x44, 0x49, 0x44, 0x12, 0x1d, 0x2e, 0x62, 0x69, 0x74, 0x69,
+	0x64, 0x2e, 0x64, 0x69, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x44, 0x49,
+	0x44, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1e, 0x2e, 0x62, 0x69, 0x74, 0x69, 0x64,
+	0x2e, 0x64, 0x69, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x44, 0x49, 0x44,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x33, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x2d,
+	0x12, 0x2b, 0x2f, 0x53, 0x61, 0x6d, 0x75, 0x65, 0x6c, 0x52, 0x65, 0x65, 0x64, 0x65, 0x72, 0x2f,
+	0x42, 0x69, 0x74, 0x49, 0x44, 0x2f, 0x64, 0x69, 0x64, 0x2f, 0x64, 0x6f, 0x63, 0x75, 0x6d, 0x65,
+	0x6e, 0x74, 0x73, 0x2f, 0x7b, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x7d, 0x12, 0x75, 0x0a,
+	0x07, 0x4c, 0x69, 0x73, 0x74, 0x44, 0x49, 0x44, 0x12, 0x1e, 0x2e, 0x62, 0x69, 0x74, 0x69, 0x64,
+	0x2e, 0x64, 0x69, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x4c, 0x69, 0x73, 0x74, 0x44, 0x49,
+	0x44, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1f, 0x2e, 0x62, 0x69, 0x74, 0x69, 0x64,
+	0x2e, 0x64, 0x69, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x4c, 0x69, 0x73, 0x74, 0x44, 0x49,
+	0x44, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x29, 0x82, 0xd3, 0xe4, 0x93, 0x02,
+	0x23, 0x12, 0x21, 0x2f, 0x53, 0x61, 0x6d, 0x75, 0x65, 0x6c, 0x52, 0x65, 0x65, 0x64, 0x65, 0x72,
+	0x2f, 0x42, 0x69, 0x74, 0x49, 0x44, 0x2f, 0x64, 0x69, 0x64, 0x2f, 0x64, 0x6f, 0x63, 0x75, 0x6d,
+	0x65, 0x6e, 0x74, 0x73, 0x42, 0x7c, 0x0a, 0x0d, 0x63, 0x6f, 0x6d, 0x2e, 0x62, 0x69, 0x74, 0x69,
+	0x64, 0x2e, 0x64, 0x69, 0x64, 0x42, 0x0a, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x72, 0x6f, 0x74,
+	0x6f, 0x50, 0x01, 0x5a, 0x1a, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69,
+	0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x62, 0x69, 0x74, 0x69, 0x64, 0x2f, 0x64, 0x69, 0x64, 0xa2,
+	0x02, 0x03, 0x42, 0x44, 0x58, 0xaa, 0x02, 0x09, 0x42, 0x69, 0x74, 0x69, 0x64, 0x2e, 0x44, 0x69,
+	0x64, 0xca, 0x02, 0x09, 0x42, 0x69, 0x74, 0x69, 0x64, 0x5c, 0x44, 0x69, 0x64, 0xe2, 0x02, 0x15,
+	0x42, 0x69, 0x74, 0x69, 0x64, 0x5c, 0x44, 0x69, 0x64, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74,
+	0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x0a, 0x42, 0x69, 0x74, 0x69, 0x64, 0x3a, 0x3a, 0x44,
+	0x69, 0x64, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -3091,25 +2943,23 @@ var file_bitid_did_query_proto_goTypes = []interface{}{
 	(*QueryParamsRequest)(nil),   // 4: bitid.did.QueryParamsRequest
 	(*QueryParamsResponse)(nil),  // 5: bitid.did.QueryParamsResponse
 	(*DIDDocument)(nil),          // 6: bitid.did.DIDDocument
-	(*v1beta1.PageResponse)(nil), // 7: cosmos.base.query.v1beta1.PageResponse
-	(*Params)(nil),               // 8: bitid.did.Params
+	(*Params)(nil),               // 7: bitid.did.Params
 }
 var file_bitid_did_query_proto_depIdxs = []int32{
 	6, // 0: bitid.did.QueryGetDIDResponse.DID:type_name -> bitid.did.DIDDocument
 	6, // 1: bitid.did.QueryListDIDResponse.DID:type_name -> bitid.did.DIDDocument
-	7, // 2: bitid.did.QueryListDIDResponse.page_response:type_name -> cosmos.base.query.v1beta1.PageResponse
-	8, // 3: bitid.did.QueryParamsResponse.params:type_name -> bitid.did.Params
-	4, // 4: bitid.did.Query.Params:input_type -> bitid.did.QueryParamsRequest
-	0, // 5: bitid.did.Query.GetDID:input_type -> bitid.did.QueryGetDIDRequest
-	2, // 6: bitid.did.Query.ListDID:input_type -> bitid.did.QueryListDIDRequest
-	5, // 7: bitid.did.Query.Params:output_type -> bitid.did.QueryParamsResponse
-	1, // 8: bitid.did.Query.GetDID:output_type -> bitid.did.QueryGetDIDResponse
-	3, // 9: bitid.did.Query.ListDID:output_type -> bitid.did.QueryListDIDResponse
-	7, // [7:10] is the sub-list for method output_type
-	4, // [4:7] is the sub-list for method input_type
-	4, // [4:4] is the sub-list for extension type_name
-	4, // [4:4] is the sub-list for extension extendee
-	0, // [0:4] is the sub-list for field type_name
+	7, // 2: bitid.did.QueryParamsResponse.params:type_name -> bitid.did.Params
+	4, // 3: bitid.did.Query.Params:input_type -> bitid.did.QueryParamsRequest
+	0, // 4: bitid.did.Query.GetDID:input_type -> bitid.did.QueryGetDIDRequest
+	2, // 5: bitid.did.Query.ListDID:input_type -> bitid.did.QueryListDIDRequest
+	5, // 6: bitid.did.Query.Params:output_type -> bitid.did.QueryParamsResponse
+	1, // 7: bitid.did.Query.GetDID:output_type -> bitid.did.QueryGetDIDResponse
+	3, // 8: bitid.did.Query.ListDID:output_type -> bitid.did.QueryListDIDResponse
+	6, // [6:9] is the sub-list for method output_type
+	3, // [3:6] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_bitid_did_query_proto_init() }
