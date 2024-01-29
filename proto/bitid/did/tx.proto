@@ -61,7 +61,11 @@ message MsgDefineDIDDocument {
 }
 
 // MsgCreateGameResponse defines the Msg/CreateGame response type.
-message MsgDefineDIDDocumentResponse {}
+message MsgDefineDIDDocumentResponse {
+  // Define any fields you want to include in the response
+  string success = 1;
+  string creator = 2;
+}
 
 
 // message MsgDefineDIDDocument {

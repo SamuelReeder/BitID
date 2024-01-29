@@ -32,7 +32,7 @@ message Service {
 }
 
 message IndexedStoredDID {
-  string index = 1;
+  string creator = 1;
   DIDDocument storedDID = 2 [(gogoproto.nullable) = false];
 }
   

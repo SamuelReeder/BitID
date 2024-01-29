@@ -19,10 +19,13 @@ service Query {
   }
 
   rpc GetDID(QueryGetDIDRequest) returns (QueryGetDIDResponse) {
-    // option (cosmos.query.v1.module_query_safe) = true;
-    // option (google.api.http).get =
-    //   "/SamuelReeder/bitid/did/{index}";
-  }  // TOOD: option (google.api.http).get = "/SamuelReeder/BitID/did/documents/{id}";
+    option (google.api.http).get = "/SamuelReeder/BitID/did/documents/{creator}";
+  }  
+
+  rpc ListDID(QueryListDIDRequest) returns (QueryListDIDResponse) {
+    option (google.api.http).get = "/SamuelReeder/BitID/did/documents";
+  }
+
 
 }
 
@@ -32,6 +35,17 @@ message QueryGetDIDRequest {
 
 message QueryGetDIDResponse {
   DIDDocument DID = 1 ;
+}
+
+message QueryListDIDRequest {
+  string creator = 1;
+  uint64 page = 2;
+  uint64 limit = 3;
+}
+
+message QueryListDIDResponse {
+  repeated DIDDocument DID = 1;
+  cosmos.base.query.v1beta1.PageResponse page_response = 2;
 }
 
 // QueryParamsRequest is request type for the Query/Params RPC method.
