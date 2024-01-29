@@ -114,7 +114,7 @@ func (k Keeper) QueryDIDDocument(ctx context.Context, req *types.QueryGetDIDRequ
 
 	// Logic to get the DID document from the store
 	// This is just a placeholder. Replace it with your actual logic.
-	didDocument, found := k.GetDIDDocument(sdkCtx, req.Index)
+	didDocument, found := k.GetDIDDocument(sdkCtx, req.Creator)
 	if !found {
 		return nil, status.Error(codes.NotFound, "DID document not found")
 	}

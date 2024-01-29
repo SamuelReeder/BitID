@@ -56,9 +56,8 @@ message MsgDefineDIDDocument {
   option (cosmos.msg.v1.signer) = "creator";
 
   // creator is the message sender.
-  string creator = 1;
-  string index = 2 ;
-  string id = 3 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  string creator = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  string JSONString = 2;
 }
 
 // MsgCreateGameResponse defines the Msg/CreateGame response type.

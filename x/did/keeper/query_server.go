@@ -39,7 +39,7 @@ func (qs queryServer) GetDID(ctx context.Context, req *types.QueryGetDIDRequest)
 	// 	fmt.Println(v)
 	// }
 	fmt.Println(qs.k.storedDID.KeyCodec())
-	did, err := qs.k.storedDID.Get(ctx, req.Index)
+	did, err := qs.k.storedDID.Get(ctx, req.Creator)
 	if err == nil {
 		return &types.QueryGetDIDResponse{DID: &did}, nil
 	}

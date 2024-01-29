@@ -1,0 +1,4 @@
+{
+    "@context": "https://www.w3.org/ns/did/v1",
+    "public_address": "0x1234567890123456789012345678901234567890"
+}

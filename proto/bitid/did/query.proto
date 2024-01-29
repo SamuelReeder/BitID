@@ -27,11 +27,11 @@ service Query {
 }
 
 message QueryGetDIDRequest {
-  string index = 1;
+  string creator = 1;
 }
 
 message QueryGetDIDResponse {
-  DIDDocument DID = 1;
+  DIDDocument DID = 1 ;
 }
 
 // QueryParamsRequest is request type for the Query/Params RPC method.

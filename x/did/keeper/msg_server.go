@@ -2,6 +2,7 @@ package keeper
 
 import (
 	"context"
+	"encoding/json"
 	"errors"
 	"fmt"
 	"time"
@@ -59,35 +60,56 @@ func NewMsgServerImpl(keeper Keeper) types.MsgServer {
 // }
 
 func (ms msgServer) DefineDIDDocument(ctx context.Context, msg *types.MsgDefineDIDDocument) (*types.MsgDefineDIDDocumentResponse, error) {
-	if length := len([]byte(msg.Index)); 8000000000 < length || length < 1 {
-		return nil, types.ErrInvalidDid
-	}
-	if _, err := ms.k.storedDID.Get(ctx, msg.Index); err == nil || errors.Is(err, collections.ErrEncoding) {
-		return nil, fmt.Errorf("DID already exists at index: %s", msg.Index)
-	}
-
-	verificationMethods := []*types.VerificationMethod{
-		{ /* initialize with values */ },
+	// if length := len([]byte(msg.Index)); 8000000000 < length || length < 1 {
+	// 	return nil, types.ErrInvalidDid
+	// }
+	var didDocument types.DIDDocument
+	err := json.Unmarshal([]byte(msg.JSONString), &didDocument)
+	if err != nil {
+		return nil, fmt.Errorf("error parsing JSON: %v", err)
 	}
 
-	services := []*types.Service{
-		{ /* initialize with values */ },
+	if _, err := ms.k.storedDID.Get(ctx, msg.Creator); err == nil || errors.Is(err, collections.ErrEncoding) {
+		return nil, fmt.Errorf("DID already exists for creator: %s", msg.Creator)
 	}
 
-	didDocument := types.DIDDocument{
-		Context:        "https://www.w3.org/ns/did/v1",
-		Id:             msg.Creator,
-		Authentication: verificationMethods,
-		Service:        services,
-		Created:        time.Now().String(),
-		Updated:        time.Now().String(),
-	}
+	// upon submitting DID, some party need to verify the DID
+
+	// verificationMethods := []*types.VerificationMethod{
+	// 	{ /* initialize with values */ },
+	// }
+
+	// services := []*types.Service{
+	// 	{ /* initialize with values */ },
+	// }
+
+	// didDocument := types.DIDDocument{
+	// 	Context:        "https://www.w3.org/ns/did/v1",
+	// 	Id:             msg.Creator,
+	// 	Authentication: verificationMethods,
+	// 	Service:        services,
+	// 	Created:        time.Now().String(),
+	// 	Updated:        time.Now().String(),
+	// }
+
+	didDocument.Created = time.Now().String()
+	didDocument.Updated = time.Now().String()
+
 	if err := didDocument.Validate(); err != nil {
 		return nil, err
 	}
-	if err := ms.k.storedDID.Set(ctx, msg.Index, didDocument); err != nil {
+	if err := ms.k.storedDID.Set(ctx, msg.Creator, didDocument); err != nil {
 		return nil, err
 	}
 
 	return &types.MsgDefineDIDDocumentResponse{}, nil
+}
+
+func ParseDIDDocument(jsonStr string) (types.DIDDocument, error) {
+	var doc types.DIDDocument
+	err := json.Unmarshal([]byte(jsonStr), &doc)
+	if err != nil {
+		return types.DIDDocument{}, err
+	}
+	return doc, nil
 }

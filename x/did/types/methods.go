@@ -7,7 +7,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
-func (didDocument DIDDocument) GteVerificationMethod() (user sdk.AccAddress, err error) {
+func (didDocument DIDDocument) GetVerificationMethod() (user sdk.AccAddress, err error) {
 	address, err := sdk.AccAddressFromBech32(didDocument.Id)
 	return address, errors.Wrapf(err, ErrVC.Error(), didDocument.Id)
 }
@@ -20,7 +20,14 @@ func (didDocument DIDDocument) ParseDID() (str string, err error) {
 }
 
 func (didDocument DIDDocument) Validate() (err error) {
-	_, err = didDocument.GteVerificationMethod()
+	// TODO: validate all fields
+	// in particular ensure no duplicates
+	// and no illegal fields
+	// make sure all fields adhere to our given standards:
+	// check time
+	// check formats
+	// check if extra info
+	_, err = didDocument.GetVerificationMethod()
 	if err != nil {
 		return err
 	}
